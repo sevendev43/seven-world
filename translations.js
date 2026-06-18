@@ -61,7 +61,7 @@ window.TRANSLATIONS = {
 
     /* HOME — Hero */
     hero: {
-      eyebrow: 'Da Nang · Established 2018',
+      eyebrow: 'Da Nang · Established 2019',
       title:   'Building <span class="accent">brands</span>, properties,<br/>and a community of <span class="accent">ambition</span>.',
       lede:    'Seven Company is a multi-discipline group from Da Nang — a marketing agency with $10M+ in managed ad spend, a property advisory, and a private network for founders. <em>The final destination is Freedom.</em>',
       cta_primary:   'Get Started',
