@@ -1,0 +1,16 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.zip
+
+# Local Claude metadata (private prompts/permissions)
+.claude/
+
+# VS Code SFTP config (chứa password nếu dùng FTP)
+.vscode/sftp.json
+
+# Dev artifacts
+node_modules/
+sevenworld-deploy.zip

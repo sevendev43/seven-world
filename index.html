@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Seven Company — a multi-discipline group from Da Nang. Affiliate marketing & digital advertising ($10M+ managed spend, 350% avg ROI), real estate advisory, and a vetted entrepreneur community." />
+<meta name="theme-color" content="#FDFBF3" />
+<title>Seven Company — Marketing, Real Estate &amp; Business Community</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="theme.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="home">
+
+<div class="page-loader" id="pageLoader" aria-hidden="true">
+  <span class="pl-mark">
+    <svg viewBox="0 0 40 40" width="56" height="56" aria-hidden="true">
+      <defs>
+        <linearGradient id="loaderGold" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stop-color="#E1B95B"/>
+          <stop offset="100%" stop-color="#C39837"/>
+        </linearGradient>
+      </defs>
+      <path d="M6 8 H34 L20 34 Z" fill="none" stroke="url(#loaderGold)" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M14 14 H28 L20 27 Z" fill="url(#loaderGold)" opacity=".5"/>
+    </svg>
+  </span>
+  <div style="text-align:center">
+    <div class="pl-name">SEVEN</div>
+    <div class="pl-sub">Company</div>
+  </div>
+  <div class="pl-bar"></div>
+</div>
+
+<div id="site-header"></div>
+
+<!-- ============================================================
+     HOME PAGE — chỉ ráp các section từ thư mục /sections.
+     Để thêm/đổi/đảo thứ tự: chỉ cần sửa các thẻ dưới đây.
+     Mỗi file trong /sections là một block tự đứng được,
+     giống như Gutenberg blocks / Elementor templates.
+============================================================ -->
+<main id="top">
+  <div data-include="sections/hero.html"></div>
+  <div data-include="sections/about.html"></div>
+  <div data-include="sections/services.html"></div>
+  <div data-include="sections/why.html"></div>
+  <div data-include="sections/team.html"></div>
+  <div data-include="sections/portfolio.html"></div>
+  <div data-include="sections/testimonials.html"></div>
+  <div data-include="sections/cta.html"></div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="site.config.js"></script>
+<script src="translations.js"></script>
+<script src="i18n.js"></script>
+<script src="partials.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
