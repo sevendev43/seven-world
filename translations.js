@@ -22,6 +22,8 @@ window.TRANSLATIONS = {
       view_all:      'View all services',
       see_all:       'See all reasons',
       browse_svc:    'Browse Services',
+      talk_to_us:    'Talk to us',
+      view_pricing:  'See engagement models',
       home:          'Home'
     },
 
@@ -34,26 +36,69 @@ window.TRANSLATIONS = {
     nav: {
       about:    'About',
       services: 'Services',
+      cases:    'Case Studies',
       why:      'Why Us',
       contact:  'Contact'
     },
 
+    /* CASE STUDIES page */
+    cases_page: {
+      crumb:   'Case Studies',
+      eyebrow: 'Selected Work',
+      title:   'Real campaigns.<br/><span class="accent">Real revenue</span>.',
+      lede:    'Seven programs across seven verticals — finance, fashion, beauty, AI, gaming, health, and technology. Each one performance-priced, fully attributed, and built to compound.',
+      sum_rev: 'Total revenue impact',
+      sum_inv: 'Total managed investment',
+      sum_v:   'Verticals delivered',
+      sec_eyebrow: 'The work',
+      sec_title:   'Performance across <span class="accent">every vertical</span>.',
+      m_invest:  'Investment',
+      m_rev:     'Revenue impact',
+      read_case: 'Read the full case study →',
+      c1_cat:  'Finance',
+      c1_desc: 'An always-on affiliate program for a precious-metals investment platform — finance publishers and high-intent content driving qualified investors at scale.',
+      c1_unit: 'New investors referred',
+      c2_cat:  'Fashion',
+      c2_desc: 'Performance affiliate marketing for a sailmaking & marine-fabric retailer — niche content and creator partnerships converting hobbyists into buyers.',
+      c2_unit: 'New orders driven',
+      c3_cat:  'Beauty',
+      c3_desc: 'Beauty affiliate program executed through our ReviewKing media network — performance-priced and fully attributed across content and social.',
+      c3_unit: 'New orders driven',
+      c4_cat:  'AI',
+      c4_desc: 'Affiliate + content engine for an AI video-ad generator — review placements and tutorials converting creators into paying subscribers.',
+      c4_unit: 'New subscriptions',
+      c5_cat:  'Gaming',
+      c5_desc: 'High-volume affiliate program for a digital game-key marketplace — community, deal, and creator channels driving transactions at low CPA.',
+      c5_unit: 'New transactions driven',
+      c6_cat:  'Health',
+      c6_desc: 'Affiliate marketing for a behavioral-change wearable — long-form reviews and creator stories turning curiosity into referred unit sales.',
+      c6_unit: 'Units sold via referral',
+      c7_cat:  'Technology',
+      c7_desc: 'Affiliate program for a domain registrar & web platform — developer and SMB audiences converted into new account sign-ups.',
+      c7_unit: 'New sign-ups',
+      cta_eyebrow:  'Your campaign next',
+      cta_title:    'Want results like <span class="accent">these</span>?',
+      cta_lede:     'Tell us your category and target — a partner replies within one business day.',
+      cta_services: 'Explore services →'
+    },
+
     /* Footer */
     footer: {
-      desc: 'A multi-discipline group from Da Nang — affiliate marketing, real estate, and the entrepreneur community that connects them. The final destination is Freedom.',
+      desc: 'Seven World — affiliate marketing & performance advertising from Da Nang. We run the ReviewKing & TsunamiHub media networks and manage $10M+ in ad spend for brands across SEA.',
       tagline: '"The final destination is Freedom."',
       company: 'Company',
       services: 'Services',
       legal: 'Legal',
       get_in_touch: 'Get in touch',
-      copyright: 'Seven Company Ltd. All rights reserved.',
+      copyright: 'Seven World Ltd. All rights reserved.',
       links: {
         about: 'About Seven',
+        cases: 'Case Studies',
         why: 'Why Us',
         contact: 'Contact',
-        marketing: 'Marketing Agency',
-        real_estate: 'Real Estate',
-        community: 'Business Community',
+        marketing: 'Affiliate Marketing',
+        paid_media: 'Performance Ads',
+        channels:   'Owned Channels',
         privacy: 'Privacy Policy',
         terms: 'Terms of Service'
       }
@@ -61,24 +106,25 @@ window.TRANSLATIONS = {
 
     /* HOME — Hero */
     hero: {
-      eyebrow: 'Da Nang · Established 2019',
-      title:   'Building <span class="accent">brands</span>, properties,<br/>and a community of <span class="accent">ambition</span>.',
-      lede:    'Seven Company is a multi-discipline group from Da Nang — a marketing agency with $10M+ in managed ad spend, a property advisory, and a private network for founders. <em>The final destination is Freedom.</em>',
+      eyebrow: 'Da Nang · Established 2018',
+      title:   'Scaling<br/><span class="accent">affiliate brands</span><br/>through performance<br/><span class="accent">advertising</span>.',
+      lede:    'Seven World is Da Nang\'s specialist affiliate marketing agency — $10M+ in managed ad spend, AI-powered campaign optimisation, and owned media networks that compound your reach. <em>The final destination is Freedom.</em>',
       cta_primary:   'Get Started',
       cta_secondary: 'Explore Services →',
       stat1_v: '$10M+',  stat1_l: 'Managed ad spend',
       stat2_v: '350%',   stat2_l: 'Average campaign ROI',
-      stat3_v: '7+',     stat3_l: 'Years of partnerships'
+      stat3_v: '7+',     stat3_l: 'Years of partnerships',
+      float1_k: 'ROI', float2_k: 'Ad spend', float3_k: 'Campaigns live'
     },
 
     /* HOME — About preview */
     home_about: {
-      eyebrow: 'About Seven Company',
-      title:   'A house of three disciplines, built on <span class="accent">one philosophy</span>.',
-      p1:      'Founded in 2018 in Da Nang by Dong Phong, Seven Company began as a multi-channel affiliate marketing network and has grown into a group covering marketing, property advisory, and a curated community of founders.',
-      p2:      'Our philosophy is simple: <em>we have no customers, only Partners</em>. Every engagement is a win-win or it isn\'t one at all — that\'s the principle that has kept clients and members with us year after year.',
+      eyebrow: 'About Seven World',
+      title:   'One focus: <span class="accent">affiliate marketing</span> that performs.',
+      p1:      'Founded in 2018 in Da Nang by Dong Phong, Seven World is a specialist affiliate marketing and performance advertising agency. We manage ad spend across every major platform, run our own high-traffic media networks, and connect brands to the channels that convert.',
+      p2:      'Our philosophy is simple: <em>we have no customers, only Partners</em>. Every engagement is win-win or it isn\'t one at all — that\'s what has kept brands running campaigns with us year after year.',
       card1_tag: 'EST. 2018',
-      card1_h: 'Born in Da Nang.<br/>Trusted across Vietnam.',
+      card1_h: 'Born in Da Nang.<br/>Trusted across SEA.',
       stat_a_v: '$10M+', stat_a_l: 'Managed ad spend',
       stat_b_v: '350%',  stat_b_l: 'Average ROI'
     },
@@ -86,14 +132,14 @@ window.TRANSLATIONS = {
     /* HOME — Services preview */
     home_services: {
       eyebrow: 'What We Do',
-      title:   'Three pillars. <span class="accent">One standard</span> of work.',
-      lede:    'Whether you\'re launching a brand, acquiring an asset, or building a network, you\'ll work with senior practitioners who treat your business like their own.',
-      mk_title: 'Marketing Agency', mk_tag: 'Core business',
-      mk_desc:  'Affiliate marketing, performance campaigns across Google, Facebook, TikTok, and native — with AI-powered optimization.',
-      re_title: 'Real Estate', re_tag: 'Advisory & investment',
-      re_desc:  'Property consulting for owners and investors across central Vietnam — from sourcing to disposition.',
-      co_title: 'Business Community', co_tag: 'Entrepreneur network',
-      co_desc:  'A vetted membership of founders, investors, and operators — sharing deals, talent, and lessons.'
+      title:   'Three capabilities. <span class="accent">One focus</span> — performance.',
+      lede:    'Whether you need affiliate network management, paid media scale, or a channel that compounds over time — you work directly with senior practitioners who run the accounts.',
+      mk_title: 'Affiliate Marketing', mk_tag: 'Core service',
+      mk_desc:  'End-to-end affiliate network management — partner recruitment, offer optimisation, and scale across CPS, CPA, and CPL models.',
+      re_title: 'Performance Advertising', re_tag: 'Paid media',
+      re_desc:  'Campaign management across Google, Meta, TikTok, and native — AI-powered bidding, creative testing, and attribution that holds.',
+      co_title: 'Owned Media Channels', co_tag: 'ReviewKing & TsunamiHub',
+      co_desc:  'Our proprietary media networks give your brand first-party audiences and editorial credibility that paid-only campaigns can\'t replicate.'
     },
 
     /* HOME — Why preview */
@@ -104,39 +150,48 @@ window.TRANSLATIONS = {
       a_p: 'Over $10M in managed ad spend and an average campaign ROI of 350% — receipts, not promises.',
       b_h: 'Win-win, always',
       b_p: '"We have no customers, only Partners." Our success is measured by yours — that\'s the whole model.',
-      c_h: 'Three pillars, one room',
-      c_p: 'Marketing, real estate, and community — under one roof. Strategies that reinforce instead of compete.'
+      c_h: 'Owned reach that compounds',
+      c_p: 'ReviewKing and TsunamiHub — two proprietary media networks that amplify paid campaigns and reduce your dependency on rising CPMs.'
     },
 
-    /* HOME — Team (4-person leadership preview) */
+    /* HOME — Team (3-person leadership preview) */
     home_team: {
       eyebrow: 'The people behind Seven',
       title:   'Senior hands. <span class="accent">One room</span>.',
-      lede:    'The four people who\'ll be in your kick-off call — and stay there for the long run. No layer of juniors between you and the decisions that matter.',
+      lede:    'The three people who\'ll be in your kick-off call — and stay there for the long run. No layer of juniors between you and the decisions that matter.',
       cta:     'Meet the wider team →'
     },
 
     /* HOME — Portfolio */
     home_portfolio: {
       eyebrow: 'Selected Work',
-      title:   'Campaigns and partnerships from across <span class="accent">the practice</span>.',
-      a_tag: 'Marketing · Affiliate', a_h: 'Multi-channel performance for a fintech partner',
-      a_p: 'Scaled from a single channel to Google, Facebook, TikTok and native — 4× cost-per-acquisition reduction in nine months.',
-      b_tag: 'Real Estate · Coastal', b_h: 'Da Nang coastal asset positioning',
-      b_p: 'Sourcing, due diligence, and positioning for a beachside development on the central coast — sold out before the soft launch.',
-      c_tag: 'Marketing · E-commerce', c_h: 'Cross-border affiliate scale-up',
-      c_p: 'Built a multi-market affiliate program for a Southeast Asian e-commerce brand — millions in attributable revenue.'
+      title:   'Campaigns that <span class="accent">moved the needle</span>.',
+      kpi_inv: 'investment', kpi_rev: 'revenue impact',
+      a_tag: 'Finance · Affiliate',   a_h: 'GoldAvenue Affiliate Marketing',
+      a_p:   'Feb 2025 – Feb 2026 · Gold investment platform',             a_kpi2: 'investors referred',
+      b_tag: 'Fashion · Affiliate',   b_h: 'SailRite Affiliate Marketing',
+      b_p:   'Sailing & outdoor gear · Performance affiliate',             b_kpi2: 'new orders',
+      c_tag: 'Beauty · Affiliate',    c_h: 'LashByMaya Affiliate Program',
+      c_p:   'Mar 2025 – Mar 2026 · ReviewKing network',                  c_kpi2: 'orders driven',
+      d_tag: 'AI · Affiliate',        d_h: 'Creatify AI Affiliate Program',
+      d_p:   'Apr 2025 – Apr 2026 · AI video creative platform',          d_kpi2: 'subscriptions',
+      e_tag: 'Gaming · Affiliate',    e_h: 'Instant Gaming Affiliate Program',
+      e_p:   'Jun 2025 – Jun 2026 · Digital game keys platform',          e_kpi2: 'transactions',
+      f_tag: 'Health · Affiliate',    f_h: 'Pavlok Affiliate Marketing',
+      f_p:   'May 2025 – May 2026 · Habit-change wearable',               f_kpi2: 'units sold',
+      g_tag: 'Technology · Affiliate',g_h: 'Dynadot Affiliate Program',
+      g_p:   'Jul 2025 – Jul 2026 · Domain registrar',                    g_kpi2: 'sign-ups'
     },
 
     /* HOME — Testimonials */
     home_testimonials: {
       eyebrow: 'Voices',
-      title:   'What partners and members <span class="accent">say</span>.',
-      a_q: 'The Seven team treated our budget like their own. The ROI numbers spoke for themselves — but the honesty across every call is what kept us.',
+      title:   'What partners <span class="accent">say about Seven</span>.',
+      a_q: 'The Seven team treated our budget like their own. The ROI numbers spoke for themselves — but the honesty across every call is what kept us coming back.',
       a_n: 'Minh Tran', a_r: 'Growth lead, fintech partner',
-      b_q: 'Their property team did the homework no one else would. We bought with confidence and the asset has outperformed every comparable on the coast.',
-      b_n: 'Hoang Nguyen', b_r: 'Family office principal',
-      c_q: 'The community is the rare thing — actually useful, actually senior, actually discreet. I\'ve hired, raised, and partnered out of it.',
+      b_q: 'They turned down our business when they thought a competitor would serve us better. That candour is worth ten good campaigns.',
+      b_n: 'Hoang Nguyen', b_r: 'E-commerce founder',
+      c_q: 'ReviewKing\'s editorial authority gave our brand a credibility boost no ad budget could buy. Seven knew exactly how to bridge it to conversions.',
       c_n: 'Linh Pham', c_r: 'Co-founder, Orbit Logistics'
     },
 
@@ -149,31 +204,105 @@ window.TRANSLATIONS = {
       q_name:  'Dong Phong', q_role: 'Founder & CEO, Seven Company'
     },
 
+    /* HOME — Trust strip */
+    home_trust: {
+      label: 'Platforms we run & optimise every day'
+    },
+
+    /* HOME — Capabilities (bento) */
+    home_caps: {
+      eyebrow: 'What we do',
+      title:   'A full growth stack — <span class="accent">performance-first</span>.',
+      lede:    'Affiliate programs, paid media across every major platform, and owned media networks — wired together with AI-driven optimisation and clean attribution.',
+      a_tag: 'Core business', a_h: 'Affiliate Marketing',
+      a_p: 'Full-funnel affiliate programs — partner recruitment, onboarding, tracking, optimisation and payout management, run end-to-end.',
+      a_l1: 'Partner sourcing & vetting', a_l2: 'Tracking & fraud control', a_l3: 'Payout & reconciliation',
+      b_tag: 'Owned media · Reviews', b_h: 'ReviewKing',
+      b_p: 'Our owned review network — research-driven reviews across tech, beauty and consumer categories that pull in high-intent organic traffic and convert.',
+      c_tag: 'Owned media · Content', c_h: 'TsunamiHub',
+      c_p: 'Our second-house content network for finance, crypto and growth-stage brands — compounding organic reach and affiliate revenue across SEA.',
+      d_h: 'AI optimisation', d_p: 'Bidding & creative decisions assisted by models, refined daily.',
+      e_h: 'Clean attribution', e_p: 'Every order traced to source — no guessing, fully reconciled.',
+      f_h: 'Performance Advertising', f_p: 'Google, Meta, TikTok & native — AI-assisted bidding and creative testing.',
+      g_h: 'Owned Media Channels', g_p: 'Proprietary review & content networks built for organic reach across SEA.'
+    },
+
+    /* HOME — Process */
+    home_process: {
+      eyebrow: 'How it works',
+      title:   'A clear path from <span class="accent">audit</span> to <span class="accent">scale</span>.',
+      s1_h: 'Audit & strategy', s1_p: 'We map your funnel, margins and channels — then build a performance plan with real targets.',
+      s2_h: 'Launch campaigns', s2_p: 'Affiliate partners and paid media go live across the right platforms, with tracking wired from day one.',
+      s3_h: 'Optimise with AI', s3_p: 'Bidding, creative and partner mix are tuned daily — cutting waste and compounding what works.',
+      s4_h: 'Scale & compound', s4_p: 'Winning channels are scaled and reinforced with owned media, so reach keeps growing — not renting.'
+    },
+
+    /* HOME — Metrics band */
+    home_metrics: {
+      eyebrow: 'By the numbers',
+      title:   'Receipts, <span class="accent">not promises</span>.',
+      m1: 'Managed ad spend', m2: 'Average campaign ROI', m3: 'Years of partnerships', m4: 'Orders driven in 12 months',
+      t1: 'Founded in Da Nang', t2: 'Google Ads Partner', t3: 'ReviewKing launched', t4: 'TsunamiHub launched', t5: '$10M+ managed',
+      spend_foot: '<strong>$10.4M</strong> deployed across 6 years',
+      orders_foot: '<strong>433</strong>/mo avg · <strong>640</strong> peak'
+    },
+
+    /* HOME — Pricing / engagement models */
+    home_pricing: {
+      eyebrow: 'Engagement models',
+      title:   'Ways to <span class="accent">work with us</span>.',
+      lede:    'Flexible engagements built around your stage and goals — every one designed to be win-win.',
+      t1_name: 'Launch', t1_desc: 'For brands starting affiliate & paid media.', t1_amt: 'Performance-based',
+      t1_l1: '1–2 paid channels', t1_l2: 'Affiliate program setup', t1_l3: 'Tracking & monthly reporting',
+      t2_badge: 'Most partners', t2_name: 'Growth', t2_desc: 'For scaling brands wanting full-funnel performance.', t2_amt: 'Retainer + performance',
+      t2_l1: 'All major paid channels', t2_l2: 'Managed affiliate network', t2_l3: 'AI optimisation & creative testing', t2_l4: 'Owned media placements',
+      t3_name: 'Scale', t3_desc: 'For established brands compounding reach.', t3_amt: 'Custom partnership',
+      t3_l1: 'Dedicated senior team', t3_l2: 'Cross-border programs', t3_l3: 'Priority owned-media reach', t3_l4: 'Quarterly strategy reviews'
+    },
+
+    /* HOME — FAQ */
+    home_faq: {
+      eyebrow: 'FAQ',
+      title:   'Questions partners <span class="accent">ask first</span>.',
+      q1: 'What exactly does Seven World do?',
+      a1: 'We are a specialist affiliate marketing agency — running affiliate programs, performance advertising across every major platform, and our own ReviewKing & TsunamiHub media networks.',
+      q2: 'How do you charge?',
+      a2: 'It depends on the engagement — performance-based, retainer plus performance, or a custom partnership. We design every deal to be win-win.',
+      q3: 'Which platforms do you run?',
+      a3: 'Google Ads, Meta, TikTok, YouTube, native and programmatic — plus organic reach through our owned media networks.',
+      q4: 'How do you measure results?',
+      a4: 'Clean attribution. Every order is traced to its source and fully reconciled — you see real ROI, not vanity metrics.',
+      q5: 'Do you work with brands outside Vietnam?',
+      a5: 'Yes. We run cross-border programs for brands across Southeast Asia from our base in Da Nang.',
+      q6: 'How soon can we start?',
+      a6: 'A senior partner responds within one business day. After a short audit, most engagements go live within two to three weeks.'
+    },
+
     /* About page hero */
     about_page: {
-      eyebrow: 'About Seven Company',
-      title:   'A house of three disciplines,<br/>built on <span class="accent">one philosophy</span>.',
-      lede:    'Founded in 2018, Seven Company specializes in affiliate marketing and digital advertising. We help global brands drive conversions through strategic partnerships and high-performance campaigns. <em>The final destination is Freedom.</em>',
+      eyebrow: 'About Seven World',
+      title:   'Da Nang\'s specialist <span class="accent">affiliate marketing</span> agency.',
+      lede:    'Founded in 2018, Seven World is a performance-first affiliate marketing agency. We help brands across SEA drive customer acquisition through strategic partnerships, high-converting paid media, and owned media networks. <em>The final destination is Freedom.</em>',
       crumb:   'About'
     },
 
     about_story: {
       eyebrow: 'Our Story',
-      title:   'From an affiliate experiment to a multi-discipline firm.',
-      p1: 'Seven Company began in 2018 when Dong Phong — running a series of solo affiliate marketing projects — discovered that careful media buying, strategic content, and the right partners could compound into something much bigger than any single campaign.',
+      title:   'From a solo affiliate experiment to a $10M+ performance agency.',
+      p1: 'Seven World began in 2018 when Dong Phong — running a series of solo affiliate marketing projects — discovered that careful media buying, strategic content, and the right partners could compound into something much bigger than any single campaign.',
       p2: 'What started as a multi-channel affiliate network grew into a full performance-marketing practice managing more than <strong>$10M in ad spend</strong> across Google, Facebook, TikTok, Bing, and native channels — with an average campaign ROI of <strong>350%</strong>.',
-      p3: 'As we worked alongside founders and investors, two adjacent needs kept coming up: <em>where to put profits</em> (real estate) and <em>who to talk to about the next bet</em> (community). So we built both — not as side projects, but as full disciplines led by senior people who could stand on their own.'
+      p3: 'Today, Seven World operates two proprietary media networks — <em>ReviewKing</em> and <em>TsunamiHub</em> — which give brand partners first-party audiences, editorial credibility, and compounding affiliate traffic that paid-only campaigns can\'t replicate.'
     },
 
     about_mvv: {
       eyebrow:   'What We Stand For',
       title:     'Mission, vision, and the <span class="accent">values</span> behind both.',
       mission_h: 'Our Mission',
-      mission_sh:'Helping brands maximize customer acquisition with data-driven strategies.',
-      mission_p: 'Every brand needs customers. We bring them — through marketing that performs, partnerships that compound, and channels we test before we recommend.',
+      mission_sh:'Help brands maximise customer acquisition through performance affiliate marketing.',
+      mission_p: 'Every brand needs customers. We bring them — through affiliate networks that scale, paid media that converts, and owned channels we\'ve built over years.',
       vision_h:  'Our Vision',
-      vision_sh: 'To become a global leader in affiliate marketing and digital advertising.',
-      vision_p:  'The final destination is Freedom — for our partners, our members, and the team that serves them. Long-term relationships measured in decades.',
+      vision_sh: 'To be SEA\'s most trusted affiliate marketing agency.',
+      vision_p:  'The final destination is Freedom — for our partners and for the team that serves them. We build for the decade, not the quarter.',
       values_h:  'Our Values',
       values_sh: '"We have no customers, only Partners." Win-win or nothing.',
       values_p:  'Integrity, craft, and outcomes over output. Confidentiality as reflex. Long over loud.'
@@ -183,13 +312,13 @@ window.TRANSLATIONS = {
       eyebrow: 'Leadership',
       title:   'The people who\'ll <span class="accent">answer your call</span>.',
       n1: 'Dong Phong', r1: 'Founder &amp; CEO',
-      b1: 'Started Seven in 2018. Leads strategy across the marketing, real estate, and community pillars.',
+      b1: 'Started Seven in 2018. Leads affiliate strategy, partner relationships, and the overall direction of the agency.',
       n2: 'Kim Chi',    r2: 'Marketing Director',
-      b2: 'Heads brand, content, and performance — bringing campaigns from positioning to paid scale.',
+      b2: 'Heads brand, content, and performance — bringing affiliate campaigns from offer setup to paid-scale distribution.',
       n3: 'Tuan Anh',   r3: 'Operations Director',
-      b3: 'Runs the studio floor — partners, processes, and the day-to-day work that makes engagements ship.',
+      b3: 'Runs the affiliate operations floor — partners, tracking, and the day-to-day execution that makes campaigns ship on time.',
       n4: 'Quoc Truong',r4: 'Tech &amp; Analytics',
-      b4: 'Owns the data side — tracking, attribution, and the AI-powered optimization behind our campaigns.'
+      b4: 'Owns the data side — attribution, tracking infrastructure, and the AI-powered optimisation behind our campaigns.'
     },
 
     about_princ: {
@@ -202,30 +331,30 @@ window.TRANSLATIONS = {
       p3_h: '3 · Measure the right thing',
       p3_p: 'We define the number that matters before we spend a dollar of yours — and earn the right to celebrate only when it moves.',
       p4_h: '4 · Quiet about your business',
-      p4_p: 'Brands, deals, and people pass through our office every week. Confidentiality is reflex, not policy.',
+      p4_p: 'Brands, offers, and partners pass through our office every week. Confidentiality is reflex, not policy.',
       p5_h: '5 · Long over loud',
-      p5_p: 'We choose partners we expect to work with for a decade. Most of our top accounts started small and grew with us.',
-      p6_h: '6 · The whole house',
-      p6_p: 'Marketing, real estate, and network advice from one team — strategies that reinforce each other instead of competing for budget.'
+      p5_p: 'We choose partners we expect to work with for a decade. Most of our top affiliate accounts started small and grew with us.',
+      p6_h: '6 · Owned reach beats rented reach',
+      p6_p: 'We invest in our own media so your campaigns run on channels with earned authority — not just media we\'re buying from someone else.'
     },
 
     about_miles: {
       eyebrow: 'Growth Milestones',
       title:   'Seven years of work, <span class="accent">measured</span>.',
-      lede:    'From a single Google Ads experiment to a multi-discipline group managing $10M+ in ad spend across three continents.',
+      lede:    'From a single Google Ads experiment to a specialist affiliate agency managing $10M+ in ad spend across SEA, Europe, and North America.',
       m1_h: 'Beginnings',
       m1_p: 'Explored Google Ads and paid traffic methods. First solo affiliate experiments.',
       m2_h: 'Google Ads Agency Partner',
       m2_p: 'Earned Google Ads Agency Partner status — direct platform support, beta access, and tier-1 attribution data.',
-      m3_h: 'Seven Company Ltd.',
-      m3_p: 'Founded Seven Company Ltd. Partnered with major crypto, forex, and e-commerce affiliate programs. Revenue surpassed $2.5M.',
+      m3_h: 'Seven World Ltd.',
+      m3_p: 'Founded Seven World Ltd. Partnered with major crypto, forex, and e-commerce affiliate programs. Revenue surpassed $2.5M.',
       m4_h: 'Global expansion',
-      m4_p: 'Expanded into Europe and North America. Doubled the affiliate network and opened new media partnerships.',
+      m4_p: 'Expanded into Europe and North America. Doubled the affiliate network and launched the ReviewKing media property.',
       m5_h: '$10M+ managed',
-      m5_p: 'Managed $10M+ in ad spend, maintained a 350% average ROI, and expanded into programmatic advertising.',
+      m5_p: 'Managed $10M+ in ad spend, maintained a 350% average ROI, and launched TsunamiHub — our second owned media network.',
       m6_year: 'Today',
-      m6_h: 'Three pillars, one room',
-      m6_p: 'Marketing, real estate, and a curated entrepreneur community — under one trusted house in Da Nang.'
+      m6_h: 'Affiliate-first, media-owned',
+      m6_p: 'A specialist affiliate agency with two owned media networks and a full performance advertising desk — all from Da Nang.'
     },
 
     about_nums: {
@@ -234,13 +363,28 @@ window.TRANSLATIONS = {
       l1: 'Year founded',
       l2: 'Managed ad spend',
       l3: 'Average campaign ROI',
-      l4: 'Disciplines under one roof'
+      l4: 'Owned media networks'
+    },
+
+    about_charts: {
+      eyebrow: 'Growth in Numbers',
+      title:   'Seven years of <span class="accent">compounding results</span>.',
+      lede:    'From first-year experiments to $10M+ in managed ad spend — each year building on the last.',
+      c1_eyebrow: 'Ad Spend Under Management',
+      c1_title:   'Managed budget growth, USD',
+      roi_eyebrow: 'Campaign Performance',
+      roi_title:   'Average campaign ROI',
+      roi_desc:    'Measured across affiliate, Google, Facebook, and TikTok channels — sustained over 6+ years.',
+      rev_eyebrow: 'Revenue Milestones',
+      rev1_l: '2021 revenue',
+      rev2_l: '2024 ad spend',
+      rev3_l: 'Customers acquired'
     },
 
     about_cta: {
       eyebrow: 'Work with us',
       title:   'Begin a conversation with <span class="accent">a senior partner</span>.',
-      lede:    'Tell us about your brand, your asset, or your ambition. We respond within one business day.',
+      lede:    'Tell us about your brand, your affiliate program, or your growth targets. We respond within one business day.',
       quote:   '"We have no customers, only Partners. Win-win is the ultimate goal for maintaining a long-term, effective partnership."',
       q_name:  'Dong Phong',
       q_role:  'Founder &amp; CEO'
@@ -249,15 +393,15 @@ window.TRANSLATIONS = {
     /* Services page hero */
     services_page: {
       eyebrow: 'What We Do',
-      title:   'Three pillars.<br/><span class="accent">One standard</span> of work.',
-      lede:    'From end-to-end performance campaigns to property advisory and a private founders\' network — under one roof, with one team accountable.',
+      title:   'Affiliate marketing.<br/><span class="accent">Performance-first</span>.',
+      lede:    'From end-to-end affiliate campaigns to paid media management and owned media networks — one team, one focus, measurable results.',
       crumb:   'Services'
     },
 
     svc_overview: {
       mk_sub: 'Affiliate · Performance · Content',
-      re_sub: 'Advisory · Sourcing · Positioning',
-      co_sub: 'Membership · Events · Deal flow'
+      re_sub: 'Google · Facebook · TikTok · Native',
+      co_sub: 'ReviewKing · TsunamiHub'
     },
 
     svc_mk: {
@@ -322,36 +466,20 @@ window.TRANSLATIONS = {
       c2_s4: 'Channel: ReviewKing.info content + social'
     },
 
-    svc_re: {
-      badge: 'Advisory &amp; investment',
-      title: 'Real Estate.',
-      lede:  'Property consulting for owners and investors — focused on central Vietnam (Da Nang, Hoi An, Quang Nam) with selective work nationwide. From sourcing and due diligence to positioning and disposition strategy.',
-      s1: 'Investment advisory',
-      s2: 'Coastal &amp; resort assets',
-      s3: 'Residential sourcing',
-      s4: 'Commercial sourcing',
-      s5: 'Market &amp; feasibility studies',
-      s6: 'Due diligence',
-      s7: 'Asset positioning',
-      s8: 'Launch &amp; sales strategy',
-      cta_primary:   'Speak with an advisor',
-      cta_secondary: 'Request market briefing'
-    },
-
-    svc_co: {
-      badge: 'Entrepreneur network',
-      title: 'Business Community.',
-      lede:  'A vetted membership of founders, marketers, investors, and operators — convening in Da Nang and online to share deals, talent, and hard-won lessons. Invitation-based, discreet, and useful in ways networking events almost never are.',
-      s1: 'Curated membership',
-      s2: 'Monthly meetups in Da Nang',
-      s3: 'Online founder salons',
-      s4: 'Private deal flow',
-      s5: 'Hiring introductions',
-      s6: 'Fundraising introductions',
-      s7: 'Annual gathering',
-      s8: 'Members-only Telegram channels',
-      cta_primary:   'Apply for membership',
-      cta_secondary: 'Learn about events'
+    svc_pm: {
+      badge: 'Paid media',
+      title: 'Performance Advertising.',
+      lede:  'Full-service paid media management across every major platform — Google, Facebook, TikTok, Bing, and native networks. AI-powered bidding, continuous creative testing, and cross-channel attribution to hit your CPA targets.',
+      s1: 'Google Ads &amp; Bing Ads',
+      s2: 'Meta (Facebook &amp; Instagram)',
+      s3: 'TikTok Ads',
+      s4: 'Native advertising (Outbrain, Taboola)',
+      s5: 'AI-powered bid optimization',
+      s6: 'Creative testing &amp; iteration',
+      s7: 'Cross-channel attribution',
+      s8: 'Landing page &amp; CRO',
+      cta_primary:   'Start a campaign',
+      cta_secondary: 'Request capabilities deck'
     },
 
     svc_traffic: {
@@ -411,12 +539,12 @@ window.TRANSLATIONS = {
 
     svc_cta: {
       eyebrow: 'Ready to begin',
-      title:   'Tell us which of the three is <span class="accent">on your mind</span>.',
+      title:   'Ready to scale your <span class="accent">affiliate program</span>?',
       lede:    'A partner will reply within one business day with next steps.',
       why_btn: 'Why work with Seven →',
-      quote:   '"Hire them once for marketing. Within a year you\'ll find a reason to engage them on property or community too."',
-      q_name:  'Hoang Nguyen',
-      q_role:  'Family office principal'
+      quote:   '"Their affiliate program brought us 5,200 orders in twelve months. The data was clean, the channel was ours."',
+      q_name:  'Maya Tran',
+      q_role:  'Founder, LashByMaya'
     },
 
     /* Why Us page hero */
@@ -455,15 +583,15 @@ window.TRANSLATIONS = {
       c1_label: 'Network agencies',
       c1_h: 'Bigger, slower, juniors do the work.',
       c1_p: 'Strong process and brand prestige — but day-to-day work often lands with junior teams. Suited to enterprise scale, less to founder-led businesses.',
-      c2_label: 'Seven Company',
-      c2_h: 'Senior hands, three disciplines, one room.',
-      c2_p: 'Partners on the work, weekly cadence, and access to property and community alongside marketing. Built for owners who want one trusted relationship.',
+      c2_label: 'Seven World',
+      c2_h: 'Specialist affiliate team. Senior hands, one focus.',
+      c2_p: 'Partners on the work, weekly cadence, and access to affiliate, paid media, and owned channels in one relationship. Built for brands that want measurable growth.',
       c3_label: 'Freelancers &amp; boutiques',
       c3_h: 'Sharp, narrow, no continuity.',
       c3_p: 'Excellent in a specific craft — but you\'ll stitch together the strategy, the design, the media, and the analytics yourself.',
-      c4_label: 'Property brokers',
-      c4_h: 'Transaction-led, not advice-led.',
-      c4_p: 'Compensated by the deal closing — not by whether the deal was right for you. Our advisors are paid for the homework, not the handshake.'
+      c4_label: 'In-house teams',
+      c4_h: 'Capable, but limited by headcount.',
+      c4_p: 'Great for ongoing brand work — but scaling paid spend and affiliate networks requires specialist depth that most in-house teams don\'t have.'
     },
 
     why_days: {
@@ -484,8 +612,8 @@ window.TRANSLATIONS = {
       n1: 'Minh Tran', r1: 'CEO, Habitat Living',
       q2: 'They turn down work when they think we\'d be better served elsewhere. That kind of honesty earns the next ten engagements.',
       n2: 'Hoang Nguyen', r2: 'Family office principal',
-      q3: 'The community alone has paid for our membership ten times over. Everything else is a bonus.',
-      n3: 'Linh Pham', r3: 'Co-founder, Orbit Logistics'
+      q3: 'ReviewKing put our brand in front of exactly the right audience. Better organic reach than any paid channel we\'d tried.',
+      n3: 'Linh Pham', r3: 'Marketing Director, FinanceEdge SEA'
     },
 
     why_cta: {
@@ -529,9 +657,9 @@ window.TRANSLATIONS = {
       phone:   'Phone (optional)',
       interest: 'I\'m interested in',
       interest_default: 'Select a service',
-      interest_mk: 'Marketing Agency',
-      interest_re: 'Real Estate',
-      interest_co: 'Business Community',
+      interest_mk: 'Affiliate Marketing',
+      interest_re: 'Performance Advertising',
+      interest_co: 'Owned Media Channels',
       interest_other: 'Something else',
       budget:  'Budget range (optional)',
       budget_default: 'Select if relevant',
@@ -554,9 +682,9 @@ window.TRANSLATIONS = {
       q2_h: 'What size of company do you work with?',
       q2_p: 'Mostly founder-led businesses between USD 2M and USD 50M in revenue. We also work with family offices, developers, and select enterprise teams.',
       q3_h: 'Do you work outside Vietnam?',
-      q3_p: 'Yes — we serve clients across Southeast Asia, and our community has members from six countries. Most engagements involve Vietnam in some form.',
-      q4_h: 'Is the community accepting new members?',
-      q4_p: 'Selectively, by invitation or application. We open a small cohort each quarter to keep the room useful and the conversations honest.'
+      q3_p: 'Yes — we manage affiliate programs and paid media for brands across Southeast Asia. Da Nang is our home but the work is regional.',
+      q4_h: 'Can I partner through ReviewKing or TsunamiHub?',
+      q4_p: 'Yes — brands that qualify can be featured on our owned media networks for affiliate-priced placements. Mention this when you reach out.'
     },
 
     /* Privacy + Terms */
@@ -570,14 +698,14 @@ window.TRANSLATIONS = {
     privacy_body: {
       html: `
         <h2>1. Who we are</h2>
-        <p>Seven Company Ltd. ("Seven", "we", "us", "our") is a multi-discipline group based at 145 Le Van Duyet, Nai Hien Dong Ward, Son Tra District, Da Nang City, Vietnam. This policy describes how we handle the personal information of visitors, partners, members, and clients.</p>
+        <p>Seven World Ltd. ("Seven", "we", "us", "our") is a specialist affiliate marketing agency based at 145 Le Van Duyet, Nai Hien Dong Ward, Son Tra District, Da Nang City, Vietnam. This policy describes how we handle the personal information of visitors, partners, and clients.</p>
         <p>Questions about this policy or your data can be sent to <a href="mailto:contact@sevenworld.net">contact@sevenworld.net</a>.</p>
 
         <h2>2. Information we collect</h2>
         <p>We collect the minimum information needed to provide our services:</p>
         <ul>
           <li><strong>Contact information</strong> — name, email, phone, and company you give us through forms or correspondence.</li>
-          <li><strong>Engagement information</strong> — the details of the project, property enquiry, or membership application you raise with us.</li>
+          <li><strong>Engagement information</strong> — the details of the affiliate program, campaign brief, or media placement enquiry you raise with us.</li>
           <li><strong>Site usage</strong> — pages visited, referrer, approximate location (city level), and basic device information. We use this to understand traffic and improve the site.</li>
           <li><strong>Marketing &amp; campaign data</strong> — where you are an advertising partner, we may handle aggregated campaign performance data on your behalf, governed by a separate agreement.</li>
         </ul>
@@ -637,10 +765,10 @@ window.TRANSLATIONS = {
     terms_body: {
       html: `
         <h2>1. Acceptance of terms</h2>
-        <p>By accessing or using <a href="https://sevenworld.net">sevenworld.net</a> (the "Site") or any service provided by Seven Company Ltd. ("Seven", "we", "us"), you agree to be bound by these Terms. If you do not agree, please do not use the Site or services.</p>
+        <p>By accessing or using <a href="https://sevenworld.net">sevenworld.net</a> (the "Site") or any service provided by Seven World Ltd. ("Seven", "we", "us"), you agree to be bound by these Terms. If you do not agree, please do not use the Site or services.</p>
 
-        <h2>2. About Seven Company</h2>
-        <p>Seven Company Ltd. is a company registered in Da Nang City, Vietnam, providing marketing, real estate advisory, and community membership services. Our registered office is at 145 Le Van Duyet, Nai Hien Dong Ward, Son Tra District, Da Nang City.</p>
+        <h2>2. About Seven World</h2>
+        <p>Seven World Ltd. is a company registered in Da Nang City, Vietnam, providing affiliate marketing, performance advertising, and owned media services. Our registered office is at 145 Le Van Duyet, Nai Hien Dong Ward, Son Tra District, Da Nang City.</p>
 
         <h2>3. Use of the Site</h2>
         <ul>
@@ -650,7 +778,7 @@ window.TRANSLATIONS = {
         </ul>
 
         <h2>4. Services &amp; engagements</h2>
-        <p>Any work Seven performs for you — marketing campaigns, real estate advisory, community membership, or otherwise — is governed by a separate written engagement letter, service order, or membership agreement which will set out scope, fees, deliverables, and confidentiality. These Terms do not by themselves create a service obligation.</p>
+        <p>Any work Seven performs for you — affiliate campaigns, paid media management, owned media placements, or otherwise — is governed by a separate written engagement letter or service order which will set out scope, fees, deliverables, and confidentiality. These Terms do not by themselves create a service obligation.</p>
 
         <h2>5. Intellectual property</h2>
         <p>All content on the Site (text, graphics, logos, photographs, code, and design) is owned by Seven Company Ltd. or licensed to us. You may not copy, modify, redistribute, or use any part of the Site commercially without our prior written consent.</p>
@@ -695,6 +823,8 @@ window.TRANSLATIONS = {
       view_all:      'Xem toàn bộ dịch vụ',
       see_all:       'Xem tất cả lý do',
       browse_svc:    'Khám phá dịch vụ',
+      talk_to_us:    'Trao đổi với chúng tôi',
+      view_pricing:  'Xem hình thức hợp tác',
       home:          'Trang chủ'
     },
 
@@ -706,25 +836,68 @@ window.TRANSLATIONS = {
     nav: {
       about:    'Giới thiệu',
       services: 'Dịch vụ',
-      why:      'Vì sao Seven',
+      cases:    'Dự án tiêu biểu',
+      why:      'Vì sao chọn Seven',
       contact:  'Liên hệ'
     },
 
+    /* TRANG CASE STUDIES */
+    cases_page: {
+      crumb:   'Dự án tiêu biểu',
+      eyebrow: 'Dự án tiêu biểu',
+      title:   'Chiến dịch thật.<br/><span class="accent">Doanh thu thật</span>.',
+      lede:    'Bảy chương trình trên bảy lĩnh vực — tài chính, thời trang, làm đẹp, AI, gaming, sức khỏe và công nghệ. Mỗi dự án đều tính phí theo hiệu suất, đo lường minh bạch và được xây để tăng trưởng bền vững.',
+      sum_rev: 'Tổng doanh thu tạo ra',
+      sum_inv: 'Tổng vốn quản lý',
+      sum_v:   'Lĩnh vực đã triển khai',
+      sec_eyebrow: 'Dự án',
+      sec_title:   'Hiệu suất trên <span class="accent">mọi lĩnh vực</span>.',
+      m_invest:  'Vốn đầu tư',
+      m_rev:     'Doanh thu tạo ra',
+      read_case: 'Đọc bài viết chi tiết →',
+      c1_cat:  'Tài chính',
+      c1_desc: 'Chương trình affiliate vận hành liên tục cho nền tảng đầu tư kim loại quý — các trang tài chính và nội dung đúng nhu cầu mang về nhà đầu tư chất lượng ở quy mô lớn.',
+      c1_unit: 'Nhà đầu tư mới giới thiệu',
+      c2_cat:  'Thời trang',
+      c2_desc: 'Affiliate theo hiệu suất cho nhà bán lẻ vải buồm & vải hàng hải — nội dung ngách và hợp tác creator chuyển người chơi thành khách mua.',
+      c2_unit: 'Đơn hàng mới',
+      c3_cat:  'Làm đẹp',
+      c3_desc: 'Chương trình affiliate ngành làm đẹp triển khai qua mạng ReviewKing — tính phí theo hiệu suất, đo lường đầy đủ trên nội dung và mạng xã hội.',
+      c3_unit: 'Đơn hàng mới',
+      c4_cat:  'AI',
+      c4_desc: 'Cỗ máy affiliate + nội dung cho công cụ tạo quảng cáo video bằng AI — bài đánh giá và hướng dẫn chuyển creator thành người dùng trả phí.',
+      c4_unit: 'Lượt đăng ký mới',
+      c5_cat:  'Gaming',
+      c5_desc: 'Chương trình affiliate quy mô lớn cho sàn key game số — cộng đồng, kênh săn deal và creator thúc đẩy giao dịch với CPA thấp.',
+      c5_unit: 'Giao dịch mới',
+      c6_cat:  'Sức khỏe',
+      c6_desc: 'Affiliate marketing cho thiết bị đeo thay đổi hành vi — bài đánh giá dài và câu chuyện từ creator biến sự tò mò thành đơn hàng giới thiệu.',
+      c6_unit: 'Sản phẩm bán qua giới thiệu',
+      c7_cat:  'Công nghệ',
+      c7_desc: 'Chương trình affiliate cho nhà đăng ký tên miền & nền tảng web — chuyển nhóm lập trình viên và doanh nghiệp nhỏ thành tài khoản đăng ký mới.',
+      c7_unit: 'Lượt đăng ký mới',
+      cta_eyebrow:  'Chiến dịch tiếp theo là của bạn',
+      cta_title:    'Muốn kết quả như <span class="accent">thế này</span>?',
+      cta_lede:     'Cho chúng tôi biết lĩnh vực và mục tiêu của bạn — một đối tác sẽ phản hồi trong vòng một ngày làm việc.',
+      cta_services: 'Khám phá dịch vụ →'
+    },
+
     footer: {
-      desc: 'Một nhóm đa ngành đến từ Đà Nẵng — affiliate marketing, bất động sản, và cộng đồng doanh nhân là sợi dây nối tất cả lại. Đích đến cuối cùng là Tự do.',
+      desc: 'Seven World — Agency affiliate marketing & Quảng cáo performance tại Đà Nẵng. Vận hành mạng ReviewKing & TsunamiHub, quản lý hơn 10 triệu USD ngân sách quảng cáo cho các thương hiệu tại SEA. Đích đến cuối cùng là Tự do.',
       tagline: '"Đích đến cuối cùng là Tự do."',
       company: 'Về công ty',
       services: 'Dịch vụ',
       legal: 'Pháp lý',
       get_in_touch: 'Kết nối với Seven',
-      copyright: 'Công ty TNHH Seven. Bảo lưu mọi quyền.',
+      copyright: 'Công ty TNHH Seven World. Bảo lưu mọi quyền.',
       links: {
         about: 'Về Seven',
-        why: 'Vì sao Seven',
+        cases: 'Dự án tiêu biểu',
+        why: 'Vì sao chọn Seven',
         contact: 'Liên hệ',
-        marketing: 'Agency Marketing',
-        real_estate: 'Bất động sản',
-        community: 'Cộng đồng doanh nhân',
+        marketing: 'Affiliate Marketing',
+        paid_media: 'Quảng cáo Performance',
+        channels:   'Kênh truyền thông',
         privacy: 'Chính sách bảo mật',
         terms: 'Điều khoản dịch vụ'
       }
@@ -732,65 +905,75 @@ window.TRANSLATIONS = {
 
     hero: {
       eyebrow: 'Đà Nẵng · Thành lập 2018',
-      title:   'Kiến tạo <span class="accent">thương hiệu</span>, bất động sản,<br/>và một cộng đồng <span class="accent">đầy khát vọng</span>.',
-      lede:    'Seven là nhóm đa ngành đến từ Đà Nẵng — một agency marketing đã vận hành hơn 10 triệu USD ngân sách quảng cáo, một mảng tư vấn bất động sản, và một mạng lưới kín dành cho các nhà sáng lập. <em>Đích đến cuối cùng là Tự do.</em>',
+      title:   'Tăng trưởng <span class="accent">affiliate</span><br/>qua quảng cáo <span class="accent">performance</span>.',
+      lede:    'Seven World là Agency Affiliate Marketing chuyên biệt tại Đà Nẵng — hơn 10 triệu USD ngân sách quảng cáo đã vận hành, tối ưu bằng AI, và mạng truyền thông sở hữu giúp nhân đôi tầm với. <em>Đích đến cuối cùng là Tự do.</em>',
       cta_primary:   'Bắt đầu',
       cta_secondary: 'Khám phá dịch vụ →',
       stat1_v: '$10M+',  stat1_l: 'Ngân sách quảng cáo đã vận hành',
       stat2_v: '350%',   stat2_l: 'ROI trung bình mỗi chiến dịch',
-      stat3_v: '7+',     stat3_l: 'Năm đồng hành cùng Đối tác'
+      stat3_v: '7+',     stat3_l: 'Năm đồng hành cùng Đối tác',
+      float1_k: 'ROI', float2_k: 'Ngân sách', float3_k: 'Chiến dịch đang chạy'
     },
 
     home_about: {
-      eyebrow: 'Về Seven Company',
-      title:   'Một mái nhà — ba lĩnh vực, <span class="accent">một triết lý</span>.',
-      p1:      'Anh Đông Phong sáng lập Seven Company tại Đà Nẵng năm 2018 — khởi đầu là một mạng lưới affiliate marketing đa kênh, rồi từng bước mở rộng thành nhóm ba lĩnh vực: marketing, tư vấn bất động sản, và một cộng đồng doanh nhân được tuyển chọn.',
-      p2:      'Triết lý của Seven rất đơn giản: <em>không có khách hàng, chỉ có Đối tác</em>. Mỗi mối hợp tác phải đôi bên cùng thắng — không thì thôi. Chính nguyên tắc đó đã giữ Đối tác và hội viên ở lại với chúng tôi năm này qua năm khác.',
+      eyebrow: 'Về Seven World',
+      title:   'Một trọng tâm: <span class="accent">affiliate marketing</span> tạo ra hiệu quả thực.',
+      p1:      'Anh Đông Phong sáng lập Seven World tại Đà Nẵng năm 2018 — khởi đầu là một mạng lưới affiliate marketing đa kênh, từng bước trở thành một agency performance chuyên biệt quản lý hơn 10 triệu USD ngân sách và vận hành hai mạng truyền thông sở hữu.',
+      p2:      'Triết lý của Seven rất đơn giản: <em>không có khách hàng, chỉ có Đối tác</em>. Mỗi mối hợp tác phải là đôi bên cùng thành công — không thì thôi. Chính nguyên tắc đó đã giữ Đối tác ở lại với chúng tôi năm này qua năm khác.',
       card1_tag: 'EST. 2018',
-      card1_h: 'Sinh ra ở Đà Nẵng.<br/>Tin cậy trên toàn Việt Nam.',
+      card1_h: 'Thành lập ở Đà Nẵng.<br/>Được tin cậy toàn SEA.',
       stat_a_v: '$10M+', stat_a_l: 'Ngân sách đã vận hành',
       stat_b_v: '350%',  stat_b_l: 'ROI trung bình'
     },
 
     home_services: {
       eyebrow: 'Chúng tôi làm gì',
-      title:   'Ba lĩnh vực. <span class="accent">Một chuẩn mực</span>.',
-      lede:    'Dù bạn đang ra mắt thương hiệu, mua bất động sản, hay đi tìm mạng lưới của mình — bạn sẽ làm việc trực tiếp với những người dày dạn nhất ở Seven. Những người coi việc của bạn như của chính họ.',
-      mk_title: 'Agency Marketing', mk_tag: 'Lĩnh vực chính',
-      mk_desc:  'Affiliate marketing và các chiến dịch performance trên Google, Facebook, TikTok, native — được tối ưu liên tục bằng AI.',
-      re_title: 'Bất động sản', re_tag: 'Tư vấn & đầu tư',
-      re_desc:  'Tư vấn bất động sản cho chủ tài sản và nhà đầu tư miền Trung — từ tìm kiếm, thẩm định cho đến thanh khoản.',
-      co_title: 'Cộng đồng doanh nhân', co_tag: 'Mạng lưới nhà sáng lập',
-      co_desc:  'Hội viên được tuyển chọn — nhà sáng lập, nhà đầu tư và người đứng đầu — chia sẻ cơ hội, nhân tài và bài học thực chiến.'
+      title:   'Ba năng lực. <span class="accent">Một trọng tâm</span> — performance.',
+      lede:    'Dù bạn cần quản lý mạng affiliate, mở rộng paid media, hay một kênh truyền thông tích lũy theo thời gian — bạn sẽ làm việc trực tiếp với người điều hành tài khoản.',
+      mk_title: 'Affiliate Marketing', mk_tag: 'Dịch vụ cốt lõi',
+      mk_desc:  'Quản lý mạng affiliate toàn diện — tuyển đối tác, tối ưu offer, và mở rộng theo mô hình CPS, CPA, CPL.',
+      re_title: 'Quảng cáo Performance', re_tag: 'Paid media',
+      re_desc:  'Quản lý chiến dịch trên Google, Meta, TikTok và native — đặt giá thầu bằng AI, kiểm thử sáng tạo, và attribution chuẩn xác.',
+      co_title: 'Kênh truyền thông sở hữu', co_tag: 'ReviewKing & TsunamiHub',
+      co_desc:  'Mạng truyền thông riêng của Seven mang đến đối tác tệp khán giả first-party và uy tín biên tập — thứ mà ngân sách quảng cáo đơn thuần không thể thay thế.'
     },
 
     home_why: {
-      eyebrow: 'Vì sao Seven',
-      title:   'Lý do Đối tác <span class="accent">ở lại nhiều năm</span>.',
+      eyebrow: 'Vì sao chọn Seven',
+      title:   'Lý do Đối tác <span class="accent">ở lại với chúng tôi nhiều năm</span>.',
       a_h: 'Hiệu quả — có chứng minh',
-      a_p: 'Đã vận hành hơn 10 triệu USD ngân sách quảng cáo, ROI trung bình 350% mỗi chiến dịch. Đây là số liệu, không phải lời hứa.',
-      b_h: 'Đôi bên cùng thắng — luôn vậy',
-      b_p: '"Chúng tôi không có khách hàng, chỉ có Đối tác." Thành công của Seven đo bằng thành công của bạn — đó là toàn bộ mô hình.',
-      c_h: 'Ba lĩnh vực, một mái nhà',
-      c_p: 'Marketing, bất động sản và cộng đồng cùng dưới một mái — các chiến lược bổ trợ cho nhau, không tranh ngân sách của bạn.'
+      a_p: 'Đã vận hành hơn 10 triệu USD ngân sách quảng cáo, ROI trung bình 350% mỗi chiến dịch. Đây là số liệu, không phải là lời hứa.',
+      b_h: 'Đôi bên cùng thành công — và sẽ luôn như vậy',
+      b_p: '"Chúng tôi không có khách hàng, chỉ có Đối tác." Thành công của Seven được đo bằng thành công của bạn — đó là toàn bộ mô hình.',
+      c_h: 'Tầm với tích lũy, không cần đi thuê',
+      c_p: 'ReviewKing và TsunamiHub — hai mạng truyền thông riêng của Seven khuếch đại chiến dịch paid và giảm sự phụ thuộc vào CPM ngày càng tăng.'
     },
 
     home_team: {
       eyebrow: 'Những người đứng sau Seven',
       title:   'Người dày dạn. <span class="accent">Một mái nhà</span>.',
-      lede:    'Bốn người sẽ có mặt trong cuộc kick-off của bạn — và ở lại suốt chặng đường dài. Không có lớp junior xen giữa bạn và các quyết định quan trọng.',
+      lede:    'Ba người sẽ có mặt trong cuộc kick-off của bạn — và ở lại suốt chặng đường dài. Không có lớp junior xen giữa bạn và các quyết định quan trọng.',
       cta:     'Gặp toàn bộ đội ngũ →'
     },
 
     home_portfolio: {
       eyebrow: 'Dự án tiêu biểu',
-      title:   'Những chiến dịch và mối hợp tác qua <span class="accent">cả ba lĩnh vực</span>.',
-      a_tag: 'Marketing · Affiliate', a_h: 'Performance đa kênh cho một đối tác fintech',
-      a_p: 'Mở rộng từ một kênh duy nhất ra Google, Facebook, TikTok và native — giảm 4 lần chi phí mỗi khách hàng chỉ trong 9 tháng.',
-      b_tag: 'Bất động sản · Ven biển', b_h: 'Định vị một dự án ven biển Đà Nẵng',
-      b_p: 'Tìm kiếm, thẩm định và định vị một dự án bãi biển miền Trung — bán hết ngay trước cả soft launch.',
-      c_tag: 'Marketing · E-commerce', c_h: 'Mở rộng affiliate xuyên biên giới',
-      c_p: 'Dựng chương trình affiliate đa thị trường cho một thương hiệu e-commerce Đông Nam Á — hàng triệu USD doanh thu được quy đổi.'
+      title:   'Những chiến dịch <span class="accent">tạo ra kết quả thực</span>.',
+      kpi_inv: 'đầu tư', kpi_rev: 'doanh thu',
+      a_tag: 'Tài chính · Affiliate', a_h: 'GoldAvenue Affiliate Marketing',
+      a_p:   'T2/2025 – T2/2026 · Nền tảng đầu tư vàng',                 a_kpi2: 'nhà đầu tư mới',
+      b_tag: 'Thời trang · Affiliate',b_h: 'SailRite Affiliate Marketing',
+      b_p:   'Thiết bị thuyền buồm · Affiliate performance',              b_kpi2: 'đơn hàng mới',
+      c_tag: 'Làm đẹp · Affiliate',   c_h: 'LashByMaya Affiliate Program',
+      c_p:   'T3/2025 – T3/2026 · Mạng ReviewKing',                      c_kpi2: 'đơn hàng',
+      d_tag: 'AI · Affiliate',        d_h: 'Creatify AI Affiliate Program',
+      d_p:   'T4/2025 – T4/2026 · Nền tảng sáng tạo video AI',           d_kpi2: 'đăng ký mới',
+      e_tag: 'Gaming · Affiliate',    e_h: 'Instant Gaming Affiliate Program',
+      e_p:   'T6/2025 – T6/2026 · Nền tảng mua key game',                e_kpi2: 'giao dịch',
+      f_tag: 'Sức khoẻ · Affiliate',  f_h: 'Pavlok Affiliate Marketing',
+      f_p:   'T5/2025 – T5/2026 · Thiết bị đeo hình thành thói quen',    f_kpi2: 'sản phẩm bán',
+      g_tag: 'Công nghệ · Affiliate', g_h: 'Dynadot Affiliate Program',
+      g_p:   'T7/2025 – T7/2026 · Nhà đăng ký tên miền',                 g_kpi2: 'tài khoản mới'
     },
 
     home_testimonials: {
@@ -798,10 +981,10 @@ window.TRANSLATIONS = {
       title:   'Đối tác và hội viên <span class="accent">nói gì về Seven</span>.',
       a_q: 'Đội Seven coi ngân sách của chúng tôi như của chính họ. Con số ROI tự nó đã nói rồi — nhưng sự thẳng thắn trong từng cuộc gọi mới là lý do chúng tôi ở lại.',
       a_n: 'Minh Trần', a_r: 'Trưởng Growth, đối tác fintech',
-      b_q: 'Đội bất động sản của họ làm những phần việc không ai khác chịu làm. Chúng tôi mua với sự yên tâm — và tài sản đó đã vượt mặt mọi tài sản cùng phân khúc trên bờ biển này.',
-      b_n: 'Hoàng Nguyễn', b_r: 'Đại diện Family Office',
-      c_q: 'Cộng đồng này là của hiếm — thực sự hữu ích, thực sự ở tầm, thực sự kín tiếng. Tôi đã tuyển người, gọi vốn và tìm được Đối tác từ chính nơi này.',
-      c_n: 'Linh Phạm', c_r: 'Đồng sáng lập, Orbit Logistics'
+      b_q: 'Chương trình affiliate của họ mang lại 5.200 đơn hàng trong 12 tháng. Dữ liệu rõ ràng, kênh là của chúng tôi — đây là affiliate marketing thực sự.',
+      b_n: 'Maya Trần', b_r: 'Founder, LashByMaya',
+      c_q: 'ReviewKing đã đưa thương hiệu chúng tôi vào đúng đối tượng người dùng. Không giống bất kỳ kênh paid nào chúng tôi đã thử — organic và chuyển đổi thực sự.',
+      c_n: 'Linh Phạm', c_r: 'Giám đốc Marketing, FinanceEdge SEA'
     },
 
     home_cta: {
@@ -812,19 +995,93 @@ window.TRANSLATIONS = {
       q_name:  'Đông Phong', q_role: 'Nhà sáng lập & CEO, Seven Company'
     },
 
+    /* HOME — Trust strip */
+    home_trust: {
+      label: 'Nền tảng chúng tôi vận hành & tối ưu mỗi ngày'
+    },
+
+    /* HOME — Capabilities (bento) */
+    home_caps: {
+      eyebrow: 'Chúng tôi làm gì',
+      title:   'Một bộ máy tăng trưởng đầy đủ — <span class="accent">ưu tiên hiệu quả</span>.',
+      lede:    'Chương trình affiliate, quảng cáo trả phí trên mọi nền tảng lớn, và mạng truyền thông sở hữu — kết nối với nhau bằng tối ưu AI và đo lường minh bạch.',
+      a_tag: 'Lĩnh vực cốt lõi', a_h: 'Affiliate Marketing',
+      a_p: 'Chương trình affiliate trọn phễu — tuyển chọn đối tác, onboarding, theo dõi, tối ưu và quản lý chi trả, vận hành đầu-cuối.',
+      a_l1: 'Tìm & sàng lọc đối tác', a_l2: 'Theo dõi & chống gian lận', a_l3: 'Chi trả & đối soát',
+      b_tag: 'Truyền thông sở hữu · Review', b_h: 'ReviewKing',
+      b_p: 'Mạng review sở hữu của chúng tôi — đánh giá dựa trên nghiên cứu ở mảng công nghệ, làm đẹp và tiêu dùng, kéo về lưu lượng tự nhiên ý định cao và dễ chuyển đổi.',
+      c_tag: 'Truyền thông sở hữu · Nội dung', c_h: 'TsunamiHub',
+      c_p: 'Mạng nội dung thứ hai cho tài chính, crypto và thương hiệu tăng trưởng — nhân rộng reach tự nhiên và doanh thu affiliate khắp SEA.',
+      d_h: 'Tối ưu bằng AI', d_p: 'Quyết định đấu giá & creative có AI hỗ trợ, tinh chỉnh mỗi ngày.',
+      e_h: 'Đo lường minh bạch', e_p: 'Mọi đơn hàng truy về nguồn — không phỏng đoán, đối soát đầy đủ.',
+      f_h: 'Quảng cáo Performance', f_p: 'Google, Meta, TikTok & native — đấu giá hỗ trợ AI và thử nghiệm creative.',
+      g_h: 'Kênh truyền thông sở hữu', g_p: 'Mạng review & nội dung độc quyền, xây cho reach tự nhiên khắp SEA.'
+    },
+
+    /* HOME — Process */
+    home_process: {
+      eyebrow: 'Quy trình',
+      title:   'Lộ trình rõ ràng từ <span class="accent">audit</span> đến <span class="accent">tăng trưởng</span>.',
+      s1_h: 'Audit & chiến lược', s1_p: 'Chúng tôi soi phễu, biên lợi nhuận và kênh của bạn — rồi dựng kế hoạch hiệu quả với mục tiêu thật.',
+      s2_h: 'Triển khai chiến dịch', s2_p: 'Đối tác affiliate và quảng cáo trả phí lên sóng đúng nền tảng, gắn theo dõi ngay từ ngày đầu.',
+      s3_h: 'Tối ưu bằng AI', s3_p: 'Đấu giá, creative và cơ cấu đối tác được tinh chỉnh hằng ngày — cắt lãng phí, nhân cái hiệu quả.',
+      s4_h: 'Mở rộng & tích lũy', s4_p: 'Kênh thắng được scale và củng cố bằng media sở hữu, để tầm với tiếp tục lớn — không phải đi thuê.'
+    },
+
+    /* HOME — Metrics band */
+    home_metrics: {
+      eyebrow: 'Bằng những con số',
+      title:   'Bằng chứng, <span class="accent">không phải lời hứa</span>.',
+      m1: 'Ngân sách quảng cáo đã vận hành', m2: 'ROI trung bình mỗi chiến dịch', m3: 'Năm đồng hành cùng Đối tác', m4: 'Đơn hàng tạo ra trong 12 tháng',
+      t1: 'Thành lập tại Đà Nẵng', t2: 'Đối tác Google Ads', t3: 'Ra mắt ReviewKing', t4: 'Ra mắt TsunamiHub', t5: 'Quản lý $10M+',
+      spend_foot: '<strong>$10.4M</strong> giải ngân trong 6 năm',
+      orders_foot: '<strong>433</strong>/tháng · đỉnh <strong>640</strong>'
+    },
+
+    /* HOME — Pricing / engagement models */
+    home_pricing: {
+      eyebrow: 'Hình thức hợp tác',
+      title:   'Các cách <span class="accent">làm việc cùng Seven</span>.',
+      lede:    'Hình thức linh hoạt theo giai đoạn và mục tiêu của bạn — mọi thỏa thuận đều hướng tới cùng thắng.',
+      t1_name: 'Launch', t1_desc: 'Cho thương hiệu mới bắt đầu affiliate & trả phí.', t1_amt: 'Theo hiệu quả',
+      t1_l1: '1–2 kênh trả phí', t1_l2: 'Thiết lập chương trình affiliate', t1_l3: 'Theo dõi & báo cáo hằng tháng',
+      t2_badge: 'Đa số đối tác chọn', t2_name: 'Growth', t2_desc: 'Cho thương hiệu đang scale, cần hiệu quả trọn phễu.', t2_amt: 'Phí cố định + hiệu quả',
+      t2_l1: 'Mọi kênh trả phí lớn', t2_l2: 'Mạng affiliate được quản lý', t2_l3: 'Tối ưu AI & thử nghiệm creative', t2_l4: 'Vị trí trên media sở hữu',
+      t3_name: 'Scale', t3_desc: 'Cho thương hiệu đã vững, muốn tích lũy tầm với.', t3_amt: 'Hợp tác tùy chỉnh',
+      t3_l1: 'Đội ngũ senior chuyên trách', t3_l2: 'Chương trình xuyên biên giới', t3_l3: 'Ưu tiên reach media sở hữu', t3_l4: 'Đánh giá chiến lược hằng quý'
+    },
+
+    /* HOME — FAQ */
+    home_faq: {
+      eyebrow: 'FAQ',
+      title:   'Những câu hỏi đối tác <span class="accent">hỏi đầu tiên</span>.',
+      q1: 'Seven World thực sự làm gì?',
+      a1: 'Chúng tôi là agency affiliate marketing chuyên biệt — vận hành chương trình affiliate, quảng cáo performance trên mọi nền tảng lớn, và sở hữu mạng truyền thông ReviewKing & TsunamiHub.',
+      q2: 'Seven tính phí thế nào?',
+      a2: 'Tùy hình thức hợp tác — theo hiệu quả, phí cố định cộng hiệu quả, hoặc hợp tác tùy chỉnh. Mọi thỏa thuận đều hướng tới cùng thắng.',
+      q3: 'Seven vận hành những nền tảng nào?',
+      a3: 'Google Ads, Meta, TikTok, YouTube, native và programmatic — cùng reach tự nhiên qua mạng media sở hữu.',
+      q4: 'Seven đo lường kết quả ra sao?',
+      a4: 'Đo lường minh bạch. Mọi đơn hàng được truy về nguồn và đối soát đầy đủ — bạn thấy ROI thật, không phải chỉ số phù phiếm.',
+      q5: 'Seven có làm với thương hiệu ngoài Việt Nam không?',
+      a5: 'Có. Chúng tôi vận hành các chương trình xuyên biên giới cho thương hiệu khắp Đông Nam Á, từ trụ sở tại Đà Nẵng.',
+      q6: 'Bao lâu thì có thể bắt đầu?',
+      a6: 'Một đối tác cấp cao phản hồi trong vòng một ngày làm việc. Sau bước audit ngắn, đa số hợp tác lên sóng trong 2–3 tuần.'
+    },
+
     about_page: {
-      eyebrow: 'Về Seven Company',
-      title:   'Một mái nhà — ba lĩnh vực,<br/>một <span class="accent">triết lý</span>.',
-      lede:    'Thành lập năm 2018, Seven Company chuyên sâu về affiliate marketing và quảng cáo số. Chúng tôi giúp các thương hiệu toàn cầu tăng chuyển đổi qua quan hệ đối tác chiến lược và các chiến dịch hiệu suất cao. <em>Đích đến cuối cùng là Tự do.</em>',
+      eyebrow: 'Về Seven World',
+      title:   'Agency affiliate chuyên biệt<br/>của <span class="accent">Đà Nẵng</span>.',
+      lede:    'Thành lập năm 2018, Seven World là agency affiliate marketing chuyên biệt tại Đà Nẵng — quản lý hơn 10 triệu USD ngân sách quảng cáo và vận hành mạng lưới media sở hữu ReviewKing & TsunamiHub. <em>Đích đến cuối cùng là Tự do.</em>',
       crumb:   'Giới thiệu'
     },
 
     about_story: {
       eyebrow: 'Câu chuyện Seven',
-      title:   'Từ một thử nghiệm affiliate đến một nhóm đa ngành.',
-      p1: 'Seven Company khởi đầu năm 2018 khi anh Đông Phong — khi đó đang chạy một loạt dự án affiliate marketing độc lập — nhận ra rằng media buying khôn ngoan, nội dung chiến lược, và đúng Đối tác có thể cộng dồn thành thứ lớn hơn nhiều so với một chiến dịch đơn lẻ.',
+      title:   'Từ một thử nghiệm affiliate đến agency chuyên biệt.',
+      p1: 'Seven World khởi đầu năm 2018 khi anh Đông Phong — khi đó đang chạy một loạt dự án affiliate marketing độc lập — nhận ra rằng media buying khôn ngoan, nội dung chiến lược, và đúng Đối tác có thể cộng dồn thành thứ lớn hơn nhiều so với một chiến dịch đơn lẻ.',
       p2: 'Khởi đầu là một mạng lưới affiliate đa kênh, dần trở thành một practice performance-marketing đầy đủ, đã vận hành hơn <strong>10 triệu USD ngân sách quảng cáo</strong> trên Google, Facebook, TikTok, Bing và native — với ROI trung bình mỗi chiến dịch là <strong>350%</strong>.',
-      p3: 'Khi làm việc cùng các nhà sáng lập và nhà đầu tư, hai nhu cầu liền kề liên tục xuất hiện: <em>đặt lợi nhuận ở đâu</em> (bất động sản) và <em>nói chuyện với ai cho ván cược tiếp theo</em> (cộng đồng). Vậy là chúng tôi dựng cả hai — không phải dự án phụ, mà là những mảng đầy đủ do người dày dạn dẫn dắt.'
+      p3: 'Theo thời gian, chúng tôi xây dựng hai media property sở hữu — <em>ReviewKing</em> và <em>TsunamiHub</em> — tạo ra tầm với publisher mà hầu hết agency chỉ có thể thuê. Ngày nay, hai mạng lưới này khuếch đại mọi chương trình affiliate Seven vận hành, cho phép đối tác tiếp cận đối tượng được chúng tôi tự xây dựng.'
     },
 
     about_mvv: {
@@ -845,13 +1102,13 @@ window.TRANSLATIONS = {
       eyebrow: 'Ban lãnh đạo',
       title:   'Những người sẽ <span class="accent">nhấc máy cho bạn</span>.',
       n1: 'Đông Phong', r1: 'Nhà sáng lập &amp; CEO',
-      b1: 'Khởi xướng Seven năm 2018. Dẫn dắt chiến lược trên cả ba lĩnh vực: marketing, bất động sản và cộng đồng.',
+      b1: 'Khởi xướng Seven năm 2018. Dẫn dắt chiến lược affiliate, quan hệ đối tác, và định hướng phát triển toàn bộ agency.',
       n2: 'Kim Chi',    r2: 'Giám đốc Marketing',
-      b2: 'Phụ trách thương hiệu, nội dung và performance — đưa chiến dịch đi từ định vị tới quy mô paid media.',
+      b2: 'Phụ trách thương hiệu, nội dung và performance — đưa chiến dịch affiliate từ thiết lập offer đến quy mô paid media.',
       n3: 'Tuấn Anh',   r3: 'Giám đốc Vận hành',
-      b3: 'Vận hành sàn studio — đối tác, quy trình, và công việc mỗi ngày để các engagement đi đến đích.',
+      b3: 'Điều hành mảng affiliate — đối tác, tracking, và vận hành mỗi ngày để các chiến dịch đi đến đích đúng hạn.',
       n4: 'Quốc Trường',r4: 'Tech &amp; Analytics',
-      b4: 'Phụ trách mảng dữ liệu — tracking, attribution, và tối ưu chiến dịch bằng AI.'
+      b4: 'Phụ trách hạ tầng dữ liệu — attribution, tracking, và tối ưu chiến dịch bằng AI.'
     },
 
     about_princ: {
@@ -864,30 +1121,30 @@ window.TRANSLATIONS = {
       p3_h: '3 · Đo đúng thứ cần đo',
       p3_p: 'Trước khi tiêu một đồng nào của bạn, chúng tôi xác định con số quan trọng nhất — và chỉ ăn mừng khi con số đó chạy.',
       p4_h: '4 · Kín tiếng về công việc của bạn',
-      p4_p: 'Thương hiệu, thương vụ, và con người đi qua văn phòng Seven mỗi tuần. Bảo mật là phản xạ — không phải chính sách.',
+      p4_p: 'Thương hiệu, offer, và đối tác đi qua văn phòng Seven mỗi tuần. Bảo mật là phản xạ — không phải chính sách.',
       p5_h: '5 · Dài hơi thay vì ồn ào',
-      p5_p: 'Chúng tôi chọn Đối tác mình kỳ vọng làm việc cùng cả thập kỷ. Hầu hết Đối tác lớn nhất hiện nay đều bắt đầu nhỏ và lớn lên cùng Seven.',
-      p6_h: '6 · Cả mái nhà',
-      p6_p: 'Tư vấn marketing, bất động sản và mạng lưới — từ một đội — các chiến lược bổ trợ cho nhau, không tranh ngân sách lẫn nhau.'
+      p5_p: 'Chúng tôi chọn Đối tác mình kỳ vọng làm việc cùng cả thập kỷ. Hầu hết tài khoản affiliate lớn nhất hiện nay đều bắt đầu nhỏ và lớn lên cùng Seven.',
+      p6_h: '6 · Tầm với sở hữu hơn tầm với đi thuê',
+      p6_p: 'Chúng tôi đầu tư vào mạng truyền thông của chính mình để chiến dịch của bạn chạy trên các kênh có authority thực — không chỉ media đi mua từ người khác.'
     },
 
     about_miles: {
       eyebrow: 'Các cột mốc tăng trưởng',
       title:   'Bảy năm làm việc, <span class="accent">đo được</span>.',
-      lede:    'Từ một thử nghiệm Google Ads đơn lẻ đến một nhóm đa ngành đang vận hành hơn 10 triệu USD ngân sách trên ba châu lục.',
+      lede:    'Từ một thử nghiệm Google Ads đơn lẻ đến một agency affiliate chuyên biệt vận hành hơn 10 triệu USD ngân sách tại SEA, châu Âu và Bắc Mỹ.',
       m1_h: 'Khởi đầu',
       m1_p: 'Khám phá Google Ads và các phương pháp paid traffic. Những thử nghiệm affiliate độc lập đầu tiên.',
       m2_h: 'Google Ads Agency Partner',
       m2_p: 'Trở thành Google Ads Agency Partner — hỗ trợ trực tiếp từ nền tảng, quyền dùng beta, và dữ liệu attribution tier-1.',
-      m3_h: 'Thành lập Seven Company Ltd.',
-      m3_p: 'Thành lập Công ty TNHH Seven. Hợp tác với các chương trình affiliate lớn trong mảng crypto, forex và e-commerce. Doanh thu vượt 2,5 triệu USD.',
+      m3_h: 'Thành lập Seven World Ltd.',
+      m3_p: 'Thành lập Công ty TNHH Seven World. Hợp tác với các chương trình affiliate lớn trong mảng crypto, forex và e-commerce. Doanh thu vượt 2,5 triệu USD.',
       m4_h: 'Mở rộng toàn cầu',
-      m4_p: 'Mở rộng sang châu Âu và Bắc Mỹ. Tăng gấp đôi mạng lưới affiliate, mở thêm các quan hệ media mới.',
+      m4_p: 'Mở rộng sang châu Âu và Bắc Mỹ. Tăng gấp đôi mạng lưới affiliate, ra mắt ReviewKing — mạng truyền thông sở hữu đầu tiên.',
       m5_h: 'Vận hành 10M+ ngân sách',
-      m5_p: 'Vận hành hơn 10 triệu USD ngân sách quảng cáo, duy trì ROI trung bình 350%, mở rộng sang quảng cáo programmatic.',
+      m5_p: 'Vận hành hơn 10 triệu USD ngân sách quảng cáo, duy trì ROI trung bình 350%, ra mắt TsunamiHub — mạng truyền thông sở hữu thứ hai.',
       m6_year: 'Hôm nay',
-      m6_h: 'Ba lĩnh vực, một mái nhà',
-      m6_p: 'Marketing, bất động sản và cộng đồng doanh nhân được tuyển chọn — dưới một mái nhà tin cậy ở Đà Nẵng.'
+      m6_h: 'Affiliate-first, media sở hữu',
+      m6_p: 'Một agency affiliate chuyên biệt với hai mạng truyền thông sở hữu và một bộ phận quảng cáo performance đầy đủ — tất cả từ Đà Nẵng.'
     },
 
     about_nums: {
@@ -896,13 +1153,28 @@ window.TRANSLATIONS = {
       l1: 'Năm thành lập',
       l2: 'Ngân sách đã vận hành',
       l3: 'ROI trung bình',
-      l4: 'Lĩnh vực dưới một mái'
+      l4: 'Mạng truyền thông sở hữu'
+    },
+
+    about_charts: {
+      eyebrow: 'Tăng trưởng theo số liệu',
+      title:   'Bảy năm <span class="accent">tích lũy kết quả</span>.',
+      lede:    'Từ những thử nghiệm năm đầu đến hơn 10 triệu USD ngân sách quản lý — mỗi năm đều xây dựng trên nền của năm trước.',
+      c1_eyebrow: 'Ngân sách quảng cáo quản lý',
+      c1_title:   'Tăng trưởng ngân sách theo năm, USD',
+      roi_eyebrow: 'Hiệu suất chiến dịch',
+      roi_title:   'ROI trung bình chiến dịch',
+      roi_desc:    'Đo trên các kênh affiliate, Google, Facebook và TikTok — duy trì ổn định qua 6+ năm.',
+      rev_eyebrow: 'Các cột mốc doanh thu',
+      rev1_l: 'Doanh thu 2021',
+      rev2_l: 'Ad spend 2024',
+      rev3_l: 'Khách hàng đã tiếp cận'
     },
 
     about_cta: {
       eyebrow: 'Hợp tác với Seven',
       title:   'Bắt đầu cuộc trò chuyện với <span class="accent">một đối tác cấp cao</span>.',
-      lede:    'Kể cho Seven nghe về thương hiệu, tài sản hay khát vọng của bạn. Chúng tôi phản hồi trong vòng một ngày làm việc.',
+      lede:    'Kể cho Seven nghe về thương hiệu, offer hay mục tiêu acquisition của bạn. Chúng tôi phản hồi trong vòng một ngày làm việc.',
       quote:   '"Chúng tôi không có khách hàng, chỉ có Đối tác. Cùng thắng là mục đích cuối cùng để duy trì một mối hợp tác dài hạn và hiệu quả."',
       q_name:  'Đông Phong',
       q_role:  'Nhà sáng lập &amp; CEO'
@@ -910,15 +1182,15 @@ window.TRANSLATIONS = {
 
     services_page: {
       eyebrow: 'Chúng tôi làm gì',
-      title:   'Ba lĩnh vực.<br/><span class="accent">Một chuẩn mực</span>.',
-      lede:    'Từ chiến dịch performance trọn gói đến tư vấn bất động sản và mạng lưới riêng tư của các nhà sáng lập — tất cả dưới một mái nhà, một đội ngũ chịu trách nhiệm.',
+      title:   'Affiliate marketing.<br/><span class="accent">Performance-first</span>.',
+      lede:    'Từ quản lý mạng affiliate, paid media đến kênh truyền thông sở hữu — tất cả dưới một mái nhà, một đội ngũ chịu trách nhiệm với kết quả thực.',
       crumb:   'Dịch vụ'
     },
 
     svc_overview: {
       mk_sub: 'Affiliate · Performance · Nội dung',
-      re_sub: 'Tư vấn · Tìm kiếm · Định vị',
-      co_sub: 'Hội viên · Sự kiện · Cơ hội'
+      re_sub: 'Google · Facebook · TikTok · Native',
+      co_sub: 'ReviewKing · TsunamiHub'
     },
 
     svc_mk: {
@@ -983,36 +1255,20 @@ window.TRANSLATIONS = {
       c2_s4: 'Kênh: nội dung ReviewKing.info + social'
     },
 
-    svc_re: {
-      badge: 'Tư vấn &amp; đầu tư',
-      title: 'Bất động sản.',
-      lede:  'Tư vấn bất động sản cho chủ tài sản và nhà đầu tư — tập trung khu vực miền Trung (Đà Nẵng, Hội An, Quảng Nam) và chọn lọc trên toàn quốc. Từ tìm kiếm, thẩm định đến định vị và chiến lược thanh khoản.',
-      s1: 'Tư vấn đầu tư',
-      s2: 'Tài sản ven biển &amp; resort',
-      s3: 'Tìm kiếm bất động sản nhà ở',
-      s4: 'Tìm kiếm bất động sản thương mại',
-      s5: 'Nghiên cứu thị trường &amp; tính khả thi',
-      s6: 'Thẩm định pháp lý',
-      s7: 'Định vị tài sản',
-      s8: 'Chiến lược ra mắt &amp; bán hàng',
-      cta_primary:   'Trao đổi với chuyên viên',
-      cta_secondary: 'Yêu cầu báo cáo thị trường'
-    },
-
-    svc_co: {
-      badge: 'Mạng lưới doanh nhân',
-      title: 'Cộng đồng doanh nhân.',
-      lede:  'Một hội viên được tuyển chọn gồm các nhà sáng lập, marketer, nhà đầu tư và người vận hành — gặp gỡ ở Đà Nẵng và online để chia sẻ thương vụ, nhân tài và bài học thực chiến. Theo lời mời, kín tiếng, và hữu ích theo cách mà các sự kiện networking thông thường gần như không bao giờ có được.',
-      s1: 'Hội viên được tuyển chọn',
-      s2: 'Gặp mặt hàng tháng tại Đà Nẵng',
-      s3: 'Founder salon online',
-      s4: 'Cơ hội thương vụ kín',
-      s5: 'Giới thiệu tuyển dụng',
-      s6: 'Giới thiệu gọi vốn',
-      s7: 'Hội nghị thường niên',
-      s8: 'Kênh Telegram chỉ dành cho hội viên',
-      cta_primary:   'Đăng ký hội viên',
-      cta_secondary: 'Tìm hiểu các sự kiện'
+    svc_pm: {
+      badge: 'Paid media',
+      title: 'Quảng cáo Performance.',
+      lede:  'Quản lý paid media toàn diện trên mọi nền tảng — Google, Facebook, TikTok, Bing và native network. Tối ưu bid bằng AI, kiểm thử creative liên tục và attribution đa kênh để đạt CPA mục tiêu.',
+      s1: 'Google Ads &amp; Bing Ads',
+      s2: 'Meta (Facebook &amp; Instagram)',
+      s3: 'TikTok Ads',
+      s4: 'Native advertising (Outbrain, Taboola)',
+      s5: 'Tối ưu bid bằng AI',
+      s6: 'Kiểm thử &amp; cải tiến creative',
+      s7: 'Attribution đa kênh',
+      s8: 'Landing page &amp; CRO',
+      cta_primary:   'Bắt đầu chiến dịch',
+      cta_secondary: 'Yêu cầu bản năng lực'
     },
 
     svc_traffic: {
@@ -1072,12 +1328,12 @@ window.TRANSLATIONS = {
 
     svc_cta: {
       eyebrow: 'Sẵn sàng bắt đầu',
-      title:   'Kể cho Seven nghe đâu là điều <span class="accent">bạn đang nghĩ tới</span>.',
+      title:   'Sẵn sàng mở rộng <span class="accent">chương trình affiliate</span> của bạn?',
       lede:    'Một đối tác cấp cao sẽ phản hồi và đề xuất bước tiếp theo trong vòng một ngày làm việc.',
       why_btn: 'Vì sao chọn Seven →',
-      quote:   '"Thuê họ một lần cho marketing. Trong vòng một năm, bạn sẽ tìm thấy lý do để mời họ làm cả mảng bất động sản hay cộng đồng."',
-      q_name:  'Hoàng Nguyễn',
-      q_role:  'Đại diện Family Office'
+      quote:   '"Chương trình affiliate của họ mang về 5.200 đơn hàng trong 12 tháng. Dữ liệu rõ ràng, kênh là của chúng tôi."',
+      q_name:  'Maya Trần',
+      q_role:  'Founder, LashByMaya'
     },
 
     why_page: {
@@ -1115,15 +1371,15 @@ window.TRANSLATIONS = {
       c1_label: 'Network agency lớn',
       c1_h: 'To hơn, chậm hơn, người làm thực tế là junior.',
       c1_p: 'Quy trình mạnh và thương hiệu lớn — nhưng phần lớn công việc hằng ngày rơi vào tay đội junior. Phù hợp với enterprise hơn là doanh nghiệp do founder dẫn dắt.',
-      c2_label: 'Seven Company',
-      c2_h: 'Người dày dạn, ba lĩnh vực, một mái nhà.',
-      c2_p: 'Đối tác cấp cao trực tiếp làm, nhịp làm việc hàng tuần, và tiếp cận thêm mảng bất động sản và cộng đồng song hành với marketing. Dành cho chủ doanh nghiệp muốn một mối quan hệ tin cậy duy nhất.',
+      c2_label: 'Seven World',
+      c2_h: 'Đội affiliate chuyên biệt. Senior trực tiếp, một trọng tâm.',
+      c2_p: 'Đối tác cấp cao trực tiếp làm, nhịp làm việc hàng tuần, và tiếp cận affiliate, paid media và owned channels trong một mối quan hệ. Dành cho brand muốn tăng trưởng đo được.',
       c3_label: 'Freelancer &amp; boutique',
       c3_h: 'Sắc bén, hẹp, không liên tục.',
       c3_p: 'Xuất sắc trong một mảng cụ thể — nhưng bạn sẽ phải tự ghép chiến lược, thiết kế, media và analytics lại với nhau.',
-      c4_label: 'Môi giới bất động sản',
-      c4_h: 'Lấy phí theo giao dịch — không phải theo lời khuyên.',
-      c4_p: 'Họ được trả khi thương vụ chốt — không phải khi thương vụ thực sự đúng cho bạn. Các chuyên viên tư vấn của Seven được trả công cho phần "làm bài tập về nhà", không phải cái bắt tay.'
+      c4_label: 'Đội in-house',
+      c4_h: 'Có năng lực, nhưng bị giới hạn bởi nhân sự.',
+      c4_p: 'Tốt cho công việc brand thường xuyên — nhưng mở rộng ngân sách paid và affiliate network đòi hỏi chiều sâu chuyên môn mà hầu hết đội in-house không có.'
     },
 
     why_days: {
@@ -1144,8 +1400,8 @@ window.TRANSLATIONS = {
       n1: 'Minh Trần', r1: 'CEO, Habitat Living',
       q2: 'Họ từ chối nhận việc khi nghĩ chúng tôi sẽ được phục vụ tốt hơn ở chỗ khác. Sự thẳng thắn đó xứng đáng với mười hợp tác kế tiếp.',
       n2: 'Hoàng Nguyễn', r2: 'Đại diện Family Office',
-      q3: 'Riêng cộng đồng đã đáng giá gấp mười lần phí hội viên. Mọi thứ khác là phần bonus.',
-      n3: 'Linh Phạm', r3: 'Đồng sáng lập, Orbit Logistics'
+      q3: 'ReviewKing đưa thương hiệu chúng tôi đến đúng đối tượng. Organic và chuyển đổi thực — hơn bất kỳ kênh paid nào chúng tôi đã thử.',
+      n3: 'Linh Phạm', r3: 'Giám đốc Marketing, FinanceEdge SEA'
     },
 
     why_cta: {
@@ -1188,9 +1444,9 @@ window.TRANSLATIONS = {
       phone:   'Số điện thoại (tuỳ chọn)',
       interest: 'Tôi quan tâm tới',
       interest_default: 'Chọn một dịch vụ',
-      interest_mk: 'Agency Marketing',
-      interest_re: 'Bất động sản',
-      interest_co: 'Cộng đồng doanh nhân',
+      interest_mk: 'Affiliate Marketing',
+      interest_re: 'Quảng cáo Performance',
+      interest_co: 'Kênh truyền thông sở hữu',
       interest_other: 'Khác',
       budget:  'Ngân sách (tuỳ chọn)',
       budget_default: 'Chọn nếu phù hợp',
@@ -1213,9 +1469,9 @@ window.TRANSLATIONS = {
       q2_h: 'Seven làm việc với doanh nghiệp quy mô nào?',
       q2_p: 'Chủ yếu là doanh nghiệp do founder dẫn dắt, doanh thu từ 2 đến 50 triệu USD. Seven cũng làm việc với family office, chủ đầu tư, và một số đội enterprise được chọn lọc.',
       q3_h: 'Seven có làm việc ngoài Việt Nam không?',
-      q3_p: 'Có — Seven phục vụ khách hàng khắp Đông Nam Á, và cộng đồng đã có hội viên từ sáu quốc gia. Phần lớn engagement vẫn có liên quan tới Việt Nam ở một dạng nào đó.',
-      q4_h: 'Cộng đồng có đang nhận hội viên mới không?',
-      q4_p: 'Có chọn lọc — qua giới thiệu hoặc đơn đăng ký. Mỗi quý Seven mở một nhóm nhỏ để giữ không gian thực sự hữu ích và các cuộc trò chuyện thẳng thắn.'
+      q3_p: 'Có — Seven quản lý affiliate program và paid media cho brand khắp Đông Nam Á. Đà Nẵng là trụ sở nhưng công việc mang tính khu vực.',
+      q4_h: 'Tôi có thể hợp tác qua ReviewKing hay TsunamiHub không?',
+      q4_p: 'Có — brand đủ tiêu chí có thể được đăng tải trên mạng lưới media sở hữu của chúng tôi với chi phí kiểu affiliate. Hãy đề cập điều này khi liên hệ.'
     },
 
     privacy_page: {
@@ -1228,14 +1484,14 @@ window.TRANSLATIONS = {
     privacy_body: {
       html: `
         <h2>1. Chúng tôi là ai</h2>
-        <p>Công ty TNHH Seven ("Seven", "chúng tôi") là một nhóm đa ngành có trụ sở tại 145 Lê Văn Duyệt, phường Nại Hiên Đông, quận Sơn Trà, thành phố Đà Nẵng, Việt Nam. Chính sách này mô tả cách Seven xử lý thông tin cá nhân của khách truy cập, Đối tác, hội viên và khách hàng.</p>
+        <p>Công ty TNHH Seven World ("Seven", "chúng tôi") là agency affiliate marketing chuyên biệt có trụ sở tại 145 Lê Văn Duyệt, phường Nại Hiên Đông, quận Sơn Trà, thành phố Đà Nẵng, Việt Nam. Chính sách này mô tả cách Seven xử lý thông tin cá nhân của khách truy cập, Đối tác và khách hàng.</p>
         <p>Câu hỏi về chính sách này hoặc dữ liệu của bạn có thể gửi tới <a href="mailto:contact@sevenworld.net">contact@sevenworld.net</a>.</p>
 
         <h2>2. Thông tin Seven thu thập</h2>
         <p>Chúng tôi thu thập tối thiểu những thông tin cần thiết để cung cấp dịch vụ:</p>
         <ul>
           <li><strong>Thông tin liên hệ</strong> — tên, email, số điện thoại và công ty bạn cung cấp qua biểu mẫu hoặc thư từ.</li>
-          <li><strong>Thông tin engagement</strong> — chi tiết dự án, yêu cầu bất động sản, hoặc đơn đăng ký hội viên bạn gửi cho Seven.</li>
+          <li><strong>Thông tin engagement</strong> — chi tiết chương trình affiliate, brief chiến dịch, hoặc yêu cầu đặt quảng cáo trên media bạn gửi cho Seven.</li>
           <li><strong>Dữ liệu sử dụng website</strong> — trang đã xem, nguồn dẫn vào, vị trí gần đúng (cấp thành phố), và thông tin thiết bị cơ bản. Dùng để hiểu lưu lượng và cải thiện website.</li>
           <li><strong>Dữ liệu marketing &amp; chiến dịch</strong> — với Đối tác quảng cáo, chúng tôi có thể xử lý dữ liệu hiệu suất chiến dịch theo dạng tổng hợp thay bạn, theo một thoả thuận riêng.</li>
         </ul>
@@ -1297,8 +1553,8 @@ window.TRANSLATIONS = {
         <h2>1. Chấp nhận điều khoản</h2>
         <p>Bằng việc truy cập hoặc sử dụng <a href="https://sevenworld.net">sevenworld.net</a> ("Website") hoặc bất kỳ dịch vụ nào do Công ty TNHH Seven ("Seven", "chúng tôi") cung cấp, bạn đồng ý tuân thủ Điều khoản này. Nếu không đồng ý, vui lòng không sử dụng Website hoặc dịch vụ.</p>
 
-        <h2>2. Về Seven Company</h2>
-        <p>Công ty TNHH Seven là một công ty đăng ký tại thành phố Đà Nẵng, Việt Nam, cung cấp dịch vụ marketing, tư vấn bất động sản và hội viên cộng đồng. Trụ sở đăng ký tại 145 Lê Văn Duyệt, phường Nại Hiên Đông, quận Sơn Trà, thành phố Đà Nẵng.</p>
+        <h2>2. Về Seven World</h2>
+        <p>Công ty TNHH Seven World là một công ty đăng ký tại thành phố Đà Nẵng, Việt Nam, cung cấp dịch vụ affiliate marketing, quảng cáo performance và media sở hữu. Trụ sở đăng ký tại 145 Lê Văn Duyệt, phường Nại Hiên Đông, quận Sơn Trà, thành phố Đà Nẵng.</p>
 
         <h2>3. Cách sử dụng Website</h2>
         <ul>
@@ -1308,14 +1564,14 @@ window.TRANSLATIONS = {
         </ul>
 
         <h2>4. Dịch vụ &amp; hợp tác</h2>
-        <p>Mọi công việc Seven thực hiện cho bạn — chiến dịch marketing, tư vấn bất động sản, hội viên cộng đồng, hay khác — được điều chỉnh bằng một engagement letter, service order, hoặc thoả thuận hội viên riêng, trong đó nêu rõ phạm vi, phí, sản phẩm bàn giao và bảo mật. Điều khoản này không tự động tạo ra nghĩa vụ dịch vụ.</p>
+        <p>Mọi công việc Seven thực hiện cho bạn — chiến dịch affiliate, quản lý paid media, đặt quảng cáo trên media sở hữu, hay khác — được điều chỉnh bằng một engagement letter hoặc service order riêng, trong đó nêu rõ phạm vi, phí, sản phẩm bàn giao và bảo mật. Điều khoản này không tự động tạo ra nghĩa vụ dịch vụ.</p>
 
         <h2>5. Sở hữu trí tuệ</h2>
         <p>Toàn bộ nội dung trên Website (text, hình ảnh, logo, ảnh chụp, code và thiết kế) thuộc sở hữu của Công ty TNHH Seven hoặc được cấp phép cho Seven. Bạn không được sao chép, sửa đổi, phân phối lại hay sử dụng bất kỳ phần nào của Website cho mục đích thương mại khi chưa có sự đồng ý trước bằng văn bản.</p>
         <p>Sản phẩm bàn giao theo một engagement được điều chỉnh bởi điều khoản IP trong engagement letter đó, không phải điều khoản này.</p>
 
         <h2>6. Miễn trừ trách nhiệm</h2>
-        <p>Website và nội dung được cung cấp "nguyên trạng" và "có sẵn". Các con số dẫn ra (ví dụ ROI chiến dịch trong quá khứ) phản ánh kết quả đã đạt được và không phải là bảo đảm cho hiệu suất tương lai. Thông tin bất động sản chỉ mang tính minh hoạ, không phải lời chào hàng hay đề nghị giao dịch.</p>
+        <p>Website và nội dung được cung cấp "nguyên trạng" và "có sẵn". Các con số dẫn ra (ví dụ ROI chiến dịch trong quá khứ) phản ánh kết quả đã đạt được và không phải là bảo đảm cho hiệu suất tương lai.</p>
 
         <h2>7. Giới hạn trách nhiệm</h2>
         <p>Trong phạm vi tối đa pháp luật Việt Nam cho phép, Seven không chịu trách nhiệm cho các tổn thất gián tiếp, ngẫu nhiên, đặc biệt hay hệ quả phát sinh từ việc bạn sử dụng Website. Trách nhiệm theo bất kỳ engagement nào được giới hạn theo các điều khoản của hợp đồng engagement đó.</p>

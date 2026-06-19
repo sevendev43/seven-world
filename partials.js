@@ -11,17 +11,7 @@
 
   /* ---------- SVG icons ---------- */
   const ICON = {
-    logo: `
-      <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
-        <defs>
-          <linearGradient id="brandGold" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0%" stop-color="#E1B95B"/>
-            <stop offset="100%" stop-color="#C39837"/>
-          </linearGradient>
-        </defs>
-        <path d="M6 8 H34 L20 34 Z" fill="none" stroke="url(#brandGold)" stroke-width="2.2" stroke-linejoin="round"/>
-        <path d="M14 14 H28 L20 27 Z" fill="url(#brandGold)" opacity=".5"/>
-      </svg>`,
+    logo: `<img src="assets/svg-sevenworld/logo-icon.svg" width="36" height="36" alt="" aria-hidden="true" style="display:block;flex-shrink:0">`,
     telegram: `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21.5 3.5L2 11.2c-.7.3-.7 1.3 0 1.6l4.6 1.7 1.8 5.7c.2.6.9.8 1.4.3l2.6-2.4 4.5 3.3c.6.4 1.4.1 1.6-.6L23 5.2c.2-.9-.7-1.7-1.5-1.7zM10 14.5l-.5 4 1.2-1.2 7.6-7.6c.3-.3-.1-.5-.4-.3L10 14.5z"/></svg>`,
     linkedin: `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M4 4h4v4H4zM4 10h4v10H4zM10 10h4v2c.7-1.3 2.3-2.3 4-2.3 3 0 4 2 4 5V20h-4v-4.5c0-1.3-.5-2.2-1.7-2.2-1 0-1.6.7-1.9 1.4-.1.3-.1.6-.1 1V20h-4z"/></svg>`,
     facebook: `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.4-2 2-2H17V2.1c-.4-.1-1.7-.1-3-.1-3 0-5 1.8-5 5.2V10H6v4h3v8z"/></svg>`,
@@ -41,10 +31,11 @@
 
   /* ---------- Menu items (map config.menu → translation keys) ---------- */
   const menuKeyByHref = {
-    'about.html':    'nav.about',
-    'services.html': 'nav.services',
-    'why-us.html':   'nav.why',
-    'contact.html':  'nav.contact'
+    'about.html':         'nav.about',
+    'services.html':      'nav.services',
+    'case-studies.html':  'nav.cases',
+    'why-us.html':        'nav.why',
+    'contact.html':       'nav.contact'
   };
 
   const menuItems = (cfg.menu || []).map(item => {
@@ -136,12 +127,13 @@
     'Legal':    'footer.legal'
   };
   const footerLinkKey = {
-    'about.html':    'footer.links.about',
+    'about.html':         'footer.links.about',
+    'case-studies.html':  'footer.links.cases',
     'why-us.html':   'footer.links.why',
     'contact.html':  'footer.links.contact',
     'services.html#marketing':   'footer.links.marketing',
-    'services.html#real-estate': 'footer.links.real_estate',
-    'services.html#community':   'footer.links.community',
+    'services.html#paid-media':  'footer.links.paid_media',
+    'services.html#channels':    'footer.links.channels',
     'privacy.html':  'footer.links.privacy',
     'terms.html':    'footer.links.terms'
   };
@@ -177,13 +169,17 @@
           <p class="footer-tagline" data-i18n="footer.tagline">"${cfg.brand?.tagline || ''}"</p>
         </div>
 
-        ${footerCols}
+        <div class="footer-right">
+          ${footerCols}
 
-        <div class="footer-col">
-          <h5 data-i18n="footer.get_in_touch">Get in touch</h5>
-          <a href="mailto:${cfg.contact?.email || ''}">${cfg.contact?.email || ''}</a>
-          <a href="tel:${(cfg.contact?.phone || '').replace(/\s/g, '')}">${cfg.contact?.phone || ''}</a>
-          <p class="footer-address">${(cfg.contact?.address || '').replace(/,\s/g, ',<br/>')}</p>
+          <div class="footer-col footer-contact">
+            <h5 data-i18n="footer.get_in_touch">Get in touch</h5>
+            <div class="footer-contact-row">
+              <a href="mailto:${cfg.contact?.email || ''}">${cfg.contact?.email || ''}</a>
+              <a href="tel:${(cfg.contact?.phone || '').replace(/\s/g, '')}">${cfg.contact?.phone || ''}</a>
+              <p class="footer-address">${(cfg.contact?.address || '').replace(/\s*\|\s*/g, '<br/>')}</p>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -10,7 +10,7 @@ window.SITE_CONFIG = {
   /* -------- Branding -------- */
   brand: {
     name: 'SEVEN',
-    sub:  'COMPANY',
+    sub:  'WORLD',
     tagline: 'The final destination is Freedom.'
   },
 
@@ -28,10 +28,11 @@ window.SITE_CONFIG = {
      Mỗi mục là { label, href }. Thêm/bớt mục ở đây sẽ
      cập nhật toàn site (header + footer + mobile drawer). */
   menu: [
-    { label: 'About',    href: 'about.html'    },
-    { label: 'Services', href: 'services.html' },
-    { label: 'Why Us',   href: 'why-us.html'   },
-    { label: 'Contact',  href: 'contact.html'  }
+    { label: 'About',        href: 'about.html'        },
+    { label: 'Services',     href: 'services.html'     },
+    // { label: 'Case Studies', href: 'case-studies.html' },
+    { label: 'Why Us',       href: 'why-us.html'       },
+    { label: 'Contact',      href: 'contact.html'      }
   ],
 
   /* -------- Call-to-action nút trên header -------- */
@@ -43,11 +44,9 @@ window.SITE_CONFIG = {
   /* -------- Thông tin liên hệ (Seven Company Ltd. — Đà Nẵng) -------- */
   contact: {
     email:         'contact@sevenworld.net',
-    emailBusiness: 'bd@sevenworld.net',
     emailAdmin:    'admin@sevenworld.net',
     phone:         '+84 96 1583 777',
-    telegram:      '@sevencompany_bd',
-    address:       '145 Le Van Duyet, Nai Hien Dong Ward, Son Tra District, Da Nang City, Vietnam',
+    address:       '145 Le Van Duyet, Nai Hien Dong Ward | Son Tra District, Da Nang City, Vietnam',
     mapQuery:      '145 Le Van Duyet, Son Tra, Da Nang',
     websites: [
       { label: 'sevenworld.net',  href: 'https://sevenworld.net'  },
@@ -58,7 +57,6 @@ window.SITE_CONFIG = {
 
   /* -------- Mạng xã hội -------- */
   socials: [
-    { name: 'Telegram',  href: 'https://t.me/sevencompany_bd' },
     { name: 'LinkedIn',  href: '#' },
     { name: 'Facebook',  href: '#' }
   ],
@@ -66,22 +64,23 @@ window.SITE_CONFIG = {
   /* -------- Cụm liên kết ở footer -------- */
   footer: {
     description:
-      'A multi-discipline group from Đà Nẵng — affiliate marketing, real estate, and the entrepreneur community that connects them. The final destination is Freedom.',
+      'Seven World — Affiliate marketing & performance advertising from Đà Nẵng. We run the ReviewKing & TsunamiHub media networks and manage $10M+ in ad spend for brands across SEA. The final destination is Freedom.',
     columns: [
       {
         title: 'Company',
         links: [
-          { label: 'About Seven',  href: 'about.html'    },
-          { label: 'Why Us',       href: 'why-us.html'   },
-          { label: 'Contact',      href: 'contact.html'  }
+          { label: 'About Seven',  href: 'about.html'        },
+          // { label: 'Case Studies', href: 'case-studies.html' },
+          { label: 'Why Us',       href: 'why-us.html'       },
+          { label: 'Contact',      href: 'contact.html'      }
         ]
       },
       {
         title: 'Services',
         links: [
-          { label: 'Marketing Agency',  href: 'services.html#marketing'   },
-          { label: 'Real Estate',       href: 'services.html#real-estate' },
-          { label: 'Business Community',href: 'services.html#community'   }
+          { label: 'Affiliate Marketing', href: 'services.html#marketing'  },
+          { label: 'Performance Ads',     href: 'services.html#paid-media' },
+          { label: 'Owned Channels',      href: 'services.html#channels'   }
         ]
       },
       {

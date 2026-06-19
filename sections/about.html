@@ -4,12 +4,12 @@
 <section class="section" id="about-preview">
   <div class="container grid-2">
     <div class="about-text reveal">
-      <p class="eyebrow" data-i18n="home_about.eyebrow">About Seven Company</p>
-      <h2 class="section-title" data-i18n="home_about.title">A house of three disciplines, built on <span class="accent">one philosophy</span>.</h2>
+      <p class="eyebrow" data-i18n="home_about.eyebrow">About Seven World</p>
+      <h2 class="section-title" data-i18n="home_about.title">One focus: <span class="accent">affiliate marketing</span> that performs.</h2>
       <p class="lede" data-i18n="home_about.p1">
-        Founded in 2018 in Da Nang by Dong Phong, Seven Company began as a multi-channel
-        affiliate marketing network and has grown into a group covering marketing,
-        property advisory, and a curated community of founders.
+        Founded in 2018 in Da Nang by Dong Phong, Seven World is a specialist affiliate
+        marketing agency — managing $10M+ in ad spend and running the ReviewKing &amp;
+        TsunamiHub owned media networks across Southeast Asia.
       </p>
       <p data-i18n="home_about.p2">
         Our philosophy is simple: <em>we have no customers, only Partners</em>.
@@ -23,10 +23,43 @@
       <div class="about-card about-card-1">
         <span class="card-tag" data-i18n="home_about.card1_tag">EST. 2018</span>
         <h3 data-i18n="home_about.card1_h">Born in Da Nang.<br/>Trusted across Vietnam.</h3>
+
+        <!-- Hover popup: accurate Vietnam map with a gold dot on Da Nang -->
+        <div class="map-pop" aria-hidden="true">
+          <div class="vn-map" role="img" aria-label="Vietnam">
+            <img src="assets/vietnam-map.svg?v=4" alt="" class="vn-img" />
+            <span class="vn-pin"><span class="vn-pulse"></span></span>
+          </div>
+          <span class="map-pop-label">Da Nang</span>
+        </div>
       </div>
-      <div class="about-card about-card-2">
+      <div class="about-card about-card-2" data-count-hover>
         <div class="mini-stat"><strong data-i18n="home_about.stat_a_v">$10M+</strong><span data-i18n="home_about.stat_a_l">Managed ad spend</span></div>
         <div class="mini-stat"><strong data-i18n="home_about.stat_b_v">350%</strong><span data-i18n="home_about.stat_b_l">Average ROI</span></div>
+
+        <!-- Hover popup: visual stat charts (progress bar + growth chart) -->
+        <div class="stat-pop" aria-hidden="true">
+          <div class="sp-metric">
+            <div class="sp-row">
+              <span class="sp-label" data-i18n="home_about.stat_a_l">Managed ad spend</span>
+              <strong data-htarget="10" data-hprefix="$" data-hsuffix="M+">$10M+</strong>
+            </div>
+            <div class="sp-bar"><i></i></div>
+          </div>
+          <div class="sp-metric">
+            <div class="sp-row">
+              <span class="sp-label" data-i18n="home_about.stat_b_l">Average ROI</span>
+              <strong data-htarget="350" data-hsuffix="%">350%</strong>
+            </div>
+            <div class="sp-chart" aria-hidden="true">
+              <span style="--h:22%"></span>
+              <span style="--h:40%"></span>
+              <span style="--h:58%"></span>
+              <span style="--h:78%"></span>
+              <span style="--h:100%"></span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="about-card about-card-3" aria-hidden="true">
         <div class="ripple-wrap">
