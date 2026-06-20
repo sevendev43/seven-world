@@ -1,5 +1,5 @@
 /* ============================================================
-   Seven Company — Site Configuration
+   Seven Company - Site Configuration
    ------------------------------------------------------------
    Đổi 1 chỗ ở file này = đổi toàn bộ website.
    Giống như "Customize → Menus / Site Identity" trong WordPress.
@@ -41,7 +41,7 @@ window.SITE_CONFIG = {
     href:  'contact.html'
   },
 
-  /* -------- Thông tin liên hệ (Seven Company Ltd. — Đà Nẵng) -------- */
+  /* -------- Thông tin liên hệ (Seven Company Ltd. - Đà Nẵng) -------- */
   contact: {
     email:         'contact@sevenworld.net',
     emailAdmin:    'admin@sevenworld.net',
@@ -64,7 +64,7 @@ window.SITE_CONFIG = {
   /* -------- Cụm liên kết ở footer -------- */
   footer: {
     description:
-      'Seven World — Affiliate marketing & performance advertising from Đà Nẵng. We run the ReviewKing & TsunamiHub media networks and manage $10M+ in ad spend for brands across SEA. The final destination is Freedom.',
+      'Seven World - Affiliate marketing & performance advertising from Đà Nẵng. We run the ReviewKing & TsunamiHub media networks and manage $10M+ in ad spend for brands across SEA. The final destination is Freedom.',
     columns: [
       {
         title: 'Company',

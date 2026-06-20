@@ -1,16 +1,156 @@
 /* ============================================================
-   Seven Company — Components & Layout
+   Seven Company - Components & Layout
    Sử dụng các biến từ theme.css.
    ============================================================ */
 
 /* ============================================================
-   LIGHT THEME — white + tech yellow (Engitech-style)
+   LIGHT THEME - white + tech yellow (Engitech-style)
    Semantic tokens kế thừa từ theme.css; chỉ định nghĩa
    global background + texture grid rất nhạt ở đây.
    ============================================================ */
 
+/* ============================================================
+   CUSTOM SCROLLBAR - thin gold/white, compact
+   ============================================================ */
+html{
+  scrollbar-width:thin;
+  scrollbar-color:var(--gold-500) transparent;
+}
+::-webkit-scrollbar{
+  width:4px;
+  background:transparent;
+}
+::-webkit-scrollbar-track{
+  background:transparent;
+}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--gold-500) 0%,rgba(255,255,255,.6) 100%);
+  border-radius:10px;
+  min-height:32px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg,var(--gold-400) 0%,#fff 100%);
+}
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-button:start,
+::-webkit-scrollbar-button:end,
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment,
+::-webkit-scrollbar-button:start:increment,
+::-webkit-scrollbar-button:end:decrement{
+  display:block;
+  height:0!important;
+  width:0!important;
+  background:transparent!important;
+  border:none!important;
+}
+::-webkit-scrollbar-corner{background:transparent}
+
+/* ============================================================
+   CLICK BURST - tech ripple + particles
+   ============================================================ */
+.click-burst{
+  position:fixed;
+  width:0;height:0;
+  pointer-events:none;
+  z-index:99999;
+}
+.click-ring{
+  position:absolute;
+  width:18px;height:18px;
+  border:1.5px solid var(--gold-500);
+  border-radius:50%;
+  left:0;top:0;
+  transform:translate(-50%,-50%) scale(0);
+  opacity:1;
+  animation:cbRing .55s cubic-bezier(.25,0,.5,1) forwards;
+}
+.click-ring2{
+  position:absolute;
+  width:9px;height:9px;
+  border:1px solid rgba(226,186,84,.55);
+  border-radius:50%;
+  left:0;top:0;
+  transform:translate(-50%,-50%) scale(0);
+  opacity:1;
+  animation:cbRing .38s cubic-bezier(.25,0,.5,1) .08s forwards;
+}
+.click-dot{
+  position:absolute;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--gold-400);
+  left:0;top:0;
+  transform:translate(-50%,-50%) scale(1);
+  animation:cbDot .28s ease-out forwards;
+}
+.click-particle{
+  position:absolute;
+  width:2.5px;height:2.5px;
+  border-radius:50%;
+  background:var(--gold-500);
+  left:0;top:0;
+  transform:translate(-50%,-50%);
+  animation:cbParticle .55s ease-out forwards;
+}
+@keyframes cbRing{
+  0%  {transform:translate(-50%,-50%) scale(0);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(2.2);opacity:0}
+}
+@keyframes cbDot{
+  0%  {transform:translate(-50%,-50%) scale(1.2);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(0);opacity:0}
+}
+@keyframes cbParticle{
+  0%  {transform:translate(-50%,-50%) rotate(var(--a)) translateY(0)   scale(1);opacity:1}
+  80% {opacity:.6}
+  100%{transform:translate(-50%,-50%) rotate(var(--a)) translateY(-22px) scale(.6);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .click-burst,.click-ring,.click-ring2,.click-dot,.click-particle{display:none!important}
+}
+
+/* ============================================================
+   BACK-TO-TOP BUTTON
+   ============================================================ */
+.back-to-top{
+  position:fixed;
+  right:18px;
+  bottom:24px;
+  width:36px;height:36px;
+  border-radius:50%;
+  background:var(--gold-500);
+  border:1px solid var(--gold-400);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  opacity:0;visibility:hidden;
+  transform:translateY(10px);
+  transition:opacity .25s,visibility .25s,transform .25s,background .18s;
+  z-index:9000;
+  box-shadow:0 2px 10px rgba(208,160,43,.28);
+}
+.back-to-top.visible{
+  opacity:1;visibility:visible;
+  transform:translateY(0);
+}
+.back-to-top:hover{
+  background:var(--gold-400);
+  box-shadow:0 4px 16px rgba(208,160,43,.4);
+}
+.back-to-top svg{
+  width:14px;height:14px;
+  stroke:#1A1812;
+  stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;
+  fill:none;
+  display:block;
+}
+
 /* Global background + tech grid texture (rất nhạt trên nền trắng) */
-html,body{ background:var(--surface-white) }
+/* LAYER 1 (bottom): the solid page colour lives on <html> only. <body> is kept
+   transparent so the LAYER 2 tech canvas (#plexus-canvas, z-index:-1) shows
+   through it. Content sits on top as LAYER 3. */
+html{ background:var(--surface-white) }
 body::before{
   content:"";
   position:fixed;inset:0;z-index:-999;
@@ -63,14 +203,8 @@ body::before{
   0%{transform:translateX(-100%)}
   100%{transform:translateX(250%)}
 }
-/* Independent binary column scroll — each column its own speed */
-@property --bin1{syntax:'<length>';initial-value:0px;inherits:false}
-@property --bin2{syntax:'<length>';initial-value:0px;inherits:false}
-@keyframes col1{to{--bin1:260px}}
-@keyframes col2{to{--bin2:320px}}
 @media (prefers-reduced-motion: reduce){
   .page-loader .pl-mark,.page-loader .pl-bar::after{animation:none}
-  .section{animation:none}
 }
 
 /* ───── Base reset ───── */
@@ -79,7 +213,7 @@ html{scroll-behavior:smooth}
 body{
   margin:0;
   overflow-x:hidden;   /* guard against decorative elements (hover popups, blobs) pushing page width */
-  background:var(--bg);
+  background:transparent;   /* transparent so the LAYER 2 canvas behind body is visible */
   color:var(--text);
   font-family:var(--font-body);
   font-size:var(--fs-body);
@@ -242,7 +376,7 @@ p em,li em,td em{
   box-shadow:0 8px 32px -16px rgba(26,24,20,.18);
 }
 
-/* nav toggle bars — navy on light site */
+/* nav toggle bars - navy on light site */
 .nav-toggle{border-color:var(--line-strong)}
 .nav-toggle span{background:var(--ink-900)}
 .nav-link::after{background:var(--gold-500)}
@@ -330,12 +464,12 @@ p em,li em,td em{
 
 .nav-cta{display:inline-flex}
 
-/* Cụm hành động bên phải header — language toggle + CTA */
+/* Cụm hành động bên phải header - language toggle + CTA */
 .header-actions{
   display:flex;align-items:center;gap:14px;
 }
 
-/* Language toggle — segmented EN | VI */
+/* Language toggle - segmented EN | VI */
 .lang-toggle{
   position:relative;
   display:inline-flex;align-items:center;
@@ -525,21 +659,23 @@ p em,li em,td em{
    ============================================================ */
 .section{
   padding:var(--section-y) 0;position:relative;
-  /* Two binary columns scrolling at different speeds */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='260'%3E%3Cg font-family='monospace' font-size='13' fill='%23E2BA54' opacity='.28'%3E%3Ctext x='10' y='30'%3E0%3C/text%3E%3Ctext x='10' y='68'%3E1%3C/text%3E%3Ctext x='10' y='106'%3E0%3C/text%3E%3Ctext x='10' y='144'%3E1%3C/text%3E%3Ctext x='10' y='182'%3E0%3C/text%3E%3Ctext x='10' y='220'%3E1%3C/text%3E%3Ctext x='10' y='258'%3E0%3C/text%3E%3C/g%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='320'%3E%3Cg font-family='monospace' font-size='13' fill='%23E2BA54' opacity='.22'%3E%3Ctext x='14' y='40'%3E1%3C/text%3E%3Ctext x='14' y='86'%3E0%3C/text%3E%3Ctext x='14' y='132'%3E0%3C/text%3E%3Ctext x='14' y='178'%3E1%3C/text%3E%3Ctext x='14' y='224'%3E0%3C/text%3E%3Ctext x='14' y='270'%3E1%3C/text%3E%3C/g%3E%3C/svg%3E");
-  background-size:140px 260px, 90px 320px;
-  background-position:0 var(--bin1), 0 var(--bin2);
-  animation:col1 11s linear infinite, col2 17s linear infinite;
+  /* Binary "0/1" texture is no longer painted per-section. It now lives in a
+     single continuous background layer (the plexus canvas) so it reads as one
+     ambient field behind the whole page instead of a rigid tile per section. */
 }
 #plexus-canvas{
   position:fixed;inset:0;width:100%;height:100%;
-  pointer-events:none;mix-blend-mode:multiply;z-index:1;
+  /* Negative z-index keeps the canvas painted above the page background but
+     behind ALL content (positioned or not — sections, cards, footer). Opaque
+     cards/sections cover it; it only shows through transparent backgrounds.
+     Sits above the faint grid in body::before (z-index:-999). */
+  pointer-events:none;z-index:-1;
 }
 .section-sm{padding:var(--section-y-sm) 0}
-.section-cream{background-color:var(--surface-sand)}
-.section-white{background-color:var(--bg-white)}
+/* Semi-transparent tints so LAYER 2 (the tech canvas) bleeds faintly through
+   even the cream/white bands. Opaque cards painted on top still cover it. */
+.section-cream{background-color:rgba(246,245,241,.6)}
+.section-white{background-color:rgba(255,255,255,.5)}
 .section-deep{
   background-color:var(--surface-deep);
   background-image:none;
@@ -553,13 +689,16 @@ p em,li em,td em{
 .section-deep .eyebrow{color:var(--gold-500)}
 .section-deep .eyebrow::before{color:var(--gold-500)}
 
-.section-head{max-width:760px;margin:0 auto 64px;text-align:center}
+.section-head{max-width:1080px;margin:0 auto 64px;text-align:center}
 .section-head .eyebrow{justify-content:center}
+/* Keep supporting copy at a comfortable reading width even though the
+   head is wide enough to hold long titles on a single line. */
+.section-head .lede{margin-left:auto;margin-right:auto}
 
 .grid-2{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
 .grid-2-balanced{display:grid;grid-template-columns:1fr 1fr;gap:64px}
 
-/* Ornament divider — đường vàng + dấu chấm */
+/* Ornament divider - đường vàng + dấu chấm */
 .ornament{
   display:flex;align-items:center;justify-content:center;gap:14px;
   margin:0 auto 18px;color:var(--gold-500);
@@ -616,6 +755,10 @@ p em,li em,td em{
   bottom:0;right:0;width:62%;
   display:flex;gap:28px;align-items:center;
 }
+/* On hover, lift card-2 (and its stat popup) above the ripple card so the
+   ripple rings no longer cut across the popup. At rest card-2 stays low,
+   letting the ripples lap gently over its corner. */
+.about-card-2:hover{z-index:40}
 .mini-stat{display:flex;flex-direction:column}
 .mini-stat strong{
   font-family:var(--font-display);font-size:2rem;color:var(--accent-text);font-weight:600;line-height:1;
@@ -631,7 +774,7 @@ p em,li em,td em{
 .about-card-3,
 .about-card-3:hover{transform:none !important;box-shadow:none !important;background:transparent !important;border:0 !important}
 
-/* ─── RIPPLE WRAP — sóng nước, luôn lan chậm, hover nhanh hơn ─── */
+/* ─── RIPPLE WRAP - sóng nước, luôn lan chậm, hover nhanh hơn ─── */
 .ripple-wrap{
   position:relative;
   width:100%;height:100%;
@@ -653,7 +796,7 @@ p em,li em,td em{
   box-shadow:0 0 0 6px rgba(208,160,43,.25);
 }
 
-/* Sóng — luôn loop chậm, hover thì tăng tốc.
+/* Sóng - luôn loop chậm, hover thì tăng tốc.
    Animate width/height (KHÔNG dùng transform:scale)
    → border 1.5px giữ sắc nét ở mọi kích thước. */
 .ripple-ring{
@@ -665,7 +808,7 @@ p em,li em,td em{
   border-radius:50%;
   opacity:0;pointer-events:none;
   animation:ripple-pulse 5s var(--ease-out) infinite;
-  /* Hint cho trình duyệt — vẫn dùng tăng tốc layer */
+  /* Hint cho trình duyệt - vẫn dùng tăng tốc layer */
   will-change:width, height, opacity;
 }
 .ripple-ring:nth-of-type(2){animation-delay:1.66s}
@@ -700,7 +843,7 @@ p em,li em,td em{
   pointer-events:none;z-index:20;
 }
 .about-card-1:hover .map-pop{opacity:1;transform:translateY(0) scale(1)}
-/* Accurate Vietnam outline — gold stroke only (not filled) */
+/* Accurate Vietnam outline - gold stroke only (not filled) */
 .vn-map{
   position:relative;
   width:150px;aspect-ratio:895/924;
@@ -709,7 +852,7 @@ p em,li em,td em{
   display:block;width:100%;height:100%;
   filter:drop-shadow(0 4px 12px rgba(26,24,20,.16));
 }
-/* Da Nang pin — placed at its geographic fraction of the regional map box */
+/* Da Nang pin - placed at its geographic fraction of the regional map box */
 .vn-pin{
   position:absolute;left:43.9%;top:42.5%;
   width:7px;height:7px;margin:-3.5px 0 0 -3.5px;
@@ -746,7 +889,7 @@ p em,li em,td em{
 .sp-row strong{
   font-family:var(--font-mono);font-size:1.3rem;color:var(--gold-300);line-height:1;
 }
-/* Progress bar — managed ad spend */
+/* Progress bar - managed ad spend */
 .sp-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
 .sp-bar i{
   display:block;height:100%;width:0;border-radius:99px;
@@ -754,7 +897,7 @@ p em,li em,td em{
   transition:width 1s var(--ease-out) .12s;
 }
 .about-card-2:hover .sp-bar i{width:90%}
-/* Growth chart — average ROI */
+/* Growth chart - average ROI */
 .sp-chart{display:flex;align-items:flex-end;gap:6px;height:46px}
 .sp-chart span{
   flex:1;height:var(--h);border-radius:3px 3px 0 0;
@@ -1023,6 +1166,7 @@ p em,li em,td em{
   display:grid;grid-template-columns:repeat(4,1fr);gap:40px;
   padding:60px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   margin:80px 0 0;
+  text-align:center;   /* center each stat within its column so the row reads balanced */
 }
 .why-numbers .num{
   font-family:var(--font-display);font-size:clamp(2.5rem,4vw,3.6rem);
@@ -1036,7 +1180,7 @@ p em,li em,td em{
    GROWTH CHARTS
 ============================================================ */
 /* ============================================================
-   ABOUT · "Growth in Numbers" — refined editorial data cards
+   ABOUT · "Growth in Numbers" - refined editorial data cards
    ============================================================ */
 .growth-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
 
@@ -1063,7 +1207,7 @@ p em,li em,td em{
 .growth-badge em{font-style:normal;font-size:.6rem;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-400)}
 
-/* Bar chart — mono labels, pill bars, glowing peak */
+/* Bar chart - mono labels, pill bars, glowing peak */
 .bar-chart{display:flex;flex-direction:column;gap:18px;margin-top:auto}
 .bar-row{display:grid;grid-template-columns:48px 1fr 72px;align-items:center;gap:16px}
 .bar-label{font-family:var(--font-mono);font-size:.8rem;color:var(--ink-500);
@@ -1087,6 +1231,24 @@ p em,li em,td em{
 .reveal.in .bar-row:nth-child(6) .bar-fill{transition-delay:.30s}
 .reveal.in .bar-row:nth-child(7) .bar-fill{transition-delay:.36s}
 
+/* Hybrid "Proven Impact" dark card — mini growth chart (services) */
+.hybrid-spark{margin-top:28px}
+.hybrid-spark-cap{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(231,235,242,.55);margin-bottom:12px}
+.hybrid-spark-svg{width:100%;height:auto;display:block;overflow:visible}
+.hybrid-spark-x{display:flex;justify-content:space-between;margin-top:10px;
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;color:rgba(231,235,242,.45)}
+.hybrid-spark-line{stroke-dasharray:660;stroke-dashoffset:660}
+.reveal.in .hybrid-spark-line{stroke-dashoffset:0;transition:stroke-dashoffset 1.5s var(--ease-out) .25s}
+.hybrid-spark-area{opacity:0}
+.reveal.in .hybrid-spark-area{opacity:1;transition:opacity 1s ease .55s}
+.hybrid-spark-dot{opacity:0}
+.reveal.in .hybrid-spark-dot{opacity:1;transition:opacity .45s ease 1.45s}
+@media (prefers-reduced-motion:reduce){
+  .hybrid-spark-line{stroke-dashoffset:0}
+  .hybrid-spark-area,.hybrid-spark-dot{opacity:1}
+}
+
 /* Campaign ROI card */
 .growth-roi{display:flex;gap:36px;align-items:center;justify-content:center}
 .growth-donut{flex-shrink:0;line-height:0;filter:drop-shadow(0 10px 22px rgba(200,160,58,.22))}
@@ -1097,7 +1259,7 @@ p em,li em,td em{
 .growth-roi-text .growth-h{margin-bottom:10px}
 .growth-desc{color:var(--ink-600);font-size:.94rem;line-height:1.55;margin:0}
 
-/* Revenue Milestones — full-width dark HERO band */
+/* Revenue Milestones - full-width dark HERO band */
 .growth-dark{overflow:hidden;
   background:radial-gradient(120% 170% at 100% 0%,#2C2518 0%,#1A1712 50%,#0E0B07 100%);
   border-color:rgba(226,186,84,.26)}
@@ -1123,6 +1285,28 @@ p em,li em,td em{
 .growth-band.in .growth-stat{opacity:1;transform:none}
 .growth-band.in .growth-stat:nth-child(2){transition-delay:.13s}
 .growth-band.in .growth-stat:nth-child(3){transition-delay:.26s}
+
+/* Revenue band — wide area chart */
+.gb-chart{margin-top:38px;padding-top:30px;border-top:1px solid rgba(231,235,242,.12)}
+.gb-cap{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(231,235,242,.5);margin-bottom:14px}
+.gb-svg{width:100%;height:auto;display:block;overflow:visible}
+.gb-line{stroke-dasharray:1150;stroke-dashoffset:1150}
+.growth-band.in .gb-line{stroke-dashoffset:0;transition:stroke-dashoffset 1.9s var(--ease-out) .4s}
+.gb-area{opacity:0}
+.growth-band.in .gb-area{opacity:1;transition:opacity 1.1s ease .8s}
+.gb-dot,.gb-lbl{opacity:0}
+.growth-band.in .gb-dot,.growth-band.in .gb-lbl{opacity:1;transition:opacity .6s ease 1.8s}
+/* Shared SVG label styling for the dark-card charts */
+.spark-yr{font-family:var(--font-mono);font-size:11px;fill:rgba(231,235,242,.45)}
+.spark-val{font-family:var(--font-mono);font-weight:700;font-size:12px;fill:#F3D986}
+/* Hybrid chart peak annotation */
+.hybrid-spark-lbl{opacity:0}
+.reveal.in .hybrid-spark-lbl{opacity:1;transition:opacity .5s ease 1.55s}
+@media (prefers-reduced-motion:reduce){
+  .gb-line{stroke-dashoffset:0}
+  .gb-area,.gb-dot,.gb-lbl,.hybrid-spark-lbl{opacity:1}
+}
 
 @media (max-width:920px){
   .growth-grid{grid-template-columns:1fr}
@@ -1474,7 +1658,7 @@ p em,li em,td em{
 
 
 /* ============================================================
-   REVEAL ANIMATIONS — fade-up cực nhanh, không stagger
+   REVEAL ANIMATIONS - fade-up cực nhanh, không stagger
    Để screenshot/cuộn nhanh KHÔNG còn bắt được cảnh "trống nội dung".
    ============================================================ */
 .reveal{
@@ -1485,7 +1669,7 @@ p em,li em,td em{
 }
 .reveal.in{opacity:1;transform:none}
 
-/* Stagger bỏ — tất cả card trong 1 grid hiện đồng thời.
+/* Stagger bỏ - tất cả card trong 1 grid hiện đồng thời.
    Class .stagger giữ lại để backward-compat nhưng không có delay nữa. */
 .stagger > .reveal{transition-delay:0ms !important}
 
@@ -1525,7 +1709,7 @@ p em,li em,td em{
 }
 
 @media (max-width:680px){
-  :root{--section-y:80px;--section-y-sm:60px}
+  :root{--section-y:58px;--section-y-sm:44px}
   .hero{padding:140px 0 80px;min-height:auto}
   .hero-stats{grid-template-columns:1fr;gap:18px;padding-top:24px}
   .value-grid{grid-template-columns:1fr;gap:18px}
@@ -1546,10 +1730,10 @@ p em,li em,td em{
 
 
 /* ============================================================
-   LIGHT CARD LAYER — white cards, neutral shadow, yellow hover
+   LIGHT CARD LAYER - white cards, neutral shadow, yellow hover
    ============================================================ */
 
-/* Card base — service, why, testimonial, team, portfolio */
+/* Card base - service, why, testimonial, team, portfolio */
 .service-card,
 .why-item,
 .testimonial,
@@ -1560,7 +1744,7 @@ p em,li em,td em{
   box-shadow:var(--shadow-sm);
 }
 
-/* Hover — lift + yellow border + soft shadow */
+/* Hover - lift + yellow border + soft shadow */
 .service-card:hover,
 .why-item:hover,
 .testimonial:hover,
@@ -1577,7 +1761,7 @@ p em,li em,td em{
   box-shadow:0 22px 48px -26px rgba(26,24,20,.26);
 }
 
-/* Section top separator — hairline */
+/* Section top separator - hairline */
 .section + .section,
 .section + .section-sm,
 .section-sm + .section,
@@ -1585,7 +1769,7 @@ p em,li em,td em{
   box-shadow:inset 0 1px 0 var(--line-soft);
 }
 
-/* Gold accent text — no glow on light */
+/* Gold accent text - no glow on light */
 .eyebrow,
 .service-tag,
 .card-tag,
@@ -1598,7 +1782,7 @@ p em,li em,td em{
   text-shadow:none;
 }
 
-/* Mobile drawer — white */
+/* Mobile drawer - white */
 .mobile-drawer{
   background:rgba(255,255,255,.98);
   border-bottom:1px solid var(--line);
@@ -1611,20 +1795,20 @@ p em,li em,td em{
 }
 .drawer-link:hover,.drawer-link.is-active{color:var(--gold-700)}
 
-/* About card-2 (mini stats card) — white */
+/* About card-2 (mini stats card) - white */
 .about-card-2{
   background:#FFFFFF;
   border:1px solid var(--line);
 }
 
-/* Contact icon — yellow tint */
+/* Contact icon - yellow tint */
 .contact-icon{
   background:var(--gold-50);
   border-color:var(--line-strong);
   color:var(--gold-700);
 }
 
-/* Form inputs — light */
+/* Form inputs - light */
 .contact-form{
   background:#FFFFFF;
   border:1px solid var(--line);
@@ -1646,7 +1830,7 @@ p em,li em,td em{
   box-shadow:0 0 0 4px rgba(208,160,43,.15);
 }
 
-/* Legal article — white panel */
+/* Legal article - white panel */
 .legal-article{
   background:#FFFFFF;
   border:1px solid var(--line);
@@ -1654,11 +1838,12 @@ p em,li em,td em{
 }
 .legal-article h2{border-bottom-color:var(--line)}
 
-/* Section-cream stays light gray */
-.section-cream{background-color:var(--surface-sand)}
+/* Section-cream stays light gray — kept semi-transparent (see LAYER notes above)
+   so the tech canvas shows faintly through it. */
+.section-cream{background-color:rgba(246,245,241,.6)}
 
 /* ============================================================
-   MODERN UI ENHANCEMENTS — tech-forward / dynamic feel
+   MODERN UI ENHANCEMENTS - tech-forward / dynamic feel
    ============================================================ */
 
 /* ── Running gold border on hover (shared) ─────────────────
@@ -1754,7 +1939,7 @@ p em,li em,td em{
 }
 .hero .eyebrow::before{display:none}
 
-/* Mobile drawer — white on home too */
+/* Mobile drawer - white on home too */
 [data-page="home"] .mobile-drawer{
   background:rgba(255,255,255,.98);
   border-bottom-color:var(--line);
@@ -1767,11 +1952,11 @@ p em,li em,td em{
 [data-page="home"] .drawer-link.is-active{color:var(--gold-700)}
 
 /* ============================================================
-   TECH LAYER — Space Mono · Scan Beam · Gradient Text
+   TECH LAYER - Space Mono · Scan Beam · Gradient Text
    KPI Panels · Card Counters · Shimmer · Micro-animations
    ============================================================ */
 
-/* 1 ─ Accent spans inside headings — solid readable yellow */
+/* 1 ─ Accent spans inside headings - solid readable yellow */
 h1 .accent, h2 .accent, .hero-title .accent{
   background:none;
   -webkit-text-fill-color:currentColor;
@@ -1927,7 +2112,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
 }
 .why-numbers .num{font-family:var(--font-mono);color:var(--gold-600)}
 
-/* 10 ─ Service & Why icons — yellow tech ring */
+/* 10 ─ Service & Why icons - yellow tech ring */
 .service-icon{
   background:var(--gold-50);
   border:1px solid var(--gold-200);
@@ -1969,7 +2154,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
 
 
 /* ============================================================
-   OMNI LAYER — AI-agency sections (light + gold glow)
+   OMNI LAYER - AI-agency sections (light + gold glow)
    Bento · Marquee · Process · Metrics band · Pricing · FAQ
    ============================================================ */
 
@@ -1992,7 +2177,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
 }
 
 /* ============================================================
-   HERO — two-column + glowing orb visual
+   HERO - two-column + glowing orb visual
    ============================================================ */
 .hero-inner{
   display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;
@@ -2010,7 +2195,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
 }
 /* Soft gold glow HALO behind the logo.
    Transparent through the centre so it never bleeds through the coin's
-   open areas — it only haloes the rim. z-index:-1 keeps it strictly behind. */
+   open areas - it only haloes the rim. z-index:-1 keeps it strictly behind. */
 .hero-orb::before{
   content:"";position:absolute;inset:-8%;border-radius:50%;
   z-index:-1;
@@ -2048,12 +2233,13 @@ h1 .accent, h2 .accent, .hero-title .accent{
   box-shadow:0 0 8px rgba(208,160,43,.9);animation:statusPulse 2s ease-in-out infinite}
 
 /* ============================================================
-   TRUST — marquee strip
+   TRUST - marquee strip
    ============================================================ */
 .trust{overflow:hidden}
 .trust-label{
-  text-align:center;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--text-mute);font-weight:700;margin:0 0 28px;
+  display:flex;
+  justify-content:center;
+  margin:0 0 28px;
 }
 .marquee{
   position:relative;width:100%;overflow:hidden;
@@ -2137,7 +2323,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
   display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative;
 }
 .process-step{position:relative;padding-top:0;text-align:center}
-/* Connector — runs from this node's centre to the next node's centre.
+/* Connector - runs from this node's centre to the next node's centre.
    100% = column width, +gap bridges the 28px grid gap. The node's
    6px cream ring masks the line so it reads as connecting the circles. */
 .process-step:not(:last-child)::before{
@@ -2162,7 +2348,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
    ============================================================ */
 .metrics-band{position:relative;overflow:hidden;isolation:isolate}
 .metrics-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
-/* Living gold network (plexus) scoped to the dark band — JS-driven canvas.
+/* Living gold network (plexus) scoped to the dark band - JS-driven canvas.
    The site-wide #plexus-canvas uses multiply blend so it vanishes on dark;
    this one composites normally so the nodes glow against the near-black. */
 .metrics-plexus{position:absolute;inset:0;width:100%;height:100%;
@@ -2203,14 +2389,14 @@ h1 .accent, h2 .accent, .hero-title .accent{
 .mp-foot{margin:14px 0 0;font-size:.72rem;color:rgba(231,235,242,.55);letter-spacing:.02em;text-align:center}
 .mp-foot strong{font-family:var(--font-mono);color:var(--gold-300);font-weight:700}
 
-/* 1 · Ad spend by year — bars with $ labels */
+/* 1 · Ad spend by year - bars with $ labels */
 .mp-bars{display:flex;align-items:flex-end;gap:11px;height:108px;margin-bottom:20px}
 .mp-bar{flex:1;position:relative;height:100%;display:flex;align-items:flex-end}
 .mp-bar i{display:block;width:100%;height:var(--h);border-radius:4px 4px 0 0;
   background:linear-gradient(180deg,var(--gold-300),var(--gold-600));
   transform:scaleY(0);transform-origin:bottom;transition:transform .55s var(--ease-out)}
 .metrics-band:hover .mp-bar i{transform:scaleY(1)}
-/* Value labels only on the first & last bar — keeps the $0.9M → $2.4M growth
+/* Value labels only on the first & last bar - keeps the $0.9M → $2.4M growth
    story without packing 6 overlapping labels across a narrow column. */
 .mp-bar em{position:absolute;left:-8px;right:-8px;bottom:calc(var(--h) + 7px);text-align:center;
   font:700 .64rem/1 var(--font-mono);color:var(--gold-200);opacity:0;transition:opacity .4s ease .3s}
@@ -2224,7 +2410,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
 .metrics-band:hover .mp-bar:nth-child(5) i{transition-delay:.24s}
 .metrics-band:hover .mp-bar:nth-child(6) i{transition-delay:.30s}
 
-/* 2 · ROI by channel — donut + legend */
+/* 2 · ROI by channel - donut + legend */
 .mp-roi{display:flex;align-items:center;gap:20px}
 .mp-donut{width:108px;height:108px;flex-shrink:0}
 .mp-donut .track{fill:none;stroke:rgba(225,185,91,.15);stroke-width:6.5}
@@ -2251,7 +2437,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
 .mp-time b{font-family:var(--font-mono);color:var(--gold-300);font-size:.76rem;font-weight:700;min-width:32px}
 .mp-time span{font-size:.74rem;color:rgba(231,235,242,.72);line-height:1.3}
 
-/* 4 · Orders over 12 months — area line */
+/* 4 · Orders over 12 months - area line */
 .mp-line{width:100%;height:auto;display:block}
 .mp-line .area{fill:rgba(208,160,43,.15);stroke:none;opacity:0;transition:opacity .7s ease .35s}
 .mp-line .line{fill:none;stroke:var(--gold-300);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
@@ -2346,7 +2532,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
 .faq-a p{margin:0;font-size:.96rem;line-height:1.7}
 
 /* ============================================================
-   OMNI LAYER — responsive
+   OMNI LAYER - responsive
    ============================================================ */
 @media (max-width:1024px){
   .hero-inner{grid-template-columns:1fr;gap:40px}

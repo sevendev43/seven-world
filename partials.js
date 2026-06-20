@@ -1,5 +1,5 @@
 /* ============================================================
-   Seven Company — Partials (Header / Footer / Topbar Injector)
+   Seven Company - Partials (Header / Footer / Topbar Injector)
    ------------------------------------------------------------
    Bơm chrome vào mỗi trang. Mọi text dùng data-i18n để SevenI18n
    dịch ngay sau khi render.

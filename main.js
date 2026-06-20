@@ -1,5 +1,5 @@
 /* ============================================================
-   Seven Company — Page Interactions
+   Seven Company - Page Interactions
    Chạy SAU khi partials.js đã bơm header/footer.
 
    Quy trình:
@@ -13,7 +13,7 @@
 (function () {
 
   /* ───────────────────────────────────────────────────────
-     0a) PAGE LOADER — fade out sau ~1.5s
+     0a) PAGE LOADER - fade out sau ~1.5s
      Timer chạy ngay khi script load, không đợi DOMContentLoaded.
   ─────────────────────────────────────────────────────── */
   (function hidePageLoader () {
@@ -44,7 +44,7 @@
   };
 
   /* ───────────────────────────────────────────────────────
-     1) SECTION LOADER — bơm các fragment HTML vào placeholder
+     1) SECTION LOADER - bơm các fragment HTML vào placeholder
      <div data-include="sections/hero.html"></div>
   ─────────────────────────────────────────────────────── */
   async function loadIncludes(root = document) {
@@ -238,7 +238,7 @@
   }
 
   /* ───────────────────────────────────────────────────────
-     4c) HOVER COUNT-UP — re-runs each time the user hovers a
+     4c) HOVER COUNT-UP - re-runs each time the user hovers a
      container marked [data-count-hover]; animates its
      [data-htarget] figures (popup stat panels).
   ─────────────────────────────────────────────────────── */
@@ -272,7 +272,7 @@
   }
 
   /* ───────────────────────────────────────────────────────
-     5) MARQUEE — clone sets until track fills viewport,
+     5) MARQUEE - clone sets until track fills viewport,
      then pin exact pixel offset so there's never a gap
   ─────────────────────────────────────────────────────── */
   function setupMarquee() {
@@ -294,7 +294,7 @@
   }
 
   /* ───────────────────────────────────────────────────────
-     6) PLEXUS BACKGROUND — floating gold nodes + connection lines
+     6) PLEXUS BACKGROUND - floating gold nodes + connection lines
      Canvas uses mix-blend-mode:multiply: visible on white/sand
      sections, naturally invisible on dark sections.
   ─────────────────────────────────────────────────────── */
@@ -308,16 +308,35 @@
 
     const ctx = canvas.getContext('2d');
     const GOLD   = '226,186,84';
-    const COUNT  = 110;
-    const LINK_D = 160;
+    const COUNT  = 150;
+    const LINK_D = 162;
     const SPEED  = 0.28;
-    const MARGIN = 220; // off-screen buffer for recycling
+    const MARGIN = 220; // off-screen buffer so drifting nodes fade in/out softly
 
-    let nodes = [], W = 0, H = 0, raf = 0, lastScrollY = 0;
+    // Binary "rain" - sparse 0/1 streams at random columns, drifting down and
+    // fading out. Each stream re-seeds with a new random column/speed/length on
+    // recycle, so the field never looks gridded or looped.
+    const STEP = 21;          // vertical gap between glyphs in a stream
+    const RAIN_FONT = "13px 'Space Mono', 'Courier New', monospace";
+
+    let nodes = [], drops = [], W = 0, H = 0, raf = 0;
 
     function resize() {
       W = canvas.width  = window.innerWidth;
       H = canvas.height = window.innerHeight;
+    }
+
+    function mkDrop(scatter) {
+      const len = 5 + Math.floor(Math.random() * 8);   // 5–12 glyphs per stream
+      return {
+        x:     Math.round(Math.random() * W),
+        // scatter=true on first paint so streams don't all start at the top;
+        // otherwise seed just above the viewport for a clean entry.
+        y:     scatter ? Math.random() * H : -(Math.random() * H * 0.5 + len * STEP),
+        speed: 0.35 + Math.random() * 0.85,
+        len:   len,
+        glyphs: Array.from({ length: len }, () => (Math.random() < 0.5 ? '0' : '1'))
+      };
     }
 
     function mkNode(yOverride) {
@@ -335,9 +354,10 @@
 
       nodes.forEach(n => {
         n.x += n.vx; n.y += n.vy;
+        // Reflect off the (buffered) viewport edges so the field stays evenly
+        // distributed and never clumps. The canvas is a fixed background, so the
+        // motion is fully self-contained and NOT coupled to page scroll.
         if (n.x < 0 || n.x > W) n.vx *= -1;
-        // No Y bounce — nodes that drift off are recycled in scroll handler
-        // For natural drift within screen, gently reflect near the buffer zone
         if (n.y < -(MARGIN - 10) || n.y > H + MARGIN - 10) n.vy *= -1;
       });
 
@@ -350,7 +370,7 @@
           const dy = vis[i].y - vis[j].y;
           const d2 = dx * dx + dy * dy;
           if (d2 < D2) {
-            const alpha = (1 - Math.sqrt(d2) / LINK_D) * .42;
+            const alpha = (1 - Math.sqrt(d2) / LINK_D) * .50;
             ctx.beginPath();
             ctx.strokeStyle = `rgba(${GOLD},${alpha})`;
             ctx.lineWidth = 1.1;
@@ -364,33 +384,51 @@
       vis.forEach(n => {
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${GOLD},.72)`;
+        ctx.fillStyle = `rgba(${GOLD},.82)`;
         ctx.fill();
+      });
+
+      // ── Binary rain ──────────────────────────────────────────
+      ctx.font = RAIN_FONT;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      drops.forEach(d => {
+        d.y += d.speed;
+        // Rare glyph flip keeps a stream feeling "live" rather than static.
+        if (Math.random() < 0.03) {
+          d.glyphs[(Math.random() * d.len) | 0] = Math.random() < 0.5 ? '0' : '1';
+        }
+        for (let i = 0; i < d.len; i++) {
+          const cy = d.y - i * STEP;            // i=0 is the leading (lowest) glyph
+          if (cy < -STEP || cy > H + STEP) continue;
+          const tail  = 1 - i / d.len;          // brighter head, fading trail
+          const depth = 1 - Math.min(1, d.y / H); // whole stream fades as it descends
+          const a = 0.38 * tail * (0.18 + 0.82 * depth);
+          if (a <= 0.01) continue;
+          ctx.fillStyle = `rgba(${GOLD},${a})`;
+          ctx.fillText(d.glyphs[i], d.x, cy);
+        }
+        // Recycle once the trailing glyph has cleared the bottom.
+        if (d.y - d.len * STEP > H) Object.assign(d, mkDrop(false));
       });
 
       raf = requestAnimationFrame(tick);
     }
 
     resize();
-    lastScrollY = window.scrollY;
     nodes = Array.from({ length: COUNT }, mkNode);
+    const DROP_COUNT = Math.round(Math.min(90, Math.max(26, W / 24)));
+    drops = Array.from({ length: DROP_COUNT }, () => mkDrop(true));
     raf = requestAnimationFrame(tick);
 
-    // Shift nodes synchronously on scroll — eliminates 1-frame jitter
-    window.addEventListener('scroll', () => {
-      const dy = window.scrollY - lastScrollY;
-      lastScrollY = window.scrollY;
-      nodes.forEach(n => {
-        n.y -= dy;
-        // Recycle at opposite edge so density stays constant while scrolling
-        if (n.y < -(MARGIN + 40)) { n.y = H + MARGIN; n.x = Math.random() * W; }
-        else if (n.y > H + MARGIN + 40) { n.y = -MARGIN; n.x = Math.random() * W; }
-      });
-    }, { passive: true });
+    // NOTE: the plexus is deliberately NOT shifted on scroll. It used to be, which
+    // caused nodes to pile up into a band on fast scrolls. As a fixed background
+    // layer it just drifts on its own — smooth and clump-free at any scroll speed.
 
     window.addEventListener('resize', () => {
       resize();
       nodes.forEach(n => { if (n.x > W) n.x = Math.random() * W; });
+      drops.forEach(d => { if (d.x > W) d.x = Math.round(Math.random() * W); });
     }, { passive: true });
 
     document.addEventListener('visibilitychange', () => {
@@ -400,7 +438,7 @@
   }
 
   /* ───────────────────────────────────────────────────────
-     6b) BAND PLEXUS — same floating-node network as the global
+     6b) BAND PLEXUS - same floating-node network as the global
      plexus, but scoped to the dark "By the numbers" band and
      composited normally so the gold nodes glow on near-black
      (the global canvas is multiply-blended → invisible on dark).
@@ -507,6 +545,65 @@
   }
 
   /* ───────────────────────────────────────────────────────
+     7) BACK-TO-TOP BUTTON
+  ─────────────────────────────────────────────────────── */
+  function setupBackToTop() {
+    const btn = document.createElement('button');
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '<svg viewBox="0 0 16 16"><polyline points="3,10 8,5 13,10"/></svg>';
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ───────────────────────────────────────────────────────
+     8) CLICK BURST - tech ripple + particle spray
+  ─────────────────────────────────────────────────────── */
+  function setupClickEffect() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const SKIP = new Set(['INPUT','TEXTAREA','SELECT']);
+
+    document.addEventListener('click', (e) => {
+      if (SKIP.has(e.target.tagName)) return;
+
+      const burst = document.createElement('div');
+      burst.className = 'click-burst';
+      burst.style.left = e.clientX + 'px';
+      burst.style.top  = e.clientY + 'px';
+
+      const ring  = document.createElement('div');
+      ring.className = 'click-ring';
+      const ring2 = document.createElement('div');
+      ring2.className = 'click-ring2';
+      const dot  = document.createElement('div');
+      dot.className = 'click-dot';
+
+      burst.appendChild(ring);
+      burst.appendChild(ring2);
+      burst.appendChild(dot);
+
+      const COUNT = 8;
+      for (let i = 0; i < COUNT; i++) {
+        const p = document.createElement('div');
+        p.className = 'click-particle';
+        p.style.setProperty('--a', (360 / COUNT * i) + 'deg');
+        burst.appendChild(p);
+      }
+
+      document.body.appendChild(burst);
+      setTimeout(() => burst.remove(), 700);
+    });
+  }
+
+  /* ───────────────────────────────────────────────────────
      6) CONTACT FORM
   ─────────────────────────────────────────────────────── */
   function setupForm() {
@@ -535,13 +632,13 @@
 
       const to = (window.SITE_CONFIG && window.SITE_CONFIG.contact && window.SITE_CONFIG.contact.email)
                   || 'contact@sevenworld.net';
-      const subject = encodeURIComponent(`New enquiry — ${interest}`);
+      const subject = encodeURIComponent(`New enquiry - ${interest}`);
       const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nCompany: ${data.get('company') || '—'}\nInterest: ${interest}\n\n${message}`
+        `Name: ${name}\nEmail: ${email}\nCompany: ${data.get('company') || '-'}\nInterest: ${interest}\n\n${message}`
       );
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
 
-      note.textContent = 'Thank you — opening your email client to send the message.';
+      note.textContent = 'Thank you - opening your email client to send the message.';
       note.dataset.state = 'ok';
       form.reset();
     });
@@ -568,6 +665,8 @@
     setupCounters();
     setupHoverCounters();
     setupForm();
+    setupBackToTop();
+    setupClickEffect();
   }
 
   if (document.readyState === 'loading') {

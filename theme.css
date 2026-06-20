@@ -1,5 +1,5 @@
 /* ============================================================
-   Seven Company — Design Tokens (Theme File)
+   Seven Company - Design Tokens (Theme File)
    ------------------------------------------------------------
    Đổi màu / font / spacing / shadow → đổi tại đây.
    Tất cả styles.css đều tham chiếu các biến này, nên việc
@@ -8,7 +8,7 @@
 
 :root{
 
-  /* ───── COLORS — Brand Gold & White, Black contrast ───────
+  /* ───── COLORS - Brand Gold & White, Black contrast ───────
      Bộ vàng thương hiệu Seven World:
        #FBF9D4  cream  (logo cream)
        #E1B95B  light gold
@@ -30,13 +30,13 @@
   --gold-200:  #F4E29E;
   --gold-300:  #F3D986;   /* light gold */
   --gold-400:  #ECCA6E;
-  --gold-500:  #E2BA54;   /* GOLD — brand primary — logo #e1b754 */
+  --gold-500:  #E2BA54;   /* GOLD - brand primary - logo #e1b754 */
   --gold-600:  #C8A03A;   /* deep gold */
   --gold-700:  #A07F26;   /* gold đậm readable trên nền trắng */
   --gold-800:  #7A601C;
 
-  /* Ink (chữ) — black/charcoal ấm scale */
-  --ink-900:   #1A1814;   /* đen ấm — heading */
+  /* Ink (chữ) - black/charcoal ấm scale */
+  --ink-900:   #1A1814;   /* đen ấm - heading */
   --ink-800:   #2A2620;
   --ink-700:   #3D372F;
   --ink-600:   #5C544B;   /* body text */
@@ -85,8 +85,8 @@
   /* ───── SPACING / LAYOUT ───────────────────────────────── */
   --container: 1240px;
   --gutter:    24px;
-  --section-y: 120px;
-  --section-y-sm: 88px;
+  --section-y: 80px;
+  --section-y-sm: 60px;
 
   --radius-sm: 6px;
   --radius:    8px;
@@ -94,7 +94,7 @@
   --radius-pill: 999px;
 
 
-  /* ───── ELEVATION — neutral shadows trên nền sáng ───────── */
+  /* ───── ELEVATION - neutral shadows trên nền sáng ───────── */
   --shadow-sm:    0 1px 2px rgba(26,24,20,.05);
   --shadow:       0 18px 50px -24px rgba(26,24,20,.18),
                   0 4px 14px -6px rgba(26,24,20,.07);
@@ -104,12 +104,12 @@
 
   /* ───── MOTION ─────────────────────────────────────────── */
   --ease:        cubic-bezier(.2,.7,.2,1);
-  --ease-soft:   cubic-bezier(.16,.84,.44,1);   /* hover lift — extra mềm */
+  --ease-soft:   cubic-bezier(.16,.84,.44,1);   /* hover lift - extra mềm */
   --ease-out:    cubic-bezier(.22,1,.36,1);     /* exit, fade-in */
   --t-fast:      .22s;
   --t:           .38s;
   --t-hover:     .45s;                          /* hover transitions */
-  --t-slow:      .3s;                           /* reveal-on-scroll — snappy để screenshot không bao giờ bắt được giữa frame */
+  --t-slow:      .3s;                           /* reveal-on-scroll - snappy để screenshot không bao giờ bắt được giữa frame */
 
   --lift-sm: -3px;
   --lift:    -6px;

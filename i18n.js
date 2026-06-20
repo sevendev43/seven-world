@@ -1,5 +1,5 @@
 /* ============================================================
-   Seven Company — i18n engine
+   Seven Company - i18n engine
    ------------------------------------------------------------
    - Lưu lựa chọn ngôn ngữ vào localStorage
    - Áp dụng bản dịch lên element có data-i18n="key.path"
@@ -70,7 +70,7 @@ window.SevenI18n = (function () {
   function set(lang) { apply(lang); }
 
   function init() {
-    /* Event delegation — click ở bất kỳ .lang-toggle nào trên trang */
+    /* Event delegation - click ở bất kỳ .lang-toggle nào trên trang */
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.lang-toggle');
       if (!btn) return;
