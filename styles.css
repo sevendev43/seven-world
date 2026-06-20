@@ -209,7 +209,7 @@ body::before{
 
 /* ───── Base reset ───── */
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 body{
   margin:0;
   overflow-x:hidden;   /* guard against decorative elements (hover popups, blobs) pushing page width */
@@ -518,12 +518,14 @@ p em,li em,td em{
 .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 .mobile-drawer{
-  position:fixed;inset:74px 0 auto 0;
+  position:fixed;left:0;right:0;
+  top:112px;            /* fallback; JS sets this to the header's real bottom */
+  max-height:calc(100vh - 96px);   /* never spill past the viewport; scroll if taller */
   background:var(--bg);
   border-bottom:1px solid var(--line);
   display:none;flex-direction:column;
-  padding:20px var(--gutter) 28px;gap:6px;
-  z-index:49;
+  padding:22px var(--gutter) 32px;gap:6px;
+  z-index:49;overflow-y:auto;-webkit-overflow-scrolling:touch;
   transform:translateY(-12px);opacity:0;pointer-events:none;
   transition:transform var(--t) var(--ease), opacity var(--t) var(--ease);
 }
@@ -883,6 +885,8 @@ p em,li em,td em{
   pointer-events:none;z-index:20;
 }
 .about-card-2:hover .stat-pop{opacity:1;transform:translateY(0) scale(1)}
+/* Hover-only popup is decorative; hide on touch/small screens so it can't push page width */
+@media (hover:none){.stat-pop{display:none}}
 .sp-metric{display:flex;flex-direction:column;gap:9px}
 .sp-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
 .sp-label{font-size:.72rem;color:rgba(231,235,242,.65);letter-spacing:.05em}
@@ -1784,10 +1788,8 @@ p em,li em,td em{
 
 /* Mobile drawer - white */
 .mobile-drawer{
-  background:rgba(255,255,255,.98);
+  background:#FFFFFF;
   border-bottom:1px solid var(--line);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
 }
 .drawer-link{
   color:var(--ink-800);
@@ -1941,7 +1943,7 @@ p em,li em,td em{
 
 /* Mobile drawer - white on home too */
 [data-page="home"] .mobile-drawer{
-  background:rgba(255,255,255,.98);
+  background:#FFFFFF;
   border-bottom-color:var(--line);
 }
 [data-page="home"] .drawer-link{
@@ -2555,4 +2557,138 @@ h1 .accent, h2 .accent, .hero-title .accent{
   .process{grid-template-columns:1fr;gap:24px}
   .metrics-grid{grid-template-columns:1fr;gap:28px}
   .trust-chip{font-size:.82rem;padding:10px 18px}
+}
+
+/* ============================================================
+   TRUE MOBILE SCALE (≤640)
+   Headings & lede read from the --fs-* vars, so shrinking the
+   scale here cascades site-wide. Sections, spacing and the big
+   display numbers are dialled back so nothing feels oversized.
+   ============================================================ */
+@media (max-width:640px){
+  :root{
+    --fs-h1:      clamp(1.85rem, 7.5vw, 2.35rem);
+    --fs-h2:      clamp(1.5rem,  6vw,   1.9rem);
+    --fs-h3:      1.2rem;
+    --fs-h4:      1.02rem;
+    --fs-lede:    1rem;
+    --fs-body:    .95rem;
+    --fs-eyebrow: .72rem;
+    --section-y:    52px;
+    --section-y-sm: 38px;
+    --gutter:       20px;
+  }
+  body{line-height:1.6}
+  .section-head{margin-bottom:32px}
+  .lede{line-height:1.6}
+
+  /* Hero */
+  .hero{padding:120px 0 56px}
+  .hero-title{font-size:clamp(1.8rem,8vw,2.35rem);margin-bottom:20px}
+  .hero-ctas{margin-bottom:40px;gap:12px}
+  .hero-ctas .btn{flex:1 1 150px;justify-content:center}
+  .hero-stats{gap:20px;padding-top:26px}
+
+  /* Inner page hero */
+  .page-hero{padding:120px 0 56px}
+  .page-hero h1{font-size:clamp(1.9rem,8vw,2.5rem)}
+
+  /* Big display numbers - keep them strong but stop them dominating */
+  .why-numbers .num{font-size:clamp(2rem,9vw,2.6rem)}
+  .growth-stat-num{font-size:clamp(2rem,9vw,2.7rem)}
+  .metric dt{font-size:clamp(1.8rem,8vw,2.3rem)}
+  .service-detail h2{font-size:clamp(1.6rem,6.5vw,2rem)}
+
+  /* Cards & panels - trim oversized padding so content gets room */
+  .price-card{padding:28px 22px}
+  .contact-form{padding:22px}
+  .community-callout{padding:28px 20px}
+  .growth-band{padding:28px 22px}
+  .faq-item summary{padding:16px;font-size:1rem}
+  .faq-a{padding:0 16px 18px}
+}
+
+/* Top bar: drop the truncated email on phones, keep the links */
+@media (max-width:600px){
+  .topbar-note{display:none}
+  .topbar-inner{justify-content:flex-end}
+}
+
+/* Smallest phones - final squeeze */
+@media (max-width:420px){
+  :root{--gutter:16px}
+  .hero{padding:112px 0 50px}
+  .hero-stats{gap:18px;padding-top:24px}
+}
+
+/* ============================================================
+   MOBILE REDESIGN (≤640) - structural, phone-only.
+   Everything below is scoped to phones; desktop is untouched.
+   ============================================================ */
+@media (max-width:640px){
+
+  /* ---- HERO: drop the big logo orb + simple stats, pull the
+     "By the numbers" metrics section up right under the hero ---- */
+  .hero-visual{display:none!important}
+  .hero-stats{display:none!important}
+  .hero-ctas{margin-bottom:8px}
+
+  #top{display:flex;flex-direction:column}
+  #top > [data-include*="hero"]{order:-2}
+  #top > [data-include*="metrics"]{order:-1}
+  /* the relocated metrics band shouldn't feel like a separate slab */
+  #top > [data-include*="metrics"] .metrics-band{padding-top:46px}
+
+  /* ---- Collapsible cards (capabilities / process / why / team) ---- */
+  .m-acc{position:relative;cursor:pointer}
+  .m-acc > .m-acc-body{
+    overflow:hidden;max-height:0;opacity:0;
+    transition:max-height .42s var(--ease-out),opacity .3s ease;
+  }
+  .m-acc.m-open > .m-acc-body{max-height:680px;opacity:1}
+  /* + / − affordance, readable on any card background */
+  .m-acc::after{
+    content:"+";position:absolute;top:14px;right:14px;z-index:3;
+    width:28px;height:28px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:#FFFFFF;border:1px solid var(--line);
+    color:var(--gold-700);font-family:var(--font-mono);font-weight:700;
+    font-size:1.15rem;line-height:1;box-shadow:0 4px 12px -6px rgba(26,24,20,.25);
+  }
+  .m-acc.m-open::after{content:"−"}
+  /* tighten card padding now that collapsed cards are compact */
+  .bento-card{padding:22px 20px}
+  .why-item{padding:22px 20px}
+  .process-step{padding:4px 0}
+
+  /* ---- ABOUT: hide the visual cards entirely on mobile ---- */
+  #about-preview .about-visual{display:none!important}
+  #about-preview .grid-2{gap:0}
+
+  /* ---- TESTIMONIALS ("Voices"): smaller, calmer quotes ---- */
+  .testimonial{padding:24px 22px}
+  .testimonial blockquote{font-size:.92rem;line-height:1.62}
+  .testimonial::before{font-size:2.6rem}
+  .testimonial figcaption strong{font-size:.9rem}
+  .testimonial figcaption span{font-size:.78rem}
+
+  /* ---- PRICING: single-card carousel with round pager dots ---- */
+  #pricing .pricing-grid{
+    display:flex;grid-template-columns:none;
+    max-width:none;margin-inline:0;gap:14px;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding:16px 2px 6px;scrollbar-width:none;
+  }
+  #pricing .pricing-grid::-webkit-scrollbar{display:none}
+  #pricing .price-card{
+    flex:0 0 100%;scroll-snap-align:center;order:0;
+  }
+  .m-dots{display:flex;justify-content:center;gap:9px;margin-top:20px}
+  .m-dot{
+    width:9px;height:9px;border-radius:50%;padding:0;
+    background:var(--line-strong);border:0;cursor:pointer;
+    transition:width .3s var(--ease-out),background .3s ease,border-radius .3s ease;
+  }
+  .m-dot.is-active{background:var(--gold-500);width:26px;border-radius:5px}
 }

@@ -86,7 +86,14 @@
   function setupMobileDrawer() {
     const toggle = document.getElementById('navToggle');
     const drawer = document.getElementById('mobileDrawer');
+    const header = document.getElementById('siteHeader');
     if (!toggle || !drawer) return;
+
+    // Align the drawer's top edge to the header's actual bottom so it never
+    // overlaps the logo (header height varies: topbar collapses on scroll).
+    const positionDrawer = () => {
+      if (header) drawer.style.top = Math.round(header.getBoundingClientRect().bottom) + 'px';
+    };
 
     const close = () => {
       toggle.classList.remove('open');
@@ -96,6 +103,7 @@
       document.body.style.overflow = '';
     };
     toggle.addEventListener('click', () => {
+      positionDrawer();
       const open = drawer.classList.toggle('open');
       toggle.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', String(open));
@@ -300,6 +308,9 @@
   ─────────────────────────────────────────────────────── */
   function setupPlexus() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // On phones the full-screen node network + binary rain is heavy and visually
+    // busy. Skip it entirely - the page keeps its clean white + subtle grid base.
+    if (window.matchMedia('(max-width:640px)').matches) return;
 
     const canvas = document.createElement('canvas');
     canvas.id = 'plexus-canvas';
@@ -445,6 +456,8 @@
   ─────────────────────────────────────────────────────── */
   function setupBandPlexus() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // Phones: skip the scoped node network in the metrics band too - keep it light.
+    if (window.matchMedia('(max-width:640px)').matches) return;
 
     const band = document.querySelector('.metrics-band');
     if (!band) return;
@@ -645,6 +658,107 @@
   }
 
   /* ───────────────────────────────────────────────────────
+     MOBILE · Collapsible cards (accordion)
+     On phones each card shows only its identity (icon/num/photo
+     + tag + title). Tapping a card reveals its detail and closes
+     any other open card in the same group. Desktop is untouched.
+  ─────────────────────────────────────────────────────── */
+  function setupMobileCards() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+
+    const GROUPS = [
+      { group: '#capabilities .bento', item: '.bento-card', detail: 'p, .bento-list, .bento-link' },
+      { group: '#process .process',    item: '.process-step', detail: 'p' },
+      { group: '.why-grid',            item: '.why-item',     detail: 'p' },
+      { group: '.team-grid',           item: '.team-card',    detail: '.team-bio' }
+    ];
+
+    GROUPS.forEach(cfg => {
+      const group = document.querySelector(cfg.group);
+      if (!group) return;
+      const items = Array.from(group.querySelectorAll(cfg.item));
+
+      items.forEach(item => {
+        const details = Array.from(item.children).filter(c => c.matches(cfg.detail));
+        if (!details.length) return;
+
+        // Wrap the trailing detail nodes so we can animate them open/closed.
+        const body = document.createElement('div');
+        body.className = 'm-acc-body';
+        item.insertBefore(body, details[0]);
+        details.forEach(d => body.appendChild(d));
+        item.classList.add('m-acc');
+
+        item.addEventListener('click', (e) => {
+          // Let real links work once the card is already open.
+          if (e.target.closest('a') && item.classList.contains('m-open')) return;
+          e.preventDefault();
+          const willOpen = !item.classList.contains('m-open');
+          items.forEach(s => s.classList.remove('m-open'));
+          item.classList.toggle('m-open', willOpen);
+        });
+      });
+    });
+  }
+
+  /* ───────────────────────────────────────────────────────
+     MOBILE · Pricing carousel
+     Show the featured "Most partners" card first; the other two
+     live in a horizontal scroll-snap track with round pager dots.
+  ─────────────────────────────────────────────────────── */
+  function setupPricingCarousel() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+    const grid = document.querySelector('#pricing .pricing-grid');
+    if (!grid) return;
+
+    // Featured card leads.
+    const featured = grid.querySelector('.is-featured');
+    if (featured) grid.insertBefore(featured, grid.firstChild);
+
+    const cards = Array.from(grid.children);
+    if (cards.length < 2) return;
+
+    const dots = document.createElement('div');
+    dots.className = 'm-dots';
+    dots.setAttribute('role', 'tablist');
+    cards.forEach((card, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'm-dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', 'Show plan ' + (i + 1));
+      dot.addEventListener('click', () => {
+        const target = grid.scrollLeft +
+          (card.getBoundingClientRect().left - grid.getBoundingClientRect().left);
+        grid.scrollTo({ left: target, behavior: 'smooth' });
+        // Immediate feedback - don't rely solely on the scroll event.
+        dots.querySelectorAll('.m-dot').forEach((d, j) =>
+          d.classList.toggle('is-active', j === i));
+      });
+      dots.appendChild(dot);
+    });
+    grid.after(dots);
+
+    // Keep the active dot in sync with the scroll position.
+    let raf = 0;
+    grid.addEventListener('scroll', () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const gr = grid.getBoundingClientRect();
+        const mid = gr.left + gr.width / 2;
+        let active = 0, best = Infinity;
+        cards.forEach((c, i) => {
+          const r = c.getBoundingClientRect();
+          const d = Math.abs((r.left + r.width / 2) - mid);
+          if (d < best) { best = d; active = i; }
+        });
+        dots.querySelectorAll('.m-dot').forEach((d, i) =>
+          d.classList.toggle('is-active', i === active));
+      });
+    }, { passive: true });
+  }
+
+  /* ───────────────────────────────────────────────────────
      INIT
   ─────────────────────────────────────────────────────── */
   async function init() {
@@ -667,6 +781,8 @@
     setupForm();
     setupBackToTop();
     setupClickEffect();
+    setupMobileCards();
+    setupPricingCarousel();
   }
 
   if (document.readyState === 'loading') {
