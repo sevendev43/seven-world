@@ -57,8 +57,10 @@ window.SITE_CONFIG = {
 
   /* -------- Mạng xã hội -------- */
   socials: [
-    { name: 'LinkedIn',  href: '#' },
-    { name: 'Facebook',  href: '#' }
+    { name: 'TikTok',   href: 'https://www.tiktok.com/@sevenworld.net' },
+    { name: 'YouTube',  href: 'https://www.youtube.com/channel/UCyx53WemOlRwoZNb64Y3tng' },
+    { name: 'X',        href: 'https://x.com/sevenworldnet' },
+    { name: 'Facebook', href: '#' }   // TODO: cập nhật link Facebook sau
   ],
 
   /* -------- Cụm liên kết ở footer -------- */

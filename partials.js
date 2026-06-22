@@ -16,7 +16,9 @@
     linkedin: `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M4 4h4v4H4zM4 10h4v10H4zM10 10h4v2c.7-1.3 2.3-2.3 4-2.3 3 0 4 2 4 5V20h-4v-4.5c0-1.3-.5-2.2-1.7-2.2-1 0-1.6.7-1.9 1.4-.1.3-.1.6-.1 1V20h-4z"/></svg>`,
     facebook: `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.4-2 2-2H17V2.1c-.4-.1-1.7-.1-3-.1-3 0-5 1.8-5 5.2V10H6v4h3v8z"/></svg>`,
     instagram:`<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>`,
-    youtube:  `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22 8s-.2-1.4-.8-2c-.7-.8-1.6-.8-2-.9C16 5 12 5 12 5s-4 0-7.2.2c-.4 0-1.3 0-2 .8C2.2 6.6 2 8 2 8S1.8 9.7 1.8 11.4v1.2C1.8 14.3 2 16 2 16s.2 1.4.8 2c.7.8 1.7.8 2.1.9 1.6.2 6.9.2 6.9.2s4 0 7.2-.2c.4 0 1.3 0 2-.8.6-.7.8-2 .8-2s.2-1.7.2-3.4v-1.2C22.2 9.7 22 8 22 8zM10 14.5v-5l4.5 2.5z"/></svg>`
+    youtube:  `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22 8s-.2-1.4-.8-2c-.7-.8-1.6-.8-2-.9C16 5 12 5 12 5s-4 0-7.2.2c-.4 0-1.3 0-2 .8C2.2 6.6 2 8 2 8S1.8 9.7 1.8 11.4v1.2C1.8 14.3 2 16 2 16s.2 1.4.8 2c.7.8 1.7.8 2.1.9 1.6.2 6.9.2 6.9.2s4 0 7.2-.2c.4 0 1.3 0 2-.8.6-.7.8-2 .8-2s.2-1.7.2-3.4v-1.2C22.2 9.7 22 8 22 8zM10 14.5v-5l4.5 2.5z"/></svg>`,
+    tiktok:   `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16.5 3c.3 2.1 1.5 3.6 3.5 3.9v2.4c-1.2.1-2.3-.2-3.5-.8v5.9c0 3.4-2.6 5.6-5.6 5.6-2.9 0-5.1-2.2-5.1-5.1 0-3 2.4-5.1 5.6-4.8v2.6c-.4-.1-.9-.2-1.3-.2-1.3 0-2.3 1-2.3 2.3 0 1.4 1 2.4 2.4 2.4 1.5 0 2.5-1.1 2.5-2.7V3h3.3z"/></svg>`,
+    x:        `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L8 21H5l7.4-8.5L4.5 3h6.5l4.5 5.6L17.5 3zm-1.1 16h1.7L7.7 4.8H5.9L16.4 19z"/></svg>`
   };
 
   /* ---------- Brand block ---------- */
