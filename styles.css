@@ -2505,6 +2505,9 @@ h1 .accent, h2 .accent, .hero-title .accent{
   border:solid var(--gold-700);border-width:0 2px 2px 0;transform:rotate(45deg);
 }
 .price-card .btn{margin-top:auto}
+/* Keep all card content (badge, title, list, button) above the running
+   border ::after (z-index:4) so the animated border runs BEHIND the text. */
+.price-card > *{position:relative;z-index:5}
 
 /* ============================================================
    FAQ accordion (native <details>)
@@ -2583,14 +2586,14 @@ h1 .accent, h2 .accent, .hero-title .accent{
   .lede{line-height:1.6}
 
   /* Hero */
-  .hero{padding:120px 0 56px}
+  .hero{padding:148px 0 56px}
   .hero-title{font-size:clamp(1.8rem,8vw,2.35rem);margin-bottom:20px}
   .hero-ctas{margin-bottom:40px;gap:12px}
   .hero-ctas .btn{flex:1 1 150px;justify-content:center}
   .hero-stats{gap:20px;padding-top:26px}
 
-  /* Inner page hero */
-  .page-hero{padding:120px 0 56px}
+  /* Inner page hero - extra top gap so it doesn't kiss the header */
+  .page-hero{padding:142px 0 52px}
   .page-hero h1{font-size:clamp(1.9rem,8vw,2.5rem)}
 
   /* Big display numbers - keep them strong but stop them dominating */
@@ -2617,7 +2620,7 @@ h1 .accent, h2 .accent, .hero-title .accent{
 /* Smallest phones - final squeeze */
 @media (max-width:420px){
   :root{--gutter:16px}
-  .hero{padding:112px 0 50px}
+  .hero{padding:146px 0 50px}
   .hero-stats{gap:18px;padding-top:24px}
 }
 
@@ -2691,4 +2694,385 @@ h1 .accent, h2 .accent, .hero-title .accent{
     transition:width .3s var(--ease-out),background .3s ease,border-radius .3s ease;
   }
   .m-dot.is-active{background:var(--gold-500);width:26px;border-radius:5px}
+}
+
+/* Timeline animations (used by the About milestones on mobile) */
+@keyframes msNodePulse{
+  0%{box-shadow:0 0 0 4px rgba(255,255,255,.95), 0 0 0 0 rgba(208,160,43,.55), 0 0 10px rgba(208,160,43,.5)}
+  70%{box-shadow:0 0 0 4px rgba(255,255,255,.95), 0 0 0 13px rgba(208,160,43,0), 0 0 10px rgba(208,160,43,.5)}
+  100%{box-shadow:0 0 0 4px rgba(255,255,255,.95), 0 0 0 0 rgba(208,160,43,0), 0 0 10px rgba(208,160,43,.5)}
+}
+@keyframes msDust{
+  0%{transform:translate(-50%,-50%) scale(.3);opacity:0}
+  25%{opacity:1}
+  100%{transform:translate(calc(-50% + var(--dx,8px)),calc(-50% + var(--dy,-8px))) scale(0);opacity:0}
+}
+
+/* ============================================================
+   ABOUT PAGE - MOBILE (≤640) - phone-only, desktop untouched
+   ============================================================ */
+/* Breadcrumb is clutter on phones - drop it on every page */
+@media (max-width:640px){
+  .crumbs{display:none}
+}
+
+@media (max-width:640px){
+
+  /* ---- OUR STORY: hide hover-only visual cards, read-more text ---- */
+  #ab-story .about-visual{display:none!important}
+  #ab-story .grid-2{gap:0}
+
+  .m-readmore{
+    position:relative;max-height:138px;overflow:hidden;
+    transition:max-height .6s cubic-bezier(.45,.05,.25,1);
+  }
+  .m-readmore::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:74px;
+    background:linear-gradient(180deg,transparent,#FFFFFF);
+    pointer-events:none;opacity:1;transition:opacity .5s cubic-bezier(.45,.05,.25,1);
+  }
+  .m-readmore.is-open::after{opacity:0}
+  .m-readmore-bar{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    width:100%;margin:16px 0 0;padding:0;border:0;background:none;cursor:pointer;
+  }
+  .m-readmore-bar::before{
+    content:"";position:absolute;left:0;right:0;top:50%;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold-400),transparent);
+  }
+  .m-readmore-bar .rm-chev{
+    position:relative;z-index:1;width:36px;height:36px;border-radius:50%;
+    background:#FFFFFF;border:1.5px solid var(--gold-400);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 16px -8px rgba(208,160,43,.6);
+  }
+  .m-readmore-bar .rm-chev::after{
+    content:"";width:8px;height:8px;margin-top:-3px;
+    border-right:2px solid var(--gold-700);border-bottom:2px solid var(--gold-700);
+    transform:rotate(45deg);transition:transform .35s var(--ease-out);
+  }
+  .m-readmore-bar.is-open .rm-chev::after{transform:rotate(-135deg);margin-top:3px}
+
+  /* ---- WHAT WE STAND FOR: centered carousel, faded edges ---- */
+  #ab-stand .value-grid{
+    display:flex!important;grid-template-columns:none!important;
+    gap:0!important;overflow-x:auto;scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    margin-inline:calc(-1*var(--gutter));padding:6px 0 14px;
+    /* fade the cards drifting off either edge */
+    -webkit-mask:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);
+            mask:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);
+  }
+  #ab-stand .value-grid::-webkit-scrollbar{display:none}
+  /* leading/trailing spacers let the first & last card snap to centre */
+  #ab-stand .value-grid::before,
+  #ab-stand .value-grid::after{content:"";flex:0 0 8vw}
+  #ab-stand .value-grid > div{
+    flex:0 0 84vw;scroll-snap-align:center;margin:0 1.5vw;padding:26px 24px!important;
+    transition:opacity .35s ease,transform .35s ease;
+  }
+  #ab-stand .value-grid > div > h4{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-text);margin:0 0 8px}
+  #ab-stand .value-grid > div > h3{font-size:1.08rem!important;margin:0 0 .5em!important}
+  #ab-stand .value-grid > div > p{
+    font-size:.84rem!important;
+    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+  }
+
+  /* ---- LEADERSHIP: single-column vertical cards (like home) ---- */
+  #ab-leadership .why-grid{
+    grid-template-columns:1fr!important;gap:16px!important;
+    max-width:380px;margin-inline:auto;
+  }
+
+  /* ---- HOW WE WORK: number + title, tap to reveal ---- */
+  #ab-principles .why-grid{grid-template-columns:1fr!important;gap:12px!important}
+  #ab-principles .why-item{
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+    padding:18px 46px 18px 20px;position:relative;cursor:pointer;
+    background:var(--bg-white);border:1px solid var(--line);border-radius:var(--radius-lg);
+  }
+  #ab-principles .pr-num{
+    flex:0 0 auto;font-family:var(--font-mono);font-weight:700;
+    font-size:1.5rem;line-height:1;color:var(--gold-600);
+  }
+  #ab-principles .why-item h4{flex:1;min-width:0;margin:0;font-size:1rem}
+  #ab-principles .why-item p{
+    flex-basis:100%;margin:0;max-height:0;opacity:0;overflow:hidden;
+    transition:max-height .42s var(--ease-out),opacity .3s ease,margin .3s ease;
+  }
+  #ab-principles .why-item.m-open p{max-height:320px;opacity:1;margin-top:6px}
+  /* kill the auto "01" counter - the gold badge is our single number */
+  #ab-principles .why-item h4::before{content:none!important}
+  /* +/- moves to ::before so ::after stays free for the running border */
+  #ab-principles .why-item::before{
+    content:"+";position:absolute;top:50%;right:16px;transform:translateY(-50%);z-index:5;
+    font-family:var(--font-mono);font-weight:700;font-size:1.25rem;color:var(--gold-600);line-height:1;
+  }
+  #ab-principles .why-item.m-open::before{content:"−"}
+  /* running-LED border traces the outline; grows/shrinks with the card */
+  #ab-principles .why-item.m-open::after{opacity:1;animation:borderRun 1.7s linear infinite}
+
+  /* ---- GROWTH MILESTONES: aligned reveal timeline ---- */
+  #ab-milestones .milestones{
+    display:block!important;grid-template-columns:none!important;
+    position:relative;max-width:540px;margin:0 auto!important;padding:6px 0 10px!important;
+  }
+  /* guide rail + progress fill share the exact centre line as the nodes */
+  #ab-milestones .milestones::before{
+    content:"";position:absolute;left:50%;transform:translateX(-50%);
+    top:var(--rail-top,0px);height:var(--rail-len,0px);width:2px;
+    background:var(--line-strong);border-radius:2px;
+  }
+  #ab-milestones .ms-fill{
+    position:absolute;left:50%;transform:translateX(-50%);
+    top:var(--rail-top,0px);height:0;width:2px;border-radius:2px;z-index:1;
+    background:linear-gradient(180deg,var(--gold-600),var(--gold-300));
+    box-shadow:0 0 8px rgba(208,160,43,.55);
+  }
+  /* fairy-dust head riding the leading edge of the fill */
+  #ab-milestones .ms-head{
+    position:absolute;left:50%;top:0;width:5px;height:5px;z-index:5;
+    transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle,#FFF8E4,var(--gold-300));
+    opacity:0;transition:opacity .4s ease;
+  }
+  #ab-milestones .ms-head.is-on{opacity:1}
+  #ab-milestones .ms-dust{
+    position:absolute;left:50%;top:50%;width:3px;height:3px;border-radius:50%;
+    background:radial-gradient(circle,#FFF8E4,var(--gold-300));
+    opacity:0;will-change:transform,opacity;
+  }
+  #ab-milestones .ms-head.is-on .ms-dust{animation:msDust 1.5s ease-out infinite}
+  #ab-milestones .ms-dust:nth-child(1){--dx:-10px;--dy:-8px;width:2.5px;height:2.5px;animation-delay:0s}
+  #ab-milestones .ms-dust:nth-child(2){--dx:9px;--dy:-6px;width:3.5px;height:3.5px;animation-delay:.22s}
+  #ab-milestones .ms-dust:nth-child(3){--dx:11px;--dy:6px;width:2px;height:2px;animation-delay:.5s}
+  #ab-milestones .ms-dust:nth-child(4){--dx:-8px;--dy:9px;width:3px;height:3px;animation-delay:.74s}
+  #ab-milestones .ms-dust:nth-child(5){--dx:3px;--dy:-12px;width:2.5px;height:2.5px;animation-delay:.98s}
+  #ab-milestones .ms-dust:nth-child(6){--dx:-12px;--dy:2px;width:2px;height:2px;animation-delay:1.2s}
+
+  /* each li is a full-width row; the visual lives in .ms-card so the node
+     can sit exactly on the centre line regardless of card width/gap */
+  #ab-milestones .milestones li{
+    position:relative;width:100%!important;
+    background:none!important;border:0!important;padding:0!important;
+    margin:0 0 26px!important;
+  }
+  #ab-milestones .milestones li:last-child{margin-bottom:0!important}
+  #ab-milestones .ms-card{
+    width:calc(50% - 30px);padding:14px 16px;
+    background:var(--bg-white);border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 12px 28px -22px rgba(26,24,20,.45);
+    opacity:0;transition:opacity .55s cubic-bezier(.45,.05,.25,1),
+                         transform .55s cubic-bezier(.45,.05,.25,1);
+  }
+  #ab-milestones li:nth-child(odd) .ms-card{margin-right:auto;transform:translateX(-22px)}
+  #ab-milestones li:nth-child(even) .ms-card{margin-left:auto;transform:translateX(22px)}
+  #ab-milestones li.is-in .ms-card{opacity:1;transform:translateX(0)}
+  #ab-milestones .ms-card.is-today{
+    background:linear-gradient(160deg,#FFF6DD,#FFEFC2);border-color:var(--gold-300);
+  }
+  #ab-milestones .ms-card p{display:none!important}
+  #ab-milestones .ms-card .num{font-size:1.45rem!important}
+  #ab-milestones .ms-card h4{font-size:.92rem!important;margin:.25em 0 0!important;line-height:1.3}
+
+  /* TECH NODE on the centre line - pops in when its branch reveals */
+  #ab-milestones .milestones li::before{
+    content:"";position:absolute;left:50%;top:22px;z-index:3;
+    width:15px;height:15px;border-radius:50%;
+    background:radial-gradient(circle at 50% 38%,#FFF8E4,var(--gold-400) 72%);
+    border:1.5px solid var(--gold-500);
+    box-shadow:0 0 0 4px rgba(255,255,255,.95),0 0 10px rgba(208,160,43,.45);
+    opacity:0;transform:translate(-50%,0) scale(.2);
+    transition:opacity .45s ease,transform .5s cubic-bezier(.34,1.56,.64,1);
+  }
+  #ab-milestones .milestones li.is-in::before{opacity:1;transform:translate(-50%,0) scale(1)}
+  #ab-milestones .milestones li.ms-active::before{
+    border-color:var(--gold-600);
+    background:radial-gradient(circle at 50% 38%,#FFF8E4,var(--gold-500) 72%);
+    animation:msNodePulse 1.8s ease-out infinite;
+  }
+  /* connector stub: node -> card */
+  #ab-milestones .milestones li::after{
+    content:"";position:absolute;top:28px;height:2px;width:30px;z-index:1;
+    background:var(--line-strong);opacity:0;transition:opacity .5s ease .12s;
+  }
+  #ab-milestones .milestones li.is-in::after{opacity:1}
+  #ab-milestones .milestones li:nth-child(odd)::after{left:calc(50% - 30px)}
+  #ab-milestones .milestones li:nth-child(even)::after{left:50%}
+
+  /* ---- BY THE NUMBERS: 2×2 so all four stats show fully ---- */
+  #ab-numbers .why-numbers{
+    grid-template-columns:repeat(2,1fr)!important;
+    padding:28px 20px!important;gap:26px 18px!important;
+  }
+}
+
+/* ============================================================
+   SERVICES PAGE - MOBILE (≤640) - phone-only, desktop untouched
+   ============================================================ */
+@media (max-width:640px){
+
+  /* ---- OVERVIEW: 3 compact horizontal cards ---- */
+  #svc-overview .service-grid{grid-template-columns:1fr!important;gap:12px!important}
+  #svc-overview .service-card{
+    display:grid!important;grid-template-columns:auto 1fr;align-items:center;
+    gap:2px 16px;text-align:left!important;padding:16px 20px!important;
+  }
+  #svc-overview .service-card .service-icon{
+    grid-row:1/3;align-self:center;margin:0!important;width:46px;height:46px;
+  }
+  #svc-overview .service-card h3::before{display:none!important} /* drop the counter here */
+  #svc-overview .service-card h3{grid-column:2;font-size:1.12rem!important;margin:0!important}
+  #svc-overview .service-card > p{grid-column:2;margin:2px 0 0!important;font-size:.82rem!important}
+
+  /* ---- MARKETING + PERFORMANCE: read-more + smaller video ---- */
+  /* full-width video + full-width buttons so the whole block shares the
+     same left/right edges as the left-aligned text (no centred mismatch) */
+  #marketing .service-visual,#paid-media .service-visual{
+    aspect-ratio:16/10;max-height:220px;width:100%;margin-inline:0;
+  }
+  #marketing .service-detail .btn,#paid-media .service-detail .btn{
+    flex:1 1 100%;justify-content:center;
+  }
+  /* breathing room between the read-more chevron bar and the CTA buttons */
+  #marketing .m-readmore-bar,#paid-media .m-readmore-bar{margin-bottom:26px}
+  #marketing .m-readmore::after{background:linear-gradient(180deg,transparent,#FFFFFF)}
+  #paid-media .m-readmore::after{background:linear-gradient(180deg,transparent,#F6F5F1)}
+
+  /* ---- KPI BAND ("Why choose us"): 2×2, no overflow ---- */
+  #svc-kpi{
+    grid-template-columns:repeat(2,1fr)!important;
+    padding:28px 20px!important;gap:26px 18px!important;
+  }
+
+  /* ---- shared: collapsible card indicator (chevron) ---- */
+  .m-ind{
+    position:absolute;top:16px;right:16px;width:8px;height:8px;
+    border-right:2px solid var(--gold-600);border-bottom:2px solid var(--gold-600);
+    transform:rotate(45deg);transition:transform .35s var(--ease-out);pointer-events:none;
+  }
+  .m-open > .m-ind{transform:rotate(-135deg)}
+
+  /* ---- TRAFFIC SOURCES: 2 per row, number+title, tap for detail ---- */
+  /* align-items:start so opening one card never stretches its row neighbour */
+  #traffic .why-grid{grid-template-columns:repeat(2,1fr)!important;gap:12px!important;align-items:start!important}
+  #traffic .why-item{
+    padding:16px 30px 16px 16px!important;position:relative;cursor:pointer;
+  }
+  #traffic .why-item h4::before{font-size:.66rem;margin-bottom:6px} /* the number */
+  #traffic .why-item h4{font-size:.98rem;margin:0}
+  #traffic .why-item p{
+    max-height:0;opacity:0;overflow:hidden;margin:0;
+    transition:max-height .42s var(--ease-out),opacity .3s ease,margin .3s ease;
+  }
+  #traffic .why-item.m-open p{max-height:340px;opacity:1;margin-top:8px}
+
+  /* ---- OWNED CHANNELS: horizontal, number/title/tag/visit; tap for desc ---- */
+  #channels .why-grid{grid-template-columns:1fr!important;gap:12px!important}
+  #channels .service-card{
+    display:flex!important;align-items:flex-start;gap:14px;
+    padding:16px 40px 16px 18px!important;position:relative;
+  }
+  #channels .service-card h3::before{display:none!important} /* drop messy svc counter */
+  #channels .m-num{
+    flex:0 0 auto;font-family:var(--font-mono);font-weight:700;font-size:1.4rem;
+    color:var(--gold-600);line-height:1.05;padding-top:2px;
+  }
+  #channels .ch-body{flex:1;min-width:0;display:flex;flex-direction:column}
+  #channels .ch-body h3{font-size:1.06rem!important;margin:0!important;order:1}
+  #channels .ch-body .service-tag{margin:3px 0 0!important;order:2}
+  #channels .ch-body > p:not(.service-tag){
+    max-height:0;opacity:0;overflow:hidden;margin:0;order:4;
+    transition:max-height .42s var(--ease-out),opacity .3s ease,margin .3s ease;
+  }
+  #channels .service-card.m-open .ch-body > p:not(.service-tag){max-height:360px;opacity:1;margin:10px 0 0}
+  #channels .ch-body .service-link{margin-top:8px!important;order:3}
+  /* running-LED border on the ACTIVE card (class-based -> works on touch) */
+  #channels .service-card.m-open::after{opacity:1;animation:borderRun 1.7s linear infinite}
+  #channels .service-card.m-open{border-color:var(--gold-300)}
+
+  /* ---- ENGAGEMENT PROCESS: horizontal cards ---- */
+  #svc-process .why-grid{grid-template-columns:1fr!important;gap:12px!important}
+  #svc-process .why-item{
+    display:flex!important;align-items:flex-start;gap:14px;padding:16px 18px!important;
+  }
+  #svc-process .why-item .why-icon{margin:0!important;flex:0 0 auto}
+  #svc-process .why-item h4::before{display:none!important} /* why-icon already shows the number */
+  #svc-process .why-item h4{margin:0 0 4px!important;font-size:1rem}
+  #svc-process .why-item p{margin:0!important;font-size:.88rem}
+}
+
+/* ============================================================
+   TOUCH DEVICES - the running-border ::after is a desktop hover
+   flourish; on touch the :hover state sticks after a tap and the
+   gold border freezes mid-animation, so suppress it.
+   (Intentional .m-open borders, e.g. About principles, are unaffected.)
+   ============================================================ */
+@media (hover:none){
+  .bento-card:hover::after,.service-card:hover::after,.why-item:hover::after,
+  .testimonial:hover::after,.portfolio-card:hover::after,.price-card:hover::after,
+  .team-card:hover::after,.about-card-1:hover::after,.about-card-2:hover::after,
+  .trust-chip:hover::after{opacity:0;animation:none}
+}
+
+/* ============================================================
+   WHY US PAGE - MOBILE (≤640) - phone-only, desktop untouched
+   ============================================================ */
+@media (max-width:640px){
+
+  /* ---- WHAT SETS US APART + WHAT TO EXPECT: horizontal cards,
+     icon + number + title in a row; tap reveals the detail ---- */
+  #why-diff .why-grid,#why-days .why-grid{
+    grid-template-columns:1fr!important;gap:12px!important;
+  }
+  #why-diff .why-item,#why-days .why-item{
+    display:flex!important;flex-wrap:wrap;align-items:center;gap:12px;
+    padding:16px 42px 16px 16px!important;position:relative;cursor:pointer;
+  }
+  #why-diff .why-item .why-icon,#why-days .why-item .why-icon{
+    margin:0!important;flex:0 0 auto;width:44px;height:44px;
+  }
+  #why-diff .why-item h4,#why-days .why-item h4{
+    flex:1;min-width:0;margin:0!important;font-size:1rem;
+    display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+  }
+  /* the auto-counter sits inline before the title (the "số") */
+  #why-diff .why-item h4::before,#why-days .why-item h4::before{
+    display:inline-block!important;margin:0!important;font-size:.72rem;
+  }
+  #why-diff .why-item p,#why-days .why-item p{
+    flex-basis:100%;margin:0;max-height:0;opacity:0;overflow:hidden;
+    transition:max-height .42s var(--ease-out),opacity .3s ease,margin .3s ease;
+  }
+  #why-diff .why-item.m-open p,#why-days .why-item.m-open p{max-height:360px;opacity:1;margin-top:8px}
+
+  /* ---- A FAIR COMPARISON: tag + title + faded preview; tap for full ---- */
+  #why-compare .grid-2-balanced{grid-template-columns:1fr!important;gap:12px!important;margin-top:0!important}
+  #why-compare .grid-2-balanced + .grid-2-balanced{margin-top:12px!important}
+  #why-compare .grid-2-balanced > div{padding:20px 42px 20px 20px!important;position:relative;cursor:pointer}
+  #why-compare .grid-2-balanced > div > h3{font-size:1.08rem!important}
+  #why-compare .grid-2-balanced > div > p:not(.eyebrow){
+    max-height:0;opacity:0;overflow:hidden;margin:0;
+    transition:max-height .5s cubic-bezier(.45,.05,.25,1),opacity .3s ease,margin .3s ease;
+  }
+  #why-compare .grid-2-balanced > div.m-open > p:not(.eyebrow){
+    max-height:420px;opacity:1;margin-top:10px;
+  }
+
+  /* ---- CONTACT · Common questions: number + title row, tap for the answer ---- */
+  #contact-faq .why-grid{grid-template-columns:1fr!important;gap:12px!important}
+  #contact-faq .why-item{
+    display:flex!important;flex-wrap:wrap;align-items:center;gap:10px;
+    padding:16px 42px 16px 18px!important;position:relative;cursor:pointer;
+  }
+  #contact-faq .why-item h4{
+    flex:1;min-width:0;margin:0!important;font-size:1rem;
+    display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+  }
+  #contact-faq .why-item h4::before{display:inline-block!important;margin:0!important;font-size:.72rem}
+  #contact-faq .why-item p{
+    flex-basis:100%;margin:0;max-height:0;opacity:0;overflow:hidden;
+    transition:max-height .42s var(--ease-out),opacity .3s ease,margin .3s ease;
+  }
+  #contact-faq .why-item.m-open p{max-height:360px;opacity:1;margin-top:8px}
 }

@@ -669,7 +669,7 @@
     const GROUPS = [
       { group: '#capabilities .bento', item: '.bento-card', detail: 'p, .bento-list, .bento-link' },
       { group: '#process .process',    item: '.process-step', detail: 'p' },
-      { group: '.why-grid',            item: '.why-item',     detail: 'p' },
+      { group: '[data-page="home"] .why-grid', item: '.why-item', detail: 'p' },
       { group: '.team-grid',           item: '.team-card',    detail: '.team-bio' }
     ];
 
@@ -711,12 +711,11 @@
     const grid = document.querySelector('#pricing .pricing-grid');
     if (!grid) return;
 
-    // Featured card leads.
-    const featured = grid.querySelector('.is-featured');
-    if (featured) grid.insertBefore(featured, grid.firstChild);
-
+    // Keep natural order (Launch · Growth · Scale) so the featured "Most
+    // partners" card sits in the MIDDLE, the other two to its left and right.
     const cards = Array.from(grid.children);
     if (cards.length < 2) return;
+    const featuredIdx = Math.max(0, cards.findIndex(c => c.classList.contains('is-featured')));
 
     const dots = document.createElement('div');
     dots.className = 'm-dots';
@@ -724,7 +723,7 @@
     cards.forEach((card, i) => {
       const dot = document.createElement('button');
       dot.type = 'button';
-      dot.className = 'm-dot' + (i === 0 ? ' is-active' : '');
+      dot.className = 'm-dot' + (i === featuredIdx ? ' is-active' : '');
       dot.setAttribute('aria-label', 'Show plan ' + (i + 1));
       dot.addEventListener('click', () => {
         const target = grid.scrollLeft +
@@ -737,6 +736,11 @@
       dots.appendChild(dot);
     });
     grid.after(dots);
+
+    // Open centred on the featured (middle) card.
+    const fc = cards[featuredIdx];
+    const fr = fc.getBoundingClientRect(), gr0 = grid.getBoundingClientRect();
+    grid.scrollLeft += (fr.left - gr0.left) - (gr0.width - fr.width) / 2;
 
     // Keep the active dot in sync with the scroll position.
     let raf = 0;
@@ -756,6 +760,338 @@
           d.classList.toggle('is-active', i === active));
       });
     }, { passive: true });
+  }
+
+  /* ───────────────────────────────────────────────────────
+     ABOUT (mobile) · "Our Story" read-more
+     Title stays; the paragraphs collapse behind a gold bar with
+     a chevron + a fade gradient hinting there's more below.
+  ─────────────────────────────────────────────────────── */
+  function setupReadMore() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+    const text = document.querySelector('#ab-story .about-text');
+    if (!text) return;
+    const paras = Array.from(text.querySelectorAll('p')).filter(p => !p.classList.contains('eyebrow'));
+    if (paras.length < 2) return;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'm-readmore';
+    text.insertBefore(wrap, paras[0]);
+    paras.forEach(p => wrap.appendChild(p));
+
+    const bar = document.createElement('button');
+    bar.type = 'button';
+    bar.className = 'm-readmore-bar';
+    bar.setAttribute('aria-label', 'Read more');
+    bar.setAttribute('aria-expanded', 'false');
+    bar.innerHTML = '<span class="rm-chev" aria-hidden="true"></span>';
+    wrap.after(bar);
+
+    bar.addEventListener('click', () => {
+      const open = !wrap.classList.contains('is-open');
+      // Animate to the content's exact height so the ease never races
+      // through empty space (which is what made it feel jerky).
+      wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '';
+      wrap.classList.toggle('is-open', open);
+      bar.classList.toggle('is-open', open);
+      bar.setAttribute('aria-expanded', String(open));
+    });
+  }
+
+  /* ───────────────────────────────────────────────────────
+     ABOUT (mobile) · "How we work" principles
+     Split "N · Title" into a number badge + clean title, then
+     collapse the description (tap a card to reveal, others close).
+  ─────────────────────────────────────────────────────── */
+  function setupPrinciples() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+    const grid = document.querySelector('#ab-principles .why-grid');
+    if (!grid) return;
+    const items = Array.from(grid.querySelectorAll('.why-item'));
+    const NUM = /^\s*(\d+)\s*[·•.\-]\s*(.+)$/;
+
+    items.forEach(item => {
+      const h4 = item.querySelector('h4');
+      if (!h4) return;
+      const m = h4.textContent.trim().match(NUM);
+      if (m && !item.querySelector('.pr-num')) {
+        h4.textContent = m[2];
+        const badge = document.createElement('span');
+        badge.className = 'pr-num';
+        badge.textContent = m[1];
+        item.insertBefore(badge, h4);
+        // Re-strip the number if i18n re-injects "N · ..." on language switch.
+        new MutationObserver(() => {
+          const r = h4.textContent.trim();
+          if (NUM.test(r)) h4.textContent = r.replace(/^\s*\d+\s*[·•.\-]\s*/, '');
+        }).observe(h4, { childList: true, characterData: true, subtree: true });
+      }
+      item.addEventListener('click', () => {
+        const willOpen = !item.classList.contains('m-open');
+        items.forEach(s => s.classList.remove('m-open'));
+        item.classList.toggle('m-open', willOpen);
+      });
+    });
+  }
+
+  /* ───────────────────────────────────────────────────────
+     ABOUT (mobile) · Growth milestones reveal timeline
+     Each branch animates in as you scroll to it; the centre line
+     fills continuously and a fairy-dust head rides its leading edge.
+  ─────────────────────────────────────────────────────── */
+  function setupMilestoneTimeline() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+    const ol = document.querySelector('#ab-milestones .milestones');
+    if (!ol) return;
+    const items = Array.from(ol.querySelectorAll('li'));
+    if (!items.length) return;
+
+    // Move each row's content into a .ms-card so the node can live on the
+    // centre line (the li becomes a full-width positioning row).
+    items.forEach((li, i) => {
+      const card = document.createElement('div');
+      card.className = 'ms-card' + (i === items.length - 1 ? ' is-today' : '');
+      while (li.firstChild) card.appendChild(li.firstChild);
+      li.appendChild(card);
+    });
+
+    const fill = document.createElement('span');
+    fill.className = 'ms-fill';
+    fill.setAttribute('aria-hidden', 'true');
+    ol.appendChild(fill);
+
+    const head = document.createElement('span');
+    head.className = 'ms-head';
+    head.setAttribute('aria-hidden', 'true');
+    for (let i = 0; i < 6; i++) {
+      const d = document.createElement('span');
+      d.className = 'ms-dust';
+      head.appendChild(d);
+    }
+    ol.appendChild(head);
+
+    // Reveal each branch once, as it scrolls into view.
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -20% 0px', threshold: 0.25 });
+    items.forEach(li => io.observe(li));
+
+    const DOT = 29.5;   // node centre = li.offsetTop + this
+    let railTop = 0, railLen = 1;
+    const measure = () => {
+      railTop = items[0].offsetTop + DOT;
+      railLen = Math.max(1, (items[items.length - 1].offsetTop + DOT) - railTop);
+      ol.style.setProperty('--rail-top', railTop + 'px');
+      ol.style.setProperty('--rail-len', railLen + 'px');
+    };
+
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const vh = window.innerHeight;
+      const focusInOl = (vh * 0.42) - ol.getBoundingClientRect().top;
+      const fillLen = Math.max(0, Math.min(railLen, focusInOl - railTop));
+      fill.style.height = fillLen + 'px';
+      head.style.top = (railTop + fillLen) + 'px';
+      head.classList.toggle('is-on', fillLen > 2 && fillLen < railLen - 2);
+      // highlight the node nearest the focus line (only once revealed)
+      let best = Infinity, idx = -1;
+      items.forEach((li, i) => {
+        const d = Math.abs((li.offsetTop + DOT) - focusInOl);
+        if (d < best) { best = d; idx = i; }
+      });
+      items.forEach((li, i) =>
+        li.classList.toggle('ms-active', i === idx && best < vh * 0.22 && li.classList.contains('is-in')));
+    };
+
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    measure(); update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { measure(); onScroll(); }, { passive: true });
+    // Re-measure once reveal transitions / fonts settle.
+    setTimeout(() => { measure(); update(); }, 500);
+  }
+
+  /* ───────────────────────────────────────────────────────
+     ABOUT (mobile) · Leadership cards (like the home team)
+     Show photo + name + role; tap to reveal the bio, others close.
+  ─────────────────────────────────────────────────────── */
+  function setupLeadership() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+    const grid = document.querySelector('#ab-leadership .why-grid');
+    if (!grid) return;
+    const items = Array.from(grid.querySelectorAll('.why-item'));
+    items.forEach(item => {
+      const ps = item.querySelectorAll('p');
+      if (ps.length < 2) return;
+      const bio = ps[ps.length - 1];   // last <p> is the bio; the role <p> stays visible
+      const body = document.createElement('div');
+      body.className = 'm-acc-body';
+      bio.parentNode.insertBefore(body, bio);
+      body.appendChild(bio);
+      item.classList.add('m-acc');
+      item.addEventListener('click', () => {
+        const willOpen = !item.classList.contains('m-open');
+        items.forEach(s => s.classList.remove('m-open'));
+        item.classList.toggle('m-open', willOpen);
+      });
+    });
+  }
+
+  /* ───────────────────────────────────────────────────────
+     ABOUT (mobile) · "What we stand for" pager dots
+     Round dots hint the row is swipeable and track the centred card.
+  ─────────────────────────────────────────────────────── */
+  function setupStandForCarousel() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+    const grid = document.querySelector('#ab-stand .value-grid');
+    if (!grid) return;
+    const cards = Array.from(grid.children);
+    if (cards.length < 2) return;
+
+    const dots = document.createElement('div');
+    dots.className = 'm-dots';
+    cards.forEach((card, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'm-dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', 'Card ' + (i + 1));
+      dot.addEventListener('click', () => {
+        const target = grid.scrollLeft +
+          (card.getBoundingClientRect().left - grid.getBoundingClientRect().left);
+        grid.scrollTo({ left: target, behavior: 'smooth' });
+        dots.querySelectorAll('.m-dot').forEach((d, j) => d.classList.toggle('is-active', j === i));
+      });
+      dots.appendChild(dot);
+    });
+    grid.after(dots);
+
+    let raf = 0;
+    grid.addEventListener('scroll', () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const gr = grid.getBoundingClientRect();
+        const mid = gr.left + gr.width / 2;
+        let active = 0, best = Infinity;
+        cards.forEach((c, i) => {
+          const r = c.getBoundingClientRect();
+          const d = Math.abs((r.left + r.width / 2) - mid);
+          if (d < best) { best = d; active = i; }
+        });
+        dots.querySelectorAll('.m-dot').forEach((d, i) => d.classList.toggle('is-active', i === active));
+      });
+    }, { passive: true });
+  }
+
+  /* ───────────────────────────────────────────────────────
+     SERVICES (mobile) · per-section layouts
+     - read-more on the two detail blocks
+     - traffic cards collapse (number + title, tap for detail)
+     - owned-channel cards: horizontal, tap reveals description
+       (the "Visit website" link still navigates)
+  ─────────────────────────────────────────────────────── */
+  function setupServicesMobile() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+
+    // Read-more: collapse [lede + sub-services] behind a gold bar
+    ['#marketing', '#paid-media'].forEach(sel => {
+      const col = document.querySelector(sel + ' .service-detail > div');
+      if (!col) return;
+      const lede = col.querySelector('.lede');
+      const ul = col.querySelector('.sub-services');
+      if (!ul) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'm-readmore';
+      col.insertBefore(wrap, lede || ul);
+      if (lede) wrap.appendChild(lede);
+      wrap.appendChild(ul);
+      const bar = document.createElement('button');
+      bar.type = 'button';
+      bar.className = 'm-readmore-bar';
+      bar.setAttribute('aria-label', 'Read more');
+      bar.setAttribute('aria-expanded', 'false');
+      bar.innerHTML = '<span class="rm-chev" aria-hidden="true"></span>';
+      wrap.after(bar);
+      bar.addEventListener('click', () => {
+        const open = !wrap.classList.contains('is-open');
+        wrap.style.maxHeight = open ? wrap.scrollHeight + 'px' : '';
+        wrap.classList.toggle('is-open', open);
+        bar.classList.toggle('is-open', open);
+        bar.setAttribute('aria-expanded', String(open));
+      });
+    });
+
+    // Traffic: tap a card to reveal its description (others close)
+    const traffic = Array.from(document.querySelectorAll('#traffic .why-item'));
+    traffic.forEach(item => {
+      const ind = document.createElement('span');
+      ind.className = 'm-ind';
+      item.appendChild(ind);
+      item.addEventListener('click', () => {
+        const open = !item.classList.contains('m-open');
+        traffic.forEach(s => s.classList.remove('m-open'));
+        item.classList.toggle('m-open', open);
+      });
+    });
+
+    // Owned channels: number + horizontal body; tap reveals the description,
+    // while the "Visit website" link keeps navigating.
+    const channels = Array.from(document.querySelectorAll('#channels .service-card'));
+    channels.forEach((card, i) => {
+      const body = document.createElement('div');
+      body.className = 'ch-body';
+      while (card.firstChild) body.appendChild(card.firstChild);
+      const num = document.createElement('span');
+      num.className = 'm-num';
+      num.textContent = i + 1;
+      card.appendChild(num);
+      card.appendChild(body);
+      const ind = document.createElement('span');
+      ind.className = 'm-ind';
+      card.appendChild(ind);
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.service-link')) return;   // let the visit link work
+        e.preventDefault();
+        const open = !card.classList.contains('m-open');
+        channels.forEach(s => s.classList.remove('m-open'));
+        card.classList.toggle('m-open', open);
+      });
+    });
+  }
+
+  /* ───────────────────────────────────────────────────────
+     WHY US (mobile) · per-section layouts
+     - "What sets us apart" + "What to expect": horizontal cards,
+       tap reveals the detail (others in the section close)
+     - "A fair comparison": tag + title + faded preview, tap for full
+  ─────────────────────────────────────────────────────── */
+  function setupWhyUsMobile() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+
+    ['#why-diff', '#why-days', '#contact-faq'].forEach(sel => {
+      const items = Array.from(document.querySelectorAll(sel + ' .why-item'));
+      items.forEach(item => {
+        const ind = document.createElement('span');
+        ind.className = 'm-ind';
+        item.appendChild(ind);
+        item.addEventListener('click', () => {
+          const open = !item.classList.contains('m-open');
+          items.forEach(s => s.classList.remove('m-open'));
+          item.classList.toggle('m-open', open);
+        });
+      });
+    });
+
+    // Comparison cards expand independently (each is its own read-more)
+    Array.from(document.querySelectorAll('#why-compare .grid-2-balanced > div')).forEach(card => {
+      const ind = document.createElement('span');
+      ind.className = 'm-ind';
+      card.appendChild(ind);
+      card.addEventListener('click', () => card.classList.toggle('m-open'));
+    });
   }
 
   /* ───────────────────────────────────────────────────────
@@ -783,6 +1119,13 @@
     setupClickEffect();
     setupMobileCards();
     setupPricingCarousel();
+    setupReadMore();
+    setupPrinciples();
+    setupMilestoneTimeline();
+    setupLeadership();
+    setupStandForCarousel();
+    setupServicesMobile();
+    setupWhyUsMobile();
   }
 
   if (document.readyState === 'loading') {
