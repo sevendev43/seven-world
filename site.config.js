@@ -19,8 +19,8 @@ window.SITE_CONFIG = {
   topbar: {
     note: 'contact@sevenworld.net  ·  +84 96 1583 777',
     links: [
-      { label: 'Privacy Policy',    href: 'privacy.html' },
-      { label: 'Terms of Service',  href: 'terms.html'   }
+      { label: 'Privacy Policy',    href: '/privacy' },
+      { label: 'Terms of Service',  href: '/terms'   }
     ]
   },
 
@@ -28,17 +28,17 @@ window.SITE_CONFIG = {
      Mỗi mục là { label, href }. Thêm/bớt mục ở đây sẽ
      cập nhật toàn site (header + footer + mobile drawer). */
   menu: [
-    { label: 'About',        href: 'about.html'        },
-    { label: 'Services',     href: 'services.html'     },
-    // { label: 'Case Studies', href: 'case-studies.html' },
-    { label: 'Why Us',       href: 'why-us.html'       },
-    { label: 'Contact',      href: 'contact.html'      }
+    { label: 'About',        href: '/about'        },
+    { label: 'Services',     href: '/services'     },
+    // { label: 'Case Studies', href: '/case-studies' },
+    { label: 'Why Us',       href: '/why-us'       },
+    { label: 'Contact',      href: '/contact'      }
   ],
 
   /* -------- Call-to-action nút trên header -------- */
   cta: {
     label: 'Get Started',
-    href:  'contact.html'
+    href:  '/contact'
   },
 
   /* -------- Thông tin liên hệ (Seven Company Ltd. - Đà Nẵng) -------- */
@@ -71,25 +71,25 @@ window.SITE_CONFIG = {
       {
         title: 'Company',
         links: [
-          { label: 'About Seven',  href: 'about.html'        },
-          // { label: 'Case Studies', href: 'case-studies.html' },
-          { label: 'Why Us',       href: 'why-us.html'       },
-          { label: 'Contact',      href: 'contact.html'      }
+          { label: 'About Seven',  href: '/about'        },
+          // { label: 'Case Studies', href: '/case-studies' },
+          { label: 'Why Us',       href: '/why-us'       },
+          { label: 'Contact',      href: '/contact'      }
         ]
       },
       {
         title: 'Services',
         links: [
-          { label: 'Affiliate Marketing', href: 'services.html#marketing'  },
-          { label: 'Performance Ads',     href: 'services.html#paid-media' },
-          { label: 'Owned Channels',      href: 'services.html#channels'   }
+          { label: 'Affiliate Marketing', href: '/services#marketing'  },
+          { label: 'Performance Ads',     href: '/services#paid-media' },
+          { label: 'Owned Channels',      href: '/services#channels'   }
         ]
       },
       {
         title: 'Legal',
         links: [
-          { label: 'Privacy Policy',   href: 'privacy.html' },
-          { label: 'Terms of Service', href: 'terms.html'   }
+          { label: 'Privacy Policy',   href: '/privacy' },
+          { label: 'Terms of Service', href: '/terms'   }
         ]
       }
     ],

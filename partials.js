@@ -7,7 +7,11 @@
 
 (function () {
   const cfg  = window.SITE_CONFIG || {};
-  const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  // Normalise any URL/path to a page slug ('about', 'services', …; home -> 'home').
+  // Works for both clean URLs (/about) and local .html files (about.html).
+  const slug = u => (u || '').replace(/[#?].*$/, '').replace(/\.html$/, '')
+    .replace(/^\.?\//, '').replace(/\/$/, '').toLowerCase() || 'home';
+  const here = slug(location.pathname);
 
   /* ---------- SVG icons ---------- */
   const ICON = {
@@ -22,7 +26,7 @@
   };
 
   /* ---------- Brand block ---------- */
-  const brandHTML = (href = 'index.html') => `
+  const brandHTML = (href = '/') => `
     <a href="${href}" class="brand" aria-label="${cfg.brand?.name || 'Seven'} home">
       <span class="brand-mark">${ICON.logo}</span>
       <span class="brand-text">
@@ -31,37 +35,37 @@
       </span>
     </a>`;
 
-  /* ---------- Menu items (map config.menu → translation keys) ---------- */
-  const menuKeyByHref = {
-    'about.html':         'nav.about',
-    'services.html':      'nav.services',
-    'case-studies.html':  'nav.cases',
-    'why-us.html':        'nav.why',
-    'contact.html':       'nav.contact'
+  /* ---------- Menu items (map config.menu → translation keys, by slug) ---------- */
+  const menuKeyBySlug = {
+    'about':        'nav.about',
+    'services':     'nav.services',
+    'case-studies': 'nav.cases',
+    'why-us':       'nav.why',
+    'contact':      'nav.contact'
   };
 
   const menuItems = (cfg.menu || []).map(item => {
-    const active = item.href.toLowerCase() === path ? ' is-active' : '';
-    const i18n = menuKeyByHref[item.href.toLowerCase()];
+    const active = slug(item.href) === here ? ' is-active' : '';
+    const i18n = menuKeyBySlug[slug(item.href)];
     const i18nAttr = i18n ? ` data-i18n="${i18n}"` : '';
     return `<a href="${item.href}" class="nav-link${active}"${i18nAttr}>${item.label}</a>`;
   }).join('');
 
   const mobileMenu = (cfg.menu || []).map(item => {
-    const active = item.href.toLowerCase() === path ? ' is-active' : '';
-    const i18n = menuKeyByHref[item.href.toLowerCase()];
+    const active = slug(item.href) === here ? ' is-active' : '';
+    const i18n = menuKeyBySlug[slug(item.href)];
     const i18nAttr = i18n ? ` data-i18n="${i18n}"` : '';
     return `<a href="${item.href}" class="drawer-link${active}"${i18nAttr}>${item.label}</a>`;
   }).join('');
 
   /* ---------- Topbar ---------- */
-  const topbarLinkKeys = {
-    'privacy.html': 'topbar.privacy',
-    'terms.html':   'topbar.terms'
+  const topbarKeyBySlug = {
+    'privacy': 'topbar.privacy',
+    'terms':   'topbar.terms'
   };
   const topbarLinks = (cfg.topbar?.links || []).map(l => {
-    const active = l.href.toLowerCase() === path ? ' is-active' : '';
-    const i18n = topbarLinkKeys[l.href.toLowerCase()];
+    const active = slug(l.href) === here ? ' is-active' : '';
+    const i18n = topbarKeyBySlug[slug(l.href)];
     const i18nAttr = i18n ? ` data-i18n="${i18n}"` : '';
     return `<a href="${l.href}" class="topbar-link${active}"${i18nAttr}>${l.label}</a>`;
   }).join('<span class="topbar-sep" aria-hidden="true">·</span>');
@@ -83,7 +87,7 @@
 
   /* ---------- Mobile menu CTA ---------- */
   const ctaLabel = cfg.cta?.label || 'Get Started';
-  const ctaHref  = cfg.cta?.href  || 'contact.html';
+  const ctaHref  = cfg.cta?.href  || '/contact';
 
   /* ---------- Header ---------- */
   const headerHTML = `
@@ -91,7 +95,7 @@
       ${topbarHTML}
       <div class="header-main">
         <div class="container nav-wrap">
-          ${brandHTML('index.html')}
+          ${brandHTML('/')}
 
           <nav class="nav-links" aria-label="Primary">
             ${menuItems}
@@ -112,7 +116,7 @@
         ${mobileMenu}
         <div class="drawer-sep"></div>
         ${(cfg.topbar?.links || []).map(l => {
-          const i18n = topbarLinkKeys[l.href.toLowerCase()];
+          const i18n = topbarKeyBySlug[slug(l.href)];
           const i18nAttr = i18n ? ` data-i18n="${i18n}"` : '';
           return `<a href="${l.href}" class="drawer-link drawer-link-sm"${i18nAttr}>${l.label}</a>`;
         }).join('')}
@@ -129,15 +133,15 @@
     'Legal':    'footer.legal'
   };
   const footerLinkKey = {
-    'about.html':         'footer.links.about',
-    'case-studies.html':  'footer.links.cases',
-    'why-us.html':   'footer.links.why',
-    'contact.html':  'footer.links.contact',
-    'services.html#marketing':   'footer.links.marketing',
-    'services.html#paid-media':  'footer.links.paid_media',
-    'services.html#channels':    'footer.links.channels',
-    'privacy.html':  'footer.links.privacy',
-    'terms.html':    'footer.links.terms'
+    '/about':         'footer.links.about',
+    '/case-studies':  'footer.links.cases',
+    '/why-us':        'footer.links.why',
+    '/contact':       'footer.links.contact',
+    '/services#marketing':   'footer.links.marketing',
+    '/services#paid-media':  'footer.links.paid_media',
+    '/services#channels':    'footer.links.channels',
+    '/privacy':       'footer.links.privacy',
+    '/terms':         'footer.links.terms'
   };
 
   const footerCols = (cfg.footer?.columns || []).map(col => {
@@ -166,7 +170,7 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          ${brandHTML('index.html')}
+          ${brandHTML('/')}
           <p data-i18n="footer.desc">${cfg.footer?.description || ''}</p>
           <p class="footer-tagline" data-i18n="footer.tagline">"${cfg.brand?.tagline || ''}"</p>
         </div>
