@@ -1095,6 +1095,75 @@
   }
 
   /* ───────────────────────────────────────────────────────
+     MOBILE · animated tech backdrop (all pages)
+     A few pulsing radar nodes (the ripple motif) + drifting stat
+     readouts (some live-ticking) behind the page. Phone-only, faint.
+  ─────────────────────────────────────────────────────── */
+  function setupMobileBackdrop() {
+    if (!window.matchMedia('(max-width:640px)').matches) return;
+    if (document.querySelector('.hm-bg')) return;
+
+    const layer = document.createElement('div');
+    layer.className = 'hm-bg';
+    layer.setAttribute('aria-hidden', 'true');
+
+    // Radar nodes: core dot + 3 expanding rings (staggered via CSS nth-child)
+    [['84%', '14%'], ['14%', '46%'], ['72%', '78%']].forEach(p => {
+      const n = document.createElement('div');
+      n.className = 'hm-node';
+      n.style.left = p[0]; n.style.top = p[1];
+      n.innerHTML = '<span class="hm-core"></span><span class="hm-ring"></span><span class="hm-ring"></span><span class="hm-ring"></span>';
+      layer.appendChild(n);
+    });
+
+    // Stat readouts drifting up + fading. Positions: [left, top, duration, delay]
+    const slots = [
+      ['8%', '24%', '17s', '0s'],  ['70%', '14%', '20s', '3s'],  ['40%', '55%', '23s', '6s'],
+      ['85%', '63%', '18s', '2s'], ['14%', '82%', '26s', '9s'],  ['58%', '90%', '19s', '5s'],
+      ['26%', '9%', '22s', '7s'],  ['90%', '36%', '21s', '1s'],  ['6%', '60%', '24s', '11s'],
+      ['46%', '30%', '20s', '4s'], ['78%', '86%', '25s', '8s'],  ['33%', '72%', '18s', '13s']
+    ];
+    // Live metrics tick to nearby values; plain ones stay fixed.
+    const metrics = [
+      { label: 'ROI', base: 350, suf: '%', jit: 9 },
+      { label: 'CR',  base: 4.2, dec: 1, suf: '%', jit: 0.5 },
+      { label: 'CTR', base: 5.1, dec: 1, suf: '%', jit: 0.6 },
+      { label: 'CPA', base: 12.4, dec: 1, pre: '$', jit: 1.2 },
+      { label: 'EPC', base: 0.42, dec: 2, pre: '$', jit: 0.06 },
+      { label: 'CVR', base: 3.8, dec: 1, suf: '%', jit: 0.5 },
+      { text: '$10M+' }, { text: '200K+' }, { text: '+400%' }, { text: '$1.2M' },
+      { text: '01 10 11' }, { text: '10 01 10' }
+    ];
+    const fmt = m => (m.label ? m.label + ' ' : '') + (m.pre || '') +
+      (m.base + (Math.random() * 2 - 1) * m.jit).toFixed(m.dec || 0) + (m.suf || '');
+
+    const live = [];
+    slots.forEach((s, i) => {
+      const m = metrics[i % metrics.length];
+      const el = document.createElement('span');
+      el.className = 'hm-stat';
+      el.style.left = s[0]; el.style.top = s[1];
+      el.style.animationDuration = s[2]; el.style.animationDelay = s[3];
+      if (m.text) { el.textContent = m.text; }
+      else { el._m = m; el.textContent = fmt(m); live.push(el); }
+      layer.appendChild(el);
+    });
+
+    document.body.appendChild(layer);
+
+    // "Live data" — nudge the metric values every couple seconds, flash on change.
+    if (live.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(() => {
+        live.forEach(el => {
+          el.textContent = fmt(el._m);
+          el.classList.add('is-tick');
+          setTimeout(() => el.classList.remove('is-tick'), 360);
+        });
+      }, 2200);
+    }
+  }
+
+  /* ───────────────────────────────────────────────────────
      INIT
   ─────────────────────────────────────────────────────── */
   async function init() {
@@ -1126,6 +1195,7 @@
     setupStandForCarousel();
     setupServicesMobile();
     setupWhyUsMobile();
+    setupMobileBackdrop();
   }
 
   if (document.readyState === 'loading') {

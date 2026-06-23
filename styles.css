@@ -161,6 +161,97 @@ body::before{
   pointer-events:none;
 }
 
+@keyframes gridDrift{ to{ background-position:64px 64px } }
+@keyframes ambientDrift{
+  0%  { transform:translate3d(-3%,1%,0)  scale(1);    opacity:.75 }
+  50% { opacity:1 }
+  100%{ transform:translate3d(4%,-6%,0)  scale(1.14); opacity:.8 }
+}
+@keyframes homeScan{ 0%{ background-position:0 -28% } 100%{ background-position:0 128% } }
+
+/* ── DESKTOP · home only: two faint gold glows drift + the grid creeps. ── */
+@media (min-width:641px){
+  body[data-page="home"]::before{ animation:gridDrift 60s linear infinite }
+  body[data-page="home"]::after{
+    content:"";
+    position:fixed;inset:-15%;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(36% 32% at 15% 18%, rgba(226,186,84,.30), transparent 58%),
+      radial-gradient(42% 38% at 85% 82%, rgba(208,160,43,.24), transparent 60%),
+      radial-gradient(30% 30% at 62% 48%, rgba(226,186,84,.16), transparent 62%);
+    animation:ambientDrift 20s ease-in-out infinite alternate;
+    will-change:transform,opacity;
+  }
+}
+
+/* ── MOBILE · ALL pages: cleaner tech backdrop — drop the scattered plexus,
+   use a crisp gold grid + a soft scan sweep. The animated radar rings +
+   drifting stat readouts live in the JS .hm-bg layer. ── */
+@media (max-width:640px){
+  #plexus-canvas{ display:none }
+
+  body::before{
+    background-image:
+      radial-gradient(78% 40% at 50% 8%, rgba(226,186,84,.13), transparent 70%),
+      linear-gradient(rgba(208,160,43,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(208,160,43,.05) 1px, transparent 1px);
+    background-size:100% 100%, 34px 34px, 34px 34px;
+    background-position:0 0;
+    animation:none;
+  }
+
+  body::after{
+    content:"";
+    position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:linear-gradient(180deg,
+      transparent 0%, rgba(226,186,84,.10) 44%, rgba(226,186,84,.20) 50%,
+      rgba(226,186,84,.10) 56%, transparent 100%);
+    background-size:100% 26%;
+    background-repeat:no-repeat;
+    animation:homeScan 7.5s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  body::before, body::after{ animation:none }
+}
+
+/* Mobile animated backdrop layer (created by setupMobileBackdrop, all pages) */
+.hm-bg{ position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;display:none }
+@media (max-width:640px){ .hm-bg{ display:block } }
+.hm-node{ position:absolute;width:0;height:0 }
+.hm-core{
+  position:absolute;left:0;top:0;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;
+  background:rgba(208,160,43,.5);box-shadow:0 0 0 3px rgba(208,160,43,.10);
+}
+.hm-ring{
+  position:absolute;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;
+  border:1px solid rgba(208,160,43,.4);border-radius:50%;opacity:0;
+  animation:hmRing 6.5s ease-out infinite;
+}
+.hm-ring:nth-child(3){ animation-delay:2.15s }
+.hm-ring:nth-child(4){ animation-delay:4.3s }
+@keyframes hmRing{ 0%{ transform:scale(1);opacity:.45 } 70%{ opacity:.1 } 100%{ transform:scale(10);opacity:0 } }
+
+.hm-stat{
+  position:absolute;font-family:var(--font-mono);font-weight:700;font-size:.78rem;letter-spacing:.04em;
+  color:rgba(208,160,43,.20);white-space:nowrap;
+  animation:hmFloat linear infinite;
+  transition:color .35s ease, text-shadow .35s ease;
+}
+/* brief flash when a live value updates */
+.hm-stat.is-tick{ color:rgba(243,217,134,.5);text-shadow:0 0 8px rgba(226,186,84,.4) }
+@keyframes hmFloat{
+  0%{ transform:translateY(30px);opacity:0 }
+  14%{ opacity:1 }
+  86%{ opacity:1 }
+  100%{ transform:translateY(-64px);opacity:0 }
+}
+@media (prefers-reduced-motion:reduce){
+  .hm-ring{ animation:none;opacity:.12 }
+  .hm-stat{ animation:none;opacity:.16 }
+}
+
 /* ============================================================
    PAGE LOADER
    ============================================================ */
